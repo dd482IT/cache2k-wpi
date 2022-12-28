@@ -58,7 +58,6 @@ public class CacheManagerTest extends TestSupport {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(this.getClass()) {
 
     /* (non-Javadoc)
@@ -74,7 +73,6 @@ public class CacheManagerTest extends TestSupport {
     }
   };
 
-  @Before
   public void startUp() {
     try {
       Caching.getCachingProvider().close();
@@ -84,7 +82,6 @@ public class CacheManagerTest extends TestSupport {
   }
 
 
-  @After
   public void teardown() {
     CacheManager cacheManager = getCacheManager();
     for (String cacheName : cacheManager.getCacheNames()) {
@@ -93,7 +90,6 @@ public class CacheManagerTest extends TestSupport {
     cacheManager.close();
   }
 
-  @Test
   public void getOrCreateCache_NullCacheName() {
     CacheManager cacheManager = getCacheManager();
     try {
@@ -104,7 +100,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void createCache_NullCacheName() {
     CacheManager cacheManager = getCacheManager();
     try {
@@ -115,7 +110,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void getOrCreateCache_NullCacheConfiguration() {
     CacheManager cacheManager = getCacheManager();
     try {
@@ -126,7 +120,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-@Test
   public void createCache_NullCacheConfiguration() {
     CacheManager cacheManager = getCacheManager();
     try {
@@ -137,7 +130,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void getOrCreateCache_Same() {
     String name = "c1";
     CacheManager cacheManager = getCacheManager();
@@ -146,7 +138,6 @@ public class CacheManagerTest extends TestSupport {
     assertSame(cache, cacheManager.getCache(name));
   }
 
-  @Test
   public void createCache_Same() {
     String name = "c1";
     CacheManager cacheManager = getCacheManager();
@@ -161,7 +152,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void testReuseCacheManager() throws Exception {
     CachingProvider provider = Caching.getCachingProvider();
     URI uri = provider.getDefaultURI();
@@ -188,7 +178,6 @@ public class CacheManagerTest extends TestSupport {
    * https://github.com/jsr107/jsr107tck/issues/104
    * Changed in 1.1, don't do getCache(..., null, null)
    */
-  @Test
   public void testReuseCacheManagerGetCache() throws Exception {
     CachingProvider provider = Caching.getCachingProvider();
     URI uri = provider.getDefaultURI();
@@ -212,7 +201,6 @@ public class CacheManagerTest extends TestSupport {
   }
 
 
-  @Test
   public void getOrCreateCache_NameOK() {
     String name = "c1";
     getCacheManager().createCache(name, new MutableConfiguration());
@@ -220,7 +208,6 @@ public class CacheManagerTest extends TestSupport {
     assertEquals(name, cache.getName());
   }
 
-  @Test
   public void createCache_NameOK() {
     String name = "c1";
     getCacheManager().createCache(name, new MutableConfiguration());
@@ -228,7 +215,6 @@ public class CacheManagerTest extends TestSupport {
     assertEquals(name, cache.getName());
   }
 
-  @Test
   public void cachingProviderGetCache() {
     String name = "c1";
     getCacheManager().createCache(name, new MutableConfiguration().setTypes(Long.class, String.class));
@@ -237,7 +223,6 @@ public class CacheManagerTest extends TestSupport {
   }
 
 
-  @Test
   public void getOrCreateCache_StatusOK() {
     String name = "c1";
     getCacheManager().createCache(name, new MutableConfiguration());
@@ -246,7 +231,6 @@ public class CacheManagerTest extends TestSupport {
     assertEquals(name, cache.getName());
   }
 
-  @Test
   public void getOrCreateCache_Different() {
     String name1 = "c1";
     CacheManager cacheManager = getCacheManager();
@@ -261,7 +245,6 @@ public class CacheManagerTest extends TestSupport {
     assertEquals(cache2, cacheManager.getCache(name2));
   }
 
-  @Test
   public void createCacheSameName() {
     CacheManager cacheManager = getCacheManager();
     String name1 = "c1";
@@ -278,7 +261,6 @@ public class CacheManagerTest extends TestSupport {
     Cache cache2 = cacheManager.getCache(name1);
   }
 
-  @Test
   public void removeCache_Null() {
     CacheManager cacheManager = getCacheManager();
     try {
@@ -289,7 +271,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void removeCache_There() {
     CacheManager cacheManager = getCacheManager();
     String name1 = "c1";
@@ -298,7 +279,6 @@ public class CacheManagerTest extends TestSupport {
     assertFalse(cacheManager.getCacheNames().iterator().hasNext());
   }
 
-  @Test
   public void removeCache_CacheStopped() {
     CacheManager cacheManager = getCacheManager();
     String name1 = "c1";
@@ -308,13 +288,11 @@ public class CacheManagerTest extends TestSupport {
     ensureClosed(cache1);
   }
 
-  @Test
   public void removeCache_NotThere() {
     CacheManager cacheManager = getCacheManager();
     cacheManager.destroyCache("c1");
   }
 
-  @Test
   public void removeCache_Stopped() {
     CacheManager cacheManager = getCacheManager();
     cacheManager.close();
@@ -326,7 +304,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void close_cachesClosed() {
     CacheManager cacheManager = getCacheManager();
 
@@ -341,7 +318,6 @@ public class CacheManagerTest extends TestSupport {
     ensureClosed(cache2);
   }
 
-  @Test
   public void close() {
     CacheManager cacheManager = getCacheManager();
 
@@ -350,7 +326,6 @@ public class CacheManagerTest extends TestSupport {
     assertTrue(cacheManager.isClosed());
   }
 
-  @Test
   public void close_twice() {
     CacheManager cacheManager = getCacheManager();
 
@@ -363,7 +338,6 @@ public class CacheManagerTest extends TestSupport {
    *
    * Changed in 1.1, getCacheNames() throws exception after closing.
    */
-  @Test
   public void close_cachesEmpty() {
     CacheManager cacheManager = getCacheManager();
 
@@ -379,13 +353,11 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void getCache_Missing() {
     CacheManager cacheManager = getCacheManager();
     assertNull(cacheManager.getCache("notThere"));
   }
 
-  @Test
   public void getCache_There() {
     String name = this.toString();
     CacheManager cacheManager = getCacheManager();
@@ -394,7 +366,6 @@ public class CacheManagerTest extends TestSupport {
     assertSame(cache, cacheManager.getCache(name));
   }
 
-  @Test
   public void getCache_Missing_Stopped() {
     CacheManager cacheManager = getCacheManager();
     cacheManager.close();
@@ -406,7 +377,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test(expected = IllegalStateException.class)
   public void enableStatistics_managerStopped() {
     CacheManager cacheManager = getCacheManager();
     cacheManager.close();
@@ -414,7 +384,6 @@ public class CacheManagerTest extends TestSupport {
     fail();
   }
 
-  @Test(expected = IllegalStateException.class)
   public void enableManagement_managerStopped() {
     CacheManager cacheManager = getCacheManager();
     cacheManager.close();
@@ -422,7 +391,6 @@ public class CacheManagerTest extends TestSupport {
     fail();
   }
 
-  @Test(expected = NullPointerException.class)
   public void enableStatistics_nullCacheName() {
     CacheManager cacheManager = getCacheManager();
     final String NULL_CACHE_NAME = null;
@@ -430,7 +398,6 @@ public class CacheManagerTest extends TestSupport {
     fail();
   }
 
-  @Test(expected = NullPointerException.class)
   public void enableManagement_nullCacheName() {
     CacheManager cacheManager = getCacheManager();
     final String NULL_CACHE_NAME = null;
@@ -438,14 +405,12 @@ public class CacheManagerTest extends TestSupport {
     fail();
   }
 
-  @Test(expected = IllegalArgumentException.class)
   public void unwrapThrowsInvalidArgument() {
     final Class ALWAYS_INVALID_UNWRAP_CLASS = Exception.class;
     getCacheManager().unwrap(Exception.class);
     fail();
   }
 
-  @Test
   public void getCache_There_Stopped() {
     String name = this.toString();
     CacheManager cacheManager = getCacheManager();
@@ -459,13 +424,11 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void getCaches_Empty() {
     CacheManager cacheManager = getCacheManager();
     assertFalse(cacheManager.getCacheNames().iterator().hasNext());
   }
 
-  @Test
   public void getCaches_NotEmpty() {
     CacheManager cacheManager = getCacheManager();
 
@@ -480,7 +443,6 @@ public class CacheManagerTest extends TestSupport {
     checkCollections(caches1, cacheManager.getCacheNames());
   }
 
-  @Test
   public void getCaches_MutateReturn() {
     CacheManager cacheManager = getCacheManager();
 
@@ -497,7 +459,6 @@ public class CacheManagerTest extends TestSupport {
     }
   }
 
-  @Test
   public void getCaches_MutateCacheManager() {
     CacheManager cacheManager = getCacheManager();
 
@@ -536,7 +497,6 @@ public class CacheManagerTest extends TestSupport {
     checkCollections(cacheNames1, cacheNames);
   }
 
-  @Test
   public void getUntypedCache() {
     CacheManager cacheManager = getCacheManager();
 
@@ -552,7 +512,6 @@ public class CacheManagerTest extends TestSupport {
     assertEquals(Object.class, cache.getConfiguration(CompleteConfiguration.class).getValueType());
   }
 
-  @Test
   public void getTypedCache() {
     CacheManager cacheManager = getCacheManager();
 
@@ -567,7 +526,6 @@ public class CacheManagerTest extends TestSupport {
     assertEquals(Long.class, cache.getConfiguration(CompleteConfiguration.class).getValueType());
   }
 
-  @Test(expected = ClassCastException.class)
   public void getIncorrectCacheType() {
     CacheManager cacheManager = getCacheManager();
 
@@ -578,7 +536,6 @@ public class CacheManagerTest extends TestSupport {
     Cache<Long, String> cache = cacheManager.getCache("typed-cache", Long.class, String.class);
   }
 
-  @Test(expected = ClassCastException.class)
   public void getIncorrectCacheValueType() {
     CacheManager cacheManager = getCacheManager();
 
@@ -593,7 +550,6 @@ public class CacheManagerTest extends TestSupport {
    * https://github.com/jsr107/jsr107spec/issues/340
    * in 1.1 we relaxed {@link CacheManager#getCache(String)} to not enforce a check.
    */
-  @Test
   public void getUnsafeTypedCacheRequest() {
     CacheManager cacheManager = getCacheManager();
 
@@ -606,7 +562,6 @@ public class CacheManagerTest extends TestSupport {
     assertNotNull("getCache() returns cache reference for typed caches, since 1.1", cache);
   }
 
-  @Test(expected = NullPointerException.class)
   public void getNullTypeCacheRequest() {
     CacheManager cacheManager = getCacheManager();
 
@@ -617,7 +572,6 @@ public class CacheManagerTest extends TestSupport {
     Cache cache = cacheManager.getCache("untyped-cache", null, null);
   }
 
-  @Test
   public void testUnwrap() {
     //Assumes rule will exclude this test when no unwrapClass is specified
     final Class<?> unwrapClass = getUnwrapClass(CacheManager.class);

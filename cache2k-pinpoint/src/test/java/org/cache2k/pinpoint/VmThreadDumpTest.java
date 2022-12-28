@@ -29,7 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class VmThreadDumpTest {
 
-  @Test
   public void test() {
     String dump = VmThreadDump.generateThreadDump();
     assertThat(dump).contains("Thread \"" + Thread.currentThread().getName() + "\"");

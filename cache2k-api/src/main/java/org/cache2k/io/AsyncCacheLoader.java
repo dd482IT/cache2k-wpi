@@ -110,7 +110,7 @@ public interface AsyncCacheLoader<K, V> extends DataAwareCustomization<K, V> {
      *
      * @return the current entry if a mapping is present in the cache, or {@code null}
      */
-    @Nullable CacheEntry<K, V> getCurrentEntry();
+    CacheEntry<K, V> getCurrentEntry();
 
     /**
      * Operation is refresh and not an immediate client request. This can be used

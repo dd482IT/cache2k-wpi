@@ -52,7 +52,6 @@ public class ParseCompleteTest {
     return ConfigurationParser.parse(pp);
   }
 
-  @Test
   public void parseIt() throws Exception {
     ParsedConfiguration topLevel = parse();
     assertThat(topLevel.getPropertyMap().get("version").getValue()).isEqualTo("1.0");
@@ -71,7 +70,6 @@ public class ParseCompleteTest {
     assertThat(topLevel.getStringPropertyByPath("NOEXISTENT.PROPERTY")).isNull();
   }
 
-  @Test
   public void parseAndExpand() throws Exception {
     InputStream is = this.getClass().getResourceAsStream("/config.xml");
     ConfigurationTokenizer pp = new StaxConfigTokenizer("/config.xml", is, null);
@@ -92,7 +90,6 @@ public class ParseCompleteTest {
     assertThat(cfg.getStringPropertyByPath("properties.noClose")).isEqualTo("${ENV.HOME");
   }
 
-  @Test
   public void cyclicReferenceProtection() throws Exception {
     assertThatCode(() -> {
       String fileName = "/cyclic-variable.xml";
@@ -104,7 +101,6 @@ public class ParseCompleteTest {
     }).isInstanceOf(ConfigurationException.class);
   }
 
-  @Test
   public void parseViaStax() throws Exception {
     InputStream is = this.getClass().getResourceAsStream("/config.xml");
     ConfigurationTokenizer pp = new StaxConfigTokenizer("/config.xml", is, null);

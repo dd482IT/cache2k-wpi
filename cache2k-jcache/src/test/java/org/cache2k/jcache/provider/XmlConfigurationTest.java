@@ -60,7 +60,6 @@ public class XmlConfigurationTest {
 
   private static final String MANAGER_NAME = "jcacheExample";
 
-  @Test
   public void sectionIsThere() {
     Cache2kBuilder<String, String> b =
       new Cache2kBuilder<String, String>() {
@@ -81,7 +80,6 @@ public class XmlConfigurationTest {
     c.close();
   }
 
-  @Test
   public void sectionIsThereViaStandardElementName() {
     Cache2kBuilder<String, String> b =
       new Cache2kBuilder<String, String>() {
@@ -102,7 +100,6 @@ public class XmlConfigurationTest {
     c.close();
   }
 
-  @Test
   public void xmlConfigurationIsNotApplied() {
     CachingProvider p = getCachingProvider();
     javax.cache.CacheManager cm = p.getCacheManager();
@@ -113,7 +110,6 @@ public class XmlConfigurationTest {
     c.close();
   }
 
-  @Test
   public void xmlConfigurationIsApplied() throws Exception {
     CachingProvider p = getCachingProvider();
     javax.cache.CacheManager cm = p.getCacheManager(new URI(MANAGER_NAME), null);
@@ -125,7 +121,6 @@ public class XmlConfigurationTest {
     c.close();
   }
 
-  @Test
   public void configurationMissing() {
     assertThatCode(() -> {
       javax.cache.CacheManager manager =
@@ -134,7 +129,6 @@ public class XmlConfigurationTest {
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void configurationPresent_defaults() throws Exception {
     javax.cache.CacheManager manager =
       getCachingProvider().getCacheManager(new URI(MANAGER_NAME), null);
@@ -143,7 +137,6 @@ public class XmlConfigurationTest {
     assertThat(b.getExtraConfiguration().isCopyAlwaysIfRequested()).isEqualTo(false);
   }
 
-  @Test
   public void configurationPresent_changed() throws Exception {
     javax.cache.CacheManager manager =
       getCachingProvider().getCacheManager(new URI(MANAGER_NAME), null);
@@ -152,13 +145,11 @@ public class XmlConfigurationTest {
     assertThat(b.getExtraConfiguration().isCopyAlwaysIfRequested()).isEqualTo(true);
   }
 
-  @Test
   public void getCache_creates() throws Exception {
     javax.cache.CacheManager _manager =
       Caching.getCachingProvider().getCacheManager(new URI(MANAGER_NAME), null);
   }
 
-  @Test
   public void standardJCacheSemanticsIfNoExternalConfiguration() throws Exception {
     CachingProvider p = getCachingProvider();
     javax.cache.CacheManager cm = p.getCacheManager();
@@ -167,7 +158,6 @@ public class XmlConfigurationTest {
     assertThat(c instanceof CopyCacheProxy).isTrue();
   }
 
-  @Test
   public void cache2kSemanticsIfEmptyConfigurationPresent() throws Exception {
     CachingProvider p = getCachingProvider();
     javax.cache.CacheManager cm = p.getCacheManager(new URI("empty"), null);
@@ -176,7 +166,6 @@ public class XmlConfigurationTest {
     assertThat(c instanceof JCacheAdapter).isTrue();
   }
 
-  @Test
   public void jcacheWithLoaderButNoReadThroughEnabled() throws Exception {
     javax.cache.CacheManager _manager =
       getCachingProvider().getCacheManager(new URI(MANAGER_NAME), null);
@@ -191,7 +180,6 @@ public class XmlConfigurationTest {
     assertThat(_cache.get(123)).isNotNull();
   }
 
-  @Test
   public void jcacheWithLoaderReadThroughEnabled() throws Exception {
     javax.cache.CacheManager _manager =
       getCachingProvider().getCacheManager(new URI(MANAGER_NAME), null);
@@ -200,7 +188,6 @@ public class XmlConfigurationTest {
     assertThat(_cache.get(123)).isNotNull();
   }
 
-  @Test
   public void readAllXml() {
     Cache c = new Cache2kBuilder<String, String>() { }
       .manager(CacheManager.getInstance("all"))
@@ -209,7 +196,6 @@ public class XmlConfigurationTest {
     c.close();
   }
 
-  @Test
   public void validateCoreXsd() throws Exception {
     Source cfg =
       new StreamSource(
@@ -221,7 +207,6 @@ public class XmlConfigurationTest {
     schema.newValidator().validate(cfg);
   }
 
-  @Test
   public void validateVariableExpansion() {
     Cache2kBuilder b = new Cache2kBuilder<String, String>() { }
       .manager(getInstance("all"))
@@ -233,7 +218,6 @@ public class XmlConfigurationTest {
     c.close();
   }
 
-  @Test
   public void checkSectionSetter() {
     Cache2kConfig cfg = new Cache2kConfig();
     cfg.setSections(singletonList(new JCacheConfig()));
@@ -242,7 +226,6 @@ public class XmlConfigurationTest {
     assertThat(cfg.getSections().iterator().hasNext()).isTrue();
   }
 
-  @Test
   public void checkNoDuplicateSection() {
     assertThatCode(() -> {
       Cache2kConfig cfg = new Cache2kConfig();

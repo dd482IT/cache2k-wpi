@@ -54,7 +54,6 @@ public class CacheLoaderWithoutReadThroughTest {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(CacheLoaderWithoutReadThroughTest.class);
 
   /**
@@ -76,7 +75,6 @@ public class CacheLoaderWithoutReadThroughTest {
   /**
    * Establish the {@link javax.cache.CacheManager} and {@link javax.cache.Cache} for a test.
    */
-  @Before
   public void onBeforeEachTest() throws IOException {
     //establish and open a CacheLoaderServer to handle cache
     //cache loading requests from a CacheLoaderClient
@@ -105,7 +103,6 @@ public class CacheLoaderWithoutReadThroughTest {
   /**
    * Clean up the {@link javax.cache.CacheManager} and {@link javax.cache.Cache} after a test.
    */
-  @After
   public void onAfterEachTest() {
     //destroy the cache
     String cacheName = cache.getName();
@@ -122,7 +119,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#get(Object)} for a non-existent entry will
    * not cause it to be loaded.
    */
-  @Test
   public void shouldNotLoadWhenCacheMissUsingGet() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -142,7 +138,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure accessing an entry from an {@link javax.cache.processor.EntryProcessor}
    * will not cause a {@link javax.cache.integration.CacheLoader} to load an entry.
    */
-  @Test
   public void shouldLoadWhenAccessingWithEntryProcessor() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -162,7 +157,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#get(Object)} request for an existing entry will
    * not cause a load to occur.
    */
-  @Test
   public void shouldNotLoadUsingGetWithExistingValue() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -184,7 +178,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#containsKey(Object)} will not cause an entry
    * to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingContainsKey() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -200,7 +193,6 @@ public class CacheLoaderWithoutReadThroughTest {
   /**
    * Ensure that a {@link Cache#getAll(java.util.Set)} will not load entries.
    */
-  @Test
   public void shouldNotLoadUsingGetAll() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -238,7 +230,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#getAll(java.util.Set)} using one or more
    * <code>null</code> keys will not load anything.
    */
-  @Test
   public void shouldNotLoadWithNullKeyUsingGetAll() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -269,7 +260,6 @@ public class CacheLoaderWithoutReadThroughTest {
   /**
    * Ensure that iterating over a {@link Cache} does cause loading.
    */
-  @Test
   public void shouldNotLoadDueToIteration() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -298,7 +288,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link javax.cache.integration.CacheLoader} that returns <code>null</code> entries
    * aren't placed in the cache.
    */
-  @Test
   public void shouldNotLoadNullEntries() {
     NullValueCacheLoader<String, String> nullCacheLoader = new NullValueCacheLoader<>();
     cacheLoaderServer.setCacheLoader(nullCacheLoader);
@@ -321,7 +310,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link javax.cache.integration.CacheLoader} that returns <code>null</code> values
    * aren't placed in the cache.
    */
-  @Test
   public void shouldNotLoadNullValues() {
     NullValueCacheLoader<String, String> cacheLoader = new NullValueCacheLoader<>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -344,7 +332,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#getAndPut(Object, Object)} does not cause
    * an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingGetAndPut() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -370,7 +357,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#getAndRemove(Object)} does not cause
    * an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingGetAndRemove() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -398,7 +384,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#getAndReplace(Object, Object)} does not cause
    * an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingGetAndReplace() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -426,7 +411,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#put(Object, Object)} )} does not cause
    * an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingPut() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -452,7 +436,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#putIfAbsent(Object, Object)} does not cause
    * an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingPutIfAbsent() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -478,7 +461,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#putAll(java.util.Map)} does not cause
    * an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingPutAll() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -515,7 +497,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * {@link Cache#replace(Object, Object, Object)} does not cause
    * an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingReplace() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -545,7 +526,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#remove(Object)} and
    * {@link Cache#remove(Object, Object)}  does not cause an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingRemove() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -575,7 +555,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that a {@link Cache#putAll(java.util.Map)} does not cause
    * an entry to be loaded.
    */
-  @Test
   public void shouldNotLoadUsingRemoveAll() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -596,7 +575,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * for a non-existent single value will cause it to be loaded.
    */
-  @Test
   public void shouldLoadSingleMissingEntryUsingLoadAll() throws Exception {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -623,7 +601,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * for an existing single entry will cause it to be reloaded.
    */
-  @Test
   public void shouldLoadSingleExistingEntryUsingLoadAll() throws Exception {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -656,7 +633,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)} )}
    * for multiple non-existing entries will be loaded.
    */
-  @Test
   public void shouldLoadMultipleNonExistingEntryUsingLoadAll() throws Exception {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -690,7 +666,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * for multiple existing entries will be reloaded.
    */
-  @Test
   public void shouldLoadMultipleExistingEntryUsingLoadAll() throws Exception {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -727,7 +702,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * won't load <code>null</code> values.
    */
-  @Test
   public void shouldNotLoadMultipleNullValuesUsingLoadAll() throws Exception {
     NullValueCacheLoader<String, String> cacheLoader = new NullValueCacheLoader<>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -755,7 +729,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * won't load <code>null</code> entries.
    */
-  @Test
   public void shouldNotLoadMultipleNullEntriesUsingLoadAll() throws Exception {
     NullValueCacheLoader<String, String> cacheLoader = new NullValueCacheLoader<>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -783,7 +756,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)} )}
    * using a <code>null</code> key will raise an exception
    */
-  @Test
   public void shouldNotLoadWithNullKeyUsingLoadAll() throws Exception {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -807,7 +779,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * using a <code>null</code> key will raise an exception
    */
-  @Test
   public void shouldNotLoadWithNullKeysUsingLoadAll() throws Exception {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -828,7 +799,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#get(Object)} will propagate an exception from a
    * {@link javax.cache.integration.CacheLoader}.
    */
-  @Test
   public void shouldNotPropagateExceptionUsingGet() {
     FailingCacheLoader<String, String> cacheLoader = new FailingCacheLoader<>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -845,7 +815,6 @@ public class CacheLoaderWithoutReadThroughTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}  )}
    * will propagate an exception from a {@link javax.cache.integration.CacheLoader}.
    */
-  @Test
   public void shouldPropagateExceptionUsingLoadAll() throws Exception {
     FailingCacheLoader<String, String> cacheLoader = new FailingCacheLoader<>();
     cacheLoaderServer.setCacheLoader(cacheLoader);

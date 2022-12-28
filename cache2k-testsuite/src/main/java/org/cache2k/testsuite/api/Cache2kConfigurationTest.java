@@ -38,10 +38,8 @@ import static org.junit.Assert.*;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class Cache2kConfigurationTest {
 
-  @Test
   public void checkListenerSetters() {
     CustomizationSupplier sup =
       new CustomizationSupplierByClassName<CacheEntryOperationListener>("xy");
@@ -55,7 +53,6 @@ public class Cache2kConfigurationTest {
     assertTrue(cfg.getLifecycleListeners().iterator().hasNext());
   }
 
-  @Test
   public void toggleFeature() {
     Cache2kBuilder<Integer, Integer> b =
       Cache2kBuilder.of(Integer.class, Integer.class);
@@ -70,7 +67,6 @@ public class Cache2kConfigurationTest {
     assertNotSame(other, ToggleFeature.extract(b, DummyToggleFeature.class));
   }
 
-  @Test
   public void testEternalConfig() {
     assertTrue("max val means eternal",
       Cache2kBuilder.of(Integer.class, Integer.class)

@@ -41,7 +41,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class DefaultSchedulerProviderTest {
 
   private MyBuildContext ctx() {
@@ -51,7 +50,6 @@ public class DefaultSchedulerProviderTest {
   /**
    * Immediate execute.
    */
-  @Test
   public void immediateExecute() throws Exception {
     DefaultSchedulerProvider provider = new DefaultSchedulerProvider();
     Scheduler s1 = provider.supply(ctx());
@@ -61,7 +59,6 @@ public class DefaultSchedulerProviderTest {
   /**
    * The effective scheduler is only closed after all executors are closed.
    */
-  @Test
   public void createAndClose() throws Exception {
     DefaultSchedulerProvider provider = new DefaultSchedulerProvider();
     Scheduler s1 = provider.supply(ctx());
@@ -76,7 +73,6 @@ public class DefaultSchedulerProviderTest {
     ).isInstanceOf(RejectedExecutionException.class);
   }
 
-  @Test
   public void doubleClose() throws Exception {
     DefaultSchedulerProvider provider = new DefaultSchedulerProvider();
     Scheduler s1 = provider.supply(ctx());
@@ -85,7 +81,6 @@ public class DefaultSchedulerProviderTest {
     ((AutoCloseable) s1).close();
   }
 
-  @Test
   public void closeAndCreate() throws Exception {
     DefaultSchedulerProvider provider = new DefaultSchedulerProvider();
     Scheduler s1 = provider.supply(ctx());

@@ -20,7 +20,6 @@ public class ClientServerTest {
    * Ensure that we and send a "ping" and receive a "pong" between a
    * {@link Client} and a {@link Server}.
    */
-  @Test
   public void shouldPingPong() {
 
     Server server = new Server(10000);

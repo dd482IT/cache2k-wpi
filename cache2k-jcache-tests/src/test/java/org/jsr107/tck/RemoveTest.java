@@ -58,11 +58,9 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass());
 
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Long.class, String.class);
   }
@@ -72,7 +70,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     return new MutableConfiguration<Long, String>().setTypes(Long.class, String.class);
   }
 
-  @Test
   public void remove_1arg_Closed() {
     cache.close();
     try {
@@ -83,7 +80,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void remove_1arg_NullKey() throws Exception {
     try {
       assertFalse(cache.remove(null));
@@ -93,7 +89,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void remove_1arg_NotExistent() throws Exception {
     Long existingKey = System.currentTimeMillis();
     String existingValue = "value" + existingKey;
@@ -104,7 +99,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertEquals(existingValue, cache.get(existingKey));
   }
 
-  @Test
   public void remove_1arg_Existing() {
     Long key1 = System.currentTimeMillis();
     String value1 = "value" + key1;
@@ -120,7 +114,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertEquals(value2, cache.get(key2));
   }
 
-  @Test
   public void remove_1arg_EqualButNotSameKey() {
     Long key1 = System.currentTimeMillis();
     String value1 = "value" + key1;
@@ -140,7 +133,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertEquals(value2, cache.get(key2));
   }
 
-  @Test
   public void remove_2arg_Closed() {
     cache.close();
     try {
@@ -151,7 +143,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void remove_2arg_NullKey() {
     try {
       cache.remove(null, "");
@@ -161,7 +152,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void remove_2arg_NullValue() {
     try {
       cache.remove(1L, null);
@@ -171,13 +161,11 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void remove_2arg_NotThere() {
     Long key = System.currentTimeMillis();
     assertFalse(cache.remove(key, ""));
   }
 
-  @Test
   public void remove_2arg_Existing_SameValue() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -185,7 +173,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertTrue(cache.remove(key, value));
   }
 
-  @Test
   public void remove_2arg_Existing_EqualValue() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -193,7 +180,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertTrue(cache.remove(key, new String(value)));
   }
 
-  @Test
   public void remove_2arg_Existing_EqualKey() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -201,7 +187,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertTrue(cache.remove(new Long(key), value));
   }
 
-  @Test
   public void remove_2arg_Existing_EqualKey_EqualValue() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -209,7 +194,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertTrue(cache.remove(new Long(key), new String(value)));
   }
 
-  @Test
   public void remove_2arg_Existing_Different() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -217,7 +201,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertFalse(cache.remove(key, value + 1));
   }
 
-  @Test
   public void getAndRemove_Closed() {
     cache.close();
     try {
@@ -228,7 +211,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAndRemove_NullKey() throws Exception {
     try {
       assertNull(cache.getAndRemove(null));
@@ -238,7 +220,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAndRemove_NotExistent() throws Exception {
     Long existingKey = System.currentTimeMillis();
     String existingValue = "value" + existingKey;
@@ -249,7 +230,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertEquals(existingValue, cache.get(existingKey));
   }
 
-  @Test
   public void getAndRemove_Existing() {
     Long key1 = System.currentTimeMillis();
     String value1 = "value" + key1;
@@ -265,7 +245,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertEquals(value2, cache.get(key2));
   }
 
-  @Test
   public void getAndRemove_EqualButNotSameKey() {
     Long key1 = System.currentTimeMillis();
     String value1 = "value" + key1;
@@ -282,7 +261,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertEquals(value2, cache.get(key2));
   }
 
-  @Test
   public void removeAll_1arg_Closed() {
     cache.close();
     try {
@@ -293,7 +271,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void removeAll_1arg_Null() {
     try {
       cache.removeAll(null);
@@ -303,7 +280,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void removeAll_1arg_NullKey() {
     HashSet<Long> keys = new HashSet<Long>();
     keys.add(null);
@@ -316,7 +292,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void removeAll_1arg() {
     Map<Long, String> data = createLSData(3);
     cache.putAll(data);
@@ -333,7 +308,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     assertEquals(removedEntry.getValue(), cache.get((Long) removedEntry.getKey()));
   }
 
-  @Test
   public void removeAll_0arg_Closed() {
     cache.close();
     try {
@@ -344,7 +318,6 @@ public class RemoveTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void removeAll_0arg() {
     Map<Long, String> data = createLSData(3);
     cache.putAll(data);

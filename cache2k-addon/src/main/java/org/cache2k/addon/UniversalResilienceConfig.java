@@ -38,50 +38,50 @@ public class UniversalResilienceConfig
 
   private int retryPercentOfResilienceDuration = 10;
   private double backoffMultiplier = 1.5;
-  private @Nullable Duration minRetryInterval = Duration.ZERO;
-  private @Nullable Duration retryInterval = null;
-  private @Nullable Duration maxRetryInterval = null;
-  private @Nullable Duration resilienceDuration = null;
+  private Duration minRetryInterval = Duration.ZERO;
+  private Duration retryInterval = null;
+  private Duration maxRetryInterval = null;
+  private Duration resilienceDuration = null;
 
   /**
    * @see Builder#retryInterval
    */
-  public @Nullable Duration getRetryInterval() {
+  public Duration getRetryInterval() {
     return retryInterval;
   }
 
   /**
    * @see Builder#retryInterval
    */
-  public void setRetryInterval(@Nullable Duration v) {
+  public void setRetryInterval(Duration v) {
     this.retryInterval = v;
   }
 
   /**
    * @see Builder#maxRetryInterval
    */
-  public @Nullable Duration getMaxRetryInterval() {
+  public Duration getMaxRetryInterval() {
     return maxRetryInterval;
   }
 
   /**
    * @see Builder#maxRetryInterval
    */
-  public void setMaxRetryInterval(@Nullable Duration v) {
+  public void setMaxRetryInterval(Duration v) {
     this.maxRetryInterval = v;
   }
 
   /**
    * @see Builder#resilienceDuration
    */
-  public @Nullable Duration getResilienceDuration() {
+  public Duration getResilienceDuration() {
     return resilienceDuration;
   }
 
   /**
    * @see Builder#resilienceDuration
    */
-  public void setResilienceDuration(@Nullable Duration v) {
+  public void setResilienceDuration(Duration v) {
     this.resilienceDuration = v;
   }
 
@@ -116,11 +116,11 @@ public class UniversalResilienceConfig
   /**
    * @see Builder#minRetryInterval
    */
-  public @Nullable Duration getMinRetryInterval() {
+  public Duration getMinRetryInterval() {
     return minRetryInterval;
   }
 
-  public void setMinRetryInterval(@Nullable Duration minRetryInterval) {
+  public void setMinRetryInterval(Duration minRetryInterval) {
     this.minRetryInterval = minRetryInterval;
   }
 

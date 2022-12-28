@@ -41,10 +41,8 @@ import static org.cache2k.test.core.TestingParameters.MINIMAL_TICK_MILLIS;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class StatisticsTest extends TestingBase {
 
-  @Test
   public void testPutAndRemove() {
     Cache<Integer, Integer> c = freshCache(null, 100);
     c.put(1, 2);
@@ -61,7 +59,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getPutCount()).isEqualTo(2);
   }
 
-  @Test
   public void testPeekMiss() {
     Cache<Integer, Integer> c = freshCache(null, 100);
     c.peek(123);
@@ -70,7 +67,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getGetCount()).isEqualTo(2);
   }
 
-  @Test
   public void testPeekHit() {
     Cache<Integer, Integer> c = freshCache(null, 100);
     c.peek(123);
@@ -80,7 +76,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getGetCount()).isEqualTo(2);
   }
 
-  @Test
   public void testPut() {
     Cache<Integer, Integer> c = freshCache(null, 100);
     c.put(123, 32);
@@ -89,7 +84,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getPutCount()).isEqualTo(1);
   }
 
-  @Test
   public void testContainsMissHit() {
     Cache<Integer, Integer> c = freshCache(null, 100);
     c.containsKey(123);
@@ -103,7 +97,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getPutCount()).isEqualTo(1);
   }
 
-  @Test
   public void testPutIfAbsentHit() {
     Cache<Integer, Integer> c = freshCache(null, 100);
     c.put(123, 3);
@@ -113,7 +106,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getPutCount()).isEqualTo(1);
   }
 
-  @Test
   public void testPutIfAbsentMissHit() {
     Cache<Integer, Integer> c = freshCache(null, 100);
     c.putIfAbsent(123, 3);
@@ -126,7 +118,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getPutCount()).isEqualTo(1);
   }
 
-  @Test
   public void testPeekAndPut() {
     Cache<Integer, Integer> c = freshCache(null, 100);
     c.peekAndPut(123, 3);
@@ -139,7 +130,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getGetCount()).isEqualTo(2);
   }
 
-  @Test
   public void testGetFetch() {
     Cache<Integer, Integer> c =
         freshCache(new IdentIntSource(), 100);
@@ -147,7 +137,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getMissCount()).isEqualTo(1);
   }
 
-  @Test
   public void testGetFetchHit() {
     Cache<Integer, Integer> c =
         freshCache(new IdentIntSource(), 100);
@@ -156,7 +145,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getMissCount()).isEqualTo(1);
   }
 
-  @Test
   public void testGetPutHit() {
     Cache<Integer, Integer> c =
         freshCache(new IdentIntSource(), 100);
@@ -165,7 +153,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getMissCount()).isEqualTo(0);
   }
 
-  @Test
   public void testGetFetchAlwaysOneGet() {
     IntCountingCacheSource g = new IntCountingCacheSource();
     Cache<Integer, Integer> c =
@@ -183,7 +170,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getGetCount()).isEqualTo(1);
   }
 
-  @Test
   public void testGetFetchAlwaysTwoGets() {
     IntCountingCacheSource g = new IntCountingCacheSource();
     Cache<Integer, Integer> c =
@@ -229,17 +215,14 @@ public class StatisticsTest extends TestingBase {
       .isEqualTo(2);
   }
 
-  @Test
   public void testGetFetchAndRefresh() throws Exception {
     testGetFetchAndRefresh(false);
   }
 
-  @Test
   public void testGetFetchAndRefresh_keepData() throws Exception {
     testGetFetchAndRefresh(true);
   }
 
-  @Test
   public void testFetchAlways() {
     IntCountingCacheSource g = new IntCountingCacheSource();
     Cache<Integer, Integer> c =
@@ -270,7 +253,6 @@ public class StatisticsTest extends TestingBase {
     assertThat(getInfo().getMissCount()).isEqualTo(4);
   }
 
-  @Test
   public void testReload() throws Exception {
     IntCountingCacheSource g = new IntCountingCacheSource();
     Cache<Integer, Integer> c =
@@ -309,7 +291,6 @@ public class StatisticsTest extends TestingBase {
     1, 2, 3, 1, 1, 1, 2, 3, 4, 5, 5, 5, 2, 3, 4, 5, 6, 7, 8, 9
   };
 
-  @Test
   public void testUsageCounter1() throws Exception {
     testUsageCounter(accessPattern1, 2);
   }
@@ -318,12 +299,10 @@ public class StatisticsTest extends TestingBase {
     1, 2, 3, 1, 1, 4, 5, 1, 2, 3, 4, 4, 4
   };
 
-  @Test
   public void testUsageCounter2() throws Exception {
     testUsageCounter(accessPattern2, 2);
   }
 
-  @Test
   public void toStringWithEmptyCache() {
     IntCountingCacheSource g = new IntCountingCacheSource();
     Cache<Integer, Integer> c =
@@ -338,7 +317,6 @@ public class StatisticsTest extends TestingBase {
       .contains("coldHits=0");
   }
 
-  @Test
   public void disableStatistics() {
     IntCountingCacheSource g = new IntCountingCacheSource();
     Cache<Integer, Integer> c =

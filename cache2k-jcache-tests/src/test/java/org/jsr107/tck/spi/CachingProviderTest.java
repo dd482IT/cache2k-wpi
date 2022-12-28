@@ -38,7 +38,6 @@ import static org.junit.Assert.fail;
 public class CachingProviderTest {
   private static final ClassLoader CLASS_LOADER = CachingProviderTest.class.getClassLoader();
 
-  @Test
   public void getCacheManagerUsingNulls() {
     CachingProvider provider = Caching.getCachingProvider();
     Properties properties = new Properties();
@@ -96,7 +95,6 @@ public class CachingProviderTest {
     }
   }
 
-  @Test
   public void getCacheManagerUsingDefaultURI() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -108,7 +106,6 @@ public class CachingProviderTest {
     assertSame(manager1, manager2);
   }
 
-  @Test
   public void getCacheManagerUsingSameNameAndClassLoader() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -121,7 +118,6 @@ public class CachingProviderTest {
     assertSame(manager1, manager2);
   }
 
-  @Test
   public void getCacheManagerUsingSameURIDifferentClassLoader() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -136,7 +132,6 @@ public class CachingProviderTest {
     assertNotSame(manager1, manager2);
   }
 
-  @Test
   public void closeCacheManagers() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -152,7 +147,6 @@ public class CachingProviderTest {
     assertNotSame(manager2, provider.getCacheManager(provider.getDefaultURI(), loader2, null));
   }
 
-  @Test
   public void closeCachingProvider() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -168,7 +162,6 @@ public class CachingProviderTest {
     assertNotSame(manager2, provider.getCacheManager(provider.getDefaultURI(), loader2, null));
   }
 
-  @Test
   public void closeCacheManagerByURIAndClassLoader() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -185,7 +178,6 @@ public class CachingProviderTest {
     assertNotSame(manager2, provider.getCacheManager(provider.getDefaultURI(), loader2, null));
   }
 
-  @Test
   public void closeCacheManagersByClassLoader() {
     CachingProvider provider = Caching.getCachingProvider();
 

@@ -50,17 +50,14 @@ public abstract class AbstractCacheTests<T extends Cache> {
 
   protected abstract Object getNativeCache();
 
-  @Test
   public void testCacheName() {
     assertThat(getCache().getName()).isEqualTo(CACHE_NAME);
   }
 
-  @Test
   public void testNativeCache() {
     assertThat(getCache().getNativeCache()).isSameAs(getNativeCache());
   }
 
-  @Test
   public void testCachePut() {
     T cache = getCache();
 
@@ -84,7 +81,6 @@ public abstract class AbstractCacheTests<T extends Cache> {
     assertThat(cache.get(key, Object.class)).isNull();
   }
 
-  @Test
   public void testCachePutIfAbsent() {
     T cache = getCache();
 
@@ -98,7 +94,6 @@ public abstract class AbstractCacheTests<T extends Cache> {
     assertThat(cache.get(key).get()).isEqualTo(value); // not changed
   }
 
-  @Test
   public void testCacheRemove() {
     T cache = getCache();
 
@@ -109,7 +104,6 @@ public abstract class AbstractCacheTests<T extends Cache> {
     cache.put(key, value);
   }
 
-  @Test
   public void evictIfPresent() {
     T cache = getCache();
 
@@ -122,7 +116,6 @@ public abstract class AbstractCacheTests<T extends Cache> {
     assertThat(cache.evictIfPresent(key)).isTrue();
   }
 
-  @Test
   public void testCacheClear() {
     T cache = getCache();
 
@@ -135,7 +128,6 @@ public abstract class AbstractCacheTests<T extends Cache> {
     assertThat(cache.get("enescu")).isNull();
   }
 
-  @Test
   public void invalidate() {
     T cache = getCache();
     assertThat(cache.invalidate()).isFalse();
@@ -148,12 +140,10 @@ public abstract class AbstractCacheTests<T extends Cache> {
     assertThat(cache.get("enescu")).isNull();
   }
 
-  @Test
   public void testCacheGetCallable() {
     doTestCacheGetCallable("test");
   }
 
-  @Test
   public void testCacheGetCallableWithNull() {
     doTestCacheGetCallable(null);
   }
@@ -169,12 +159,10 @@ public abstract class AbstractCacheTests<T extends Cache> {
     assertThat(cache.get(key).get()).isEqualTo(value);
   }
 
-  @Test
   public void testCacheGetCallableNotInvokedWithHit() {
     doTestCacheGetCallableNotInvokedWithHit("existing");
   }
 
-  @Test
   public void testCacheGetCallableNotInvokedWithHitNull() {
     doTestCacheGetCallableNotInvokedWithHit(null);
   }
@@ -191,7 +179,6 @@ public abstract class AbstractCacheTests<T extends Cache> {
     assertThat(value).isEqualTo(initialValue);
   }
 
-  @Test
   public void testCacheGetCallableFail() {
     T cache = getCache();
 
@@ -213,7 +200,6 @@ public abstract class AbstractCacheTests<T extends Cache> {
    * Test that a call to get with a Callable concurrently properly synchronize the
    * invocations.
    */
-  @Test
   public void testCacheGetSynchronized() throws InterruptedException {
     T cache = getCache();
     AtomicInteger counter = new AtomicInteger();

@@ -132,7 +132,6 @@ public class RefreshAheadTest<K, V> extends AbstractCacheTester<K, V> {
       });
   }
 
-  @Test
   public void checkLegacyPolicy() {
     init(b -> standardSetup(b).refreshAhead(true));
     get(k0);
@@ -150,7 +149,6 @@ public class RefreshAheadTest<K, V> extends AbstractCacheTester<K, V> {
     await("another refresh, since accessed", () -> loadRequests.get() == 3);
   }
 
-  @Test
   public void checkPolicyCallForInitialLoad() throws InterruptedException {
     Semaphore semaphore = new Semaphore(0);
     ExceptionCollector collector = new ExceptionCollector();
@@ -199,7 +197,6 @@ public class RefreshAheadTest<K, V> extends AbstractCacheTester<K, V> {
     collector.assertNoException();
   }
 
-  @Test
   public void checkPolicyCallForRefresh() throws InterruptedException {
     Semaphore semaphore = new Semaphore(0);
     ExceptionCollector collector = new ExceptionCollector();
@@ -250,7 +247,6 @@ public class RefreshAheadTest<K, V> extends AbstractCacheTester<K, V> {
   /**
    * Check {@link RefreshAheadPolicy.Context#isLoadException()}
    */
-  @Test
   public void checkContextOnLoadException() throws InterruptedException {
     Semaphore semaphore = new Semaphore(0);
     ExceptionCollector collector = new ExceptionCollector();
@@ -306,7 +302,6 @@ public class RefreshAheadTest<K, V> extends AbstractCacheTester<K, V> {
     assertThat(ctx.getExpiryTime()).isEqualTo(ctx.getStartTime() + refreshInterval);
   }
 
-  @Test
   public void checkPolicyCallForRefreshWithAccess() throws InterruptedException {
     Semaphore semaphore = new Semaphore(0);
     AtomicInteger callCount = new AtomicInteger(0);

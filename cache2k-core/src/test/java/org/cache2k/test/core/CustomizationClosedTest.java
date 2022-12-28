@@ -45,17 +45,14 @@ public class CustomizationClosedTest extends TestingBase {
 
   AtomicInteger unclosed = new AtomicInteger();
 
-  @Test
   public void resiliencePolicy() {
     check(builder().resiliencePolicy(new MyResiliencePolicy()));
   }
 
-  @Test
   public void expiryPolicy() {
     check(builder().expiryPolicy(new MyExpiryPolicy()));
   }
 
-  @Test
   public void expiryAndResiliencePolicy() {
     check(builder()
       .expiryPolicy(new MyExpiryPolicy())
@@ -63,14 +60,12 @@ public class CustomizationClosedTest extends TestingBase {
     );
   }
 
-  @Test
   public void scheduler() {
     check(builder()
       .expireAfterWrite(5, TimeUnit.MINUTES)
       .scheduler(new MyScheduler()));
   }
 
-  @Test
   public void timeReference() {
     check(builder()
       .expireAfterWrite(5, TimeUnit.MINUTES)
@@ -107,7 +102,7 @@ public class CustomizationClosedTest extends TestingBase {
   class MyExpiryPolicy extends Common implements ExpiryPolicy {
     @Override
     public long calculateExpiryTime(Object key, Object value, long startTime,
-                                    @Nullable CacheEntry currentEntry) {
+                                    CacheEntry currentEntry) {
       return 0;
     }
   }

@@ -139,22 +139,22 @@ public class WiredCache<K, V> extends BaseCache<K, V>
   }
 
   @Override
-  public @Nullable V peekAndPut(K key, V value) {
+  public V peekAndPut(K key, V value) {
     return returnValue(execute(key, ops.peekAndPut(key, value)));
   }
 
   @Override
-  public @Nullable V peekAndRemove(K key) {
+  public V peekAndRemove(K key) {
     return returnValue(execute(key, ops.peekAndRemove(key)));
   }
 
   @Override
-  public @Nullable V peekAndReplace(K key, V value) {
+  public V peekAndReplace(K key, V value) {
     return returnValue(execute(key, ops.peekAndReplace(key, value)));
   }
 
   @Override
-  public @Nullable CacheEntry<K, V> peekEntry(K key) {
+  public CacheEntry<K, V> peekEntry(K key) {
     return execute(key, ops.peekEntry());
   }
 
@@ -426,7 +426,7 @@ public class WiredCache<K, V> extends BaseCache<K, V>
 
 
   @Override
-  public @Nullable V get(K key) {
+  public V get(K key) {
     Entry<K, V> e = lookupQuick(key);
     if (e != null && e.hasFreshData(getClock())) {
       return returnValue(e);
@@ -542,7 +542,7 @@ public class WiredCache<K, V> extends BaseCache<K, V>
   }
 
   @Override
-  public @Nullable CacheEntry<K, V> getEntry(K key) {
+  public CacheEntry<K, V> getEntry(K key) {
     return execute(key, ops.getEntry(key));
   }
 
@@ -552,7 +552,7 @@ public class WiredCache<K, V> extends BaseCache<K, V>
   }
 
   @Override
-  public <@Nullable R> Map<K, EntryProcessingResult<R>> invokeAll(
+  public <R> Map<K, EntryProcessingResult<R>> invokeAll(
     Iterable<? extends K> keys, EntryProcessor<K, V, R> entryProcessor) {
     if (bulkCacheLoader == null && asyncLoader == null) {
       return super.invokeAll(keys, entryProcessor);
@@ -576,7 +576,7 @@ public class WiredCache<K, V> extends BaseCache<K, V>
     return resultMap;
   }
 
-  private <@Nullable R> Map<K, EntryProcessingResult<R>> invokeAllAsyncLoader(EntryProcessor<K, V, R> entryProcessor, Set<K> keySet) {
+  private <R> Map<K, EntryProcessingResult<R>> invokeAllAsyncLoader(EntryProcessor<K, V, R> entryProcessor, Set<K> keySet) {
     try {
       Map<K, EntryProcessingResult<R>> resultMap = new HashMap<>();
       BulkAction<K, V, R> bulkAction =
@@ -639,7 +639,7 @@ public class WiredCache<K, V> extends BaseCache<K, V>
   }
 
   @Override
-  public @Nullable V peek(K key) {
+  public V peek(K key) {
     Entry<K, V> e = lookupQuick(key);
     if (e != null && e.hasFreshData(getClock())) {
       return returnValue(e);

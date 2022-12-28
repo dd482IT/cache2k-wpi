@@ -42,19 +42,17 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @see Cache#invoke(Object, EntryProcessor)
  * @see Cache#invokeAll(Iterable, EntryProcessor)
  */
-@Category(SlowTests.class)
 public class SlowEntryProcessorTest {
 
   static final Integer KEY = 3;
 
   /** Provide unique standard cache per method */
-  @Rule public IntCacheRule target = new IntCacheRule();
+  public IntCacheRule target = new IntCacheRule();
 
   /**
    * Modification timestamp should be set to the time just before the processor
    * was invoked. Needs some reorganization in the time handling of entry action.
    */
-  @Test @Ignore("TODO: SlowEntryProcessorTest.modificationTime_reference_before_invoke")
   public void modificationTime_reference_before_invoke() {
     Cache<Integer, Integer> c = target.cache();
     long t0 = currentTimeMillis();

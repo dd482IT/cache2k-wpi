@@ -29,7 +29,6 @@ public class CacheMXBeanTest extends CacheTestSupport<Long, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass()) {
 
     /* (non-Javadoc)
@@ -45,7 +44,6 @@ public class CacheMXBeanTest extends CacheTestSupport<Long, String> {
     }
   };
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Long.class, String.class);
     cache.getCacheManager().enableStatistics(cache.getName(), true);
@@ -65,7 +63,6 @@ public class CacheMXBeanTest extends CacheTestSupport<Long, String> {
 
 
 
-  @Test
   public void testCacheMXBeanManagementTurnedOff() throws Exception {
     cache.getCacheManager().enableManagement(cache.getName(), false);
     try {
@@ -78,7 +75,6 @@ public class CacheMXBeanTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void testCacheMXBean() throws Exception {
     assertEquals("java.lang.Long", lookupManagementAttribute(cache, CacheConfiguration, "KeyType"));
     assertEquals("java.lang.String", lookupManagementAttribute(cache, CacheConfiguration, "ValueType"));
@@ -89,7 +85,6 @@ public class CacheMXBeanTest extends CacheTestSupport<Long, String> {
     assertEquals(true, lookupManagementAttribute(cache, CacheConfiguration, "ManagementEnabled"));
   }
 
-  @Test
   public void testCustomConfiguration() throws Exception {
     boolean storeByValue = false;
     MutableConfiguration configuration = new MutableConfiguration()

@@ -31,10 +31,8 @@ import static org.cache2k.core.eviction.EvictionFactory.determineSegmentCount;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class InternalCache2kBuilderTest {
 
-  @Test
   public void determineSegmentCount_strictEviction() {
     int segs = determineSegmentCount(
       true, 12, true, 1000000,
@@ -42,7 +40,6 @@ public class InternalCache2kBuilderTest {
     assertThat(segs).isEqualTo(1);
   }
 
-  @Test
   public void determineSegmentCount_regularConcurrency() {
     int segs = determineSegmentCount(
       false, 12, false, 1000000,
@@ -50,7 +47,6 @@ public class InternalCache2kBuilderTest {
     assertThat(segs).isEqualTo(2);
   }
 
-  @Test
   public void determineSegmentCount_boostConcurrency() {
     int segs = determineSegmentCount(
       false, 12, true,
@@ -58,7 +54,6 @@ public class InternalCache2kBuilderTest {
     assertThat(segs).isEqualTo(16);
   }
 
-  @Test
   public void determineSegmentCount_noSegmentationBelow1000Entries() {
     int segs = determineSegmentCount(
       false, 12,  true,
@@ -66,7 +61,6 @@ public class InternalCache2kBuilderTest {
     assertThat(segs).isEqualTo(1);
   }
 
-  @Test
   public void determineSegmentCount_override12() {
     int segs = determineSegmentCount(
       false, 12, true,
@@ -74,7 +68,6 @@ public class InternalCache2kBuilderTest {
     assertThat(segs).isEqualTo(16);
   }
 
-  @Test
   public void determineSegmentCount_override1() {
     int segs = determineSegmentCount(
       false, 12, true,
@@ -82,7 +75,6 @@ public class InternalCache2kBuilderTest {
     assertThat(segs).isEqualTo(1);
   }
 
-  @Test
   public void determineSegmentCount_override16() {
     int segs = determineSegmentCount(
       false, 12, true,
@@ -90,7 +82,6 @@ public class InternalCache2kBuilderTest {
     assertThat(segs).isEqualTo(16);
   }
 
-  @Test
   public void determineSegmentCount_override17() {
     int segs = determineSegmentCount(
       false, 12, true, 1000000,
@@ -98,7 +89,6 @@ public class InternalCache2kBuilderTest {
     assertThat(segs).isEqualTo(32);
   }
 
-  @Test
   public void determineSegmentCount_override32() {
     int segs = determineSegmentCount(
       false, 12, true, 1000000,

@@ -57,14 +57,13 @@ public class UniversalResiliencePolicyUnitTest {
     }
 
     @Override
-    public @Nullable LoadExceptionInfo getExceptionInfo() {
+    public LoadExceptionInfo getExceptionInfo() {
       return null;
     }
   };
 
   static final ExceptionPropagator DUMMY_PROPAGATOR = loadExceptionInfo -> new RuntimeException();
 
-  @Test
   public void testBackoffPower() {
     assertThat(10 * Math.pow(1.5, 0)).isCloseTo(10, Offset.offset(0.1));
     assertThat(10 * Math.pow(1.5, 1)).isCloseTo(15, Offset.offset(0.1));
@@ -74,7 +73,6 @@ public class UniversalResiliencePolicyUnitTest {
   /**
    * Suppress duration defaults to expiry if not set.
    */
-  @Test
   public void testDefaultSuppressDuration() {
     UniversalResiliencePolicy p = getDefaultResiliencePolicy10000();
     assertThat(p.getResilienceDuration()).isEqualTo(100000);
@@ -89,7 +87,6 @@ public class UniversalResiliencePolicyUnitTest {
   /**
    * Max retry interval is expiry time.
    */
-  @Test
   public void testDefaultMaxRetryInterval() {
     UniversalResiliencePolicy p = getDefaultResiliencePolicy10000();
     assertThat(p.getMaxRetryInterval()).isEqualTo(100000);
@@ -98,7 +95,6 @@ public class UniversalResiliencePolicyUnitTest {
   /**
    * 10% of expireAfter or resilienceDuration write
    */
-  @Test
   public void testDefaultRetryInterval() {
     UniversalResiliencePolicy p = getDefaultResiliencePolicy10000();
     assertThat(p.getRetryInterval()).isEqualTo(10000);
@@ -107,7 +103,6 @@ public class UniversalResiliencePolicyUnitTest {
   /**
    * Expiry 240s, resilience duration 30s.
    */
-  @Test
   public void testWithExpiryAndResilienceDuration() {
     UniversalResiliencePolicy p = policy(builder()
       .expireAfterWrite(240000, MILLISECONDS)
@@ -125,7 +120,7 @@ public class UniversalResiliencePolicyUnitTest {
     return Cache2kBuilder.forUnknownTypes();
   }
 
-  private static @Nullable UniversalResiliencePolicy policy(Cache2kBuilder builder) {
+  private static UniversalResiliencePolicy policy(Cache2kBuilder builder) {
     ResiliencePolicy policy =
       UniversalResilienceSupplier.supplyPolicy(TimeReference.DEFAULT, builder.config());
     if (policy instanceof UniversalResiliencePolicy) {
@@ -137,7 +132,6 @@ public class UniversalResiliencePolicyUnitTest {
   /**
    * Expiry 240s, resilience duration 30s.
    */
-  @Test
   public void testWithExpiryAndResilienceDuration10Min30Sec() {
     UniversalResiliencePolicy p = policy(builder()
       .expireAfterWrite(10, MINUTES)
@@ -155,7 +149,6 @@ public class UniversalResiliencePolicyUnitTest {
   /**
    * Expiry 240s, retry interval 10s.
    */
-  @Test
   public void testWithExpiryAndRetryInterval() {
     UniversalResiliencePolicy p = policy(builder()
       .expireAfterWrite(240000, MILLISECONDS)
@@ -172,7 +165,6 @@ public class UniversalResiliencePolicyUnitTest {
   /**
    * Expiry 240s, max retry interval 10s.
    */
-  @Test
   public void testWithExpiryAndMaxRetryInterval() {
     UniversalResiliencePolicy p = policy(builder()
       .expireAfterWrite(240000, MILLISECONDS)
@@ -186,7 +178,6 @@ public class UniversalResiliencePolicyUnitTest {
     assertThat(p.getMaxRetryInterval()).isEqualTo(10000);
   }
 
-  @Test
   public void testCustomMultiplier() {
     UniversalResiliencePolicy p = policy(builder()
       .expireAfterWrite(10000, MILLISECONDS)
@@ -208,7 +199,6 @@ public class UniversalResiliencePolicyUnitTest {
     assertThat(t).isEqualTo(200);
   }
 
-  @Test
   public void testSuppress() {
     UniversalResiliencePolicy p = policy(builder()
       .expireAfterWrite(10000, MILLISECONDS)
@@ -247,7 +237,6 @@ public class UniversalResiliencePolicyUnitTest {
     assertThat(t - b.getLoadTime()).isEqualTo(500);
   }
 
-  @Test
   public void testCache() {
     UniversalResiliencePolicy p = policy(builder()
       .expireAfterWrite(10000, MILLISECONDS)

@@ -32,7 +32,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class LogFactorySpiTest {
 
-  @Test
   public void checkActive() {
     assertThat(Log.getLog("ignored")).isSameAs(new TestLogFactory().getLog("also ignored"));
   }

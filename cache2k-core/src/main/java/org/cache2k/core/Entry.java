@@ -252,7 +252,7 @@ public class Entry<K, V> extends CompactEntry<K, V>
         return (V) obj;
       }
       @Override
-      public @Nullable LoadExceptionInfo<K, V> getExceptionInfo() {
+      public LoadExceptionInfo<K, V> getExceptionInfo() {
         return null;
       }
     };

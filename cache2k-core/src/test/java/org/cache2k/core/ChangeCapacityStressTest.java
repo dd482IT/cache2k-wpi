@@ -38,10 +38,8 @@ import static org.cache2k.operation.CacheInfo.of;
 /**
  * @author Jens Wilke
  */
-@Category(SlowTests.class)
 public class ChangeCapacityStressTest extends TestingBase {
 
-  @Test
   public void test() {
     Random random = new Random(1802);
     final int count = 10000;

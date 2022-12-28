@@ -31,17 +31,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class TimeoutErrorTest {
 
-  @Test
   public void withNanos() {
     assertThat(new TimeoutError(Duration.ofNanos(123)).toString()).contains("0 seconds");
   }
 
-  @Test
   public void withSeconds() {
     assertThat(new TimeoutError(Duration.ofSeconds(123)).toString()).contains("123 seconds");
   }
 
-  @Test
   public void withMinutes() {
     assertThat(new TimeoutError(Duration.ofSeconds(120)).toString()).contains("2 minutes");
   }

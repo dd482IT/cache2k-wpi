@@ -47,13 +47,11 @@ import java.util.Map;
  * @author Jens Wilke
  */
 @SuppressWarnings({"NullAway","nullness"})
-@Category(FastTests.class)
 public class CacheTypeTest {
 
   /**
    * Test how to do it via the Java API.
    */
-  @Test
   public void testIntArrayViaReflection() {
     CacheTypeCapture<int[]> vtt = new CacheTypeCapture<int[]>() {};
     ParameterizedType pt = (ParameterizedType) vtt.getClass().getGenericSuperclass();
@@ -71,7 +69,6 @@ public class CacheTypeTest {
   /**
    * Test how to do it via the Java API.
    */
-  @Test
   public void testStringListViaReflection() {
     CacheTypeCapture<List<String>> vtt = new CacheTypeCapture<List<String>>() {};
     ParameterizedType pt = (ParameterizedType) vtt.getClass().getGenericSuperclass();
@@ -82,7 +79,6 @@ public class CacheTypeTest {
   /**
    * Test how to do it via the Java API.
    */
-  @Test
   public void testListArrayViaReflection() {
     CacheTypeCapture<List<String>[]> vtt = new CacheTypeCapture<List<String>[]>() {};
     ParameterizedType pt = (ParameterizedType) vtt.getClass().getGenericSuperclass();
@@ -92,7 +88,6 @@ public class CacheTypeTest {
     assertEquals(String.class, pt2.getActualTypeArguments()[0]);
   }
 
-  @Test
   public void testSimpleType() {
     CacheTypeCapture<String> tt = new CacheTypeCapture<String>() {};
     CacheType td = tt;
@@ -100,7 +95,6 @@ public class CacheTypeTest {
     assertEquals(CacheType.DESCRIPTOR_TO_STRING_PREFIX + "String", td.toString());
   }
 
-  @Test
   public void testPrimitiveArrayType() {
     CacheTypeCapture<int[]> tt = new CacheTypeCapture<int[]>() {};
     CacheType td = tt;
@@ -110,7 +104,6 @@ public class CacheTypeTest {
     assertEquals(CacheType.DESCRIPTOR_TO_STRING_PREFIX + "int[]", td.toString());
   }
 
-  @Test
   public void testPrimitiveMultiArrayType() {
     CacheTypeCapture<int[][]> tt = new CacheTypeCapture<int[][]>() {};
     CacheType td = tt;
@@ -122,7 +115,6 @@ public class CacheTypeTest {
     assertEquals(CacheType.DESCRIPTOR_TO_STRING_PREFIX + "int[][]", td.toString());
   }
 
-  @Test
   public void testGenericArrayType() {
     CacheTypeCapture<List<String>[]> tt = new CacheTypeCapture<List<String>[]>() {};
     CacheType td = tt;
@@ -135,7 +127,6 @@ public class CacheTypeTest {
     assertEquals(CacheType.DESCRIPTOR_TO_STRING_PREFIX + "java.util.List<String>[]", td.toString());
   }
 
-  @Test
   public void testGenericType() {
     CacheTypeCapture<Map<String,List<String>>> tt = new CacheTypeCapture<Map<String,List<String>>>() {};
     CacheType td = tt;
@@ -177,7 +168,6 @@ public class CacheTypeTest {
    * Type cannot be captured. Expect proper exception:
    * java.lang.IllegalArgumentException: The run time type is not available, got: T
    */
-  @Test(expected = IllegalArgumentException.class)
   public void testExceptionIfInsideGeneric() {
     GenericWrapper<Integer> w = new GenericWrapper<Integer>();
   }

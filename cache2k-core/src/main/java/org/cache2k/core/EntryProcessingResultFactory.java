@@ -33,12 +33,12 @@ public class EntryProcessingResultFactory {
   public static <R> EntryProcessingResult<R> result(R result) {
     return new EntryProcessingResult<R>() {
       @Override
-      public @Nullable R getResult() {
+      public R getResult() {
         return result;
       }
 
       @Override
-      public @Nullable Throwable getException() {
+      public Throwable getException() {
         return null;
       }
     };
@@ -51,12 +51,12 @@ public class EntryProcessingResultFactory {
     Throwable finalException = exception;
     return new EntryProcessingResult<R>() {
       @Override
-      public @Nullable R getResult() {
+      public R getResult() {
         throw new EntryProcessingException(finalException);
       }
 
       @Override
-      public @Nullable Throwable getException() {
+      public Throwable getException() {
         return finalException;
       }
     };

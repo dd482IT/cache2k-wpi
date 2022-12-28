@@ -32,7 +32,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class TimeBoxTest {
 
-  @Test
   public void testException() {
     long startTime = 1000;
     int offset = TimeZone.getDefault().getOffset(startTime);

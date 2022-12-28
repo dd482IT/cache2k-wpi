@@ -36,10 +36,8 @@ import static org.cache2k.CacheManager.*;
  *
  * @author Jens Wilke
  */
-@Category(ExclusiveTests.class)
 public class CacheManagerExclusiveTest {
 
-  @Test
   public void setDefaultMangerName() {
     getInstance().close();
     setDefaultName("hello");
@@ -47,7 +45,6 @@ public class CacheManagerExclusiveTest {
     assertThat(getDefaultName()).isEqualTo("hello");
   }
 
-  @Test
   public void closeAll() {
     CacheManager cm = getInstance();
     ClassLoader cl1 = new URLClassLoader(new URL[0], this.getClass().getClassLoader());

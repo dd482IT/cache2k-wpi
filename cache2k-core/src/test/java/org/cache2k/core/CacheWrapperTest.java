@@ -43,10 +43,8 @@ import static org.junit.Assert.assertSame;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class CacheWrapperTest {
 
-  @Test
   public void tracing() {
     Cache<Integer, Integer> cache =
       of(Integer.class, Integer.class)
@@ -72,7 +70,6 @@ public class CacheWrapperTest {
     cache.close();
   }
 
-  @Test
   public void general() {
     Cache<Integer, Integer> cache =
       of(Integer.class, Integer.class)
@@ -101,7 +98,6 @@ public class CacheWrapperTest {
   /**
    * Is wrapped cache reference send to listeners?
    */
-  @Test
   public void eventsGetWrappedReference() {
     AtomicReference<Cache> createdEventCache = new AtomicReference<>();
     AtomicReference<Cache> updatedEventCache = new AtomicReference<>();

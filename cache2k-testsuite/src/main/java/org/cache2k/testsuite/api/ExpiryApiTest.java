@@ -32,65 +32,52 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jens Wilke
  */
-@Tag("org.cache2k.testing.category.FastTests")
 public class ExpiryApiTest {
 
-  @Test
   public void toSharp_PassEternal() {
     assertEquals(ETERNAL, toSharpTime(ETERNAL)) ;
   }
 
-  @Test
   public void toSharp_passNegative() {
     assertEquals(-123, toSharpTime(-123));
   }
 
-  @Test
   public void toSharp_positive() {
     assertEquals(-123, toSharpTime(123));
   }
 
-  @Test
   public void mix_preferRefreshIfPitIsEternal() {
     assertEquals(105, mixTimeSpanAndPointInTime(100, 5, ETERNAL));
   }
 
-  @Test
   public void mix_preferRefreshIfPitFar() {
     assertEquals(105, mixTimeSpanAndPointInTime(100, 5, 200));
   }
 
-  @Test
   public void mix_preferPitIfCloser() {
     assertEquals(104, mixTimeSpanAndPointInTime(100, 5, 104));
   }
 
-  @Test
   public void mix_preferPitEqual() {
     assertEquals(105, mixTimeSpanAndPointInTime(100, 5, 105));
   }
 
-  @Test
   public void mix_preferPitEqual_sharp() {
     assertEquals(-105, mixTimeSpanAndPointInTime(100, 5, -105));
   }
 
-  @Test
   public void mix_preferPitIfCloser_Max() {
     assertEquals(104, mixTimeSpanAndPointInTime(100, Long.MAX_VALUE, 104));
   }
 
-  @Test
   public void mix_shorterTimeSpanIfPitIsNear() {
     assertEquals(101, mixTimeSpanAndPointInTime(100, 5, -106));
   }
 
-  @Test
   public void mix_noSharp_passIfPitIsNear() {
     assertEquals(105, mixTimeSpanAndPointInTime(100, 5, 106));
   }
 
-  @Test
   public void testEarliestTime() {
     assertEquals(123, Expiry.earliestTime(100, 123, 150));
     assertEquals(123, Expiry.earliestTime(100, 150, 123));

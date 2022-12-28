@@ -34,7 +34,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class CacheControlTest<K, V> extends AbstractCacheTester<K, V> {
 
-  @Test
   public void initial() {
     init();
     assertThat(CacheControl.of(cache).getTimeReference()).isSameAs(TimeReference.DEFAULT);
@@ -42,7 +41,6 @@ public class CacheControlTest<K, V> extends AbstractCacheTester<K, V> {
     assertThat(cache.isClosed()).isTrue();
   }
 
-  @Test
   public void removeAll() {
     init();
     put(k0, v0);
@@ -52,7 +50,6 @@ public class CacheControlTest<K, V> extends AbstractCacheTester<K, V> {
     assertThat(asMap().size()).isEqualTo(0);
   }
 
-  @Test
   public void getCapacityLimitWithWeigher() {
     init(b -> b
       .maximumWeight(1234)

@@ -33,4 +33,4 @@ import org.cache2k.annotation.NonNull;
  *           use case
  * @since 2.0
  */
-public interface DataAware<@NonNull K, @NonNull V> { }
+public interface DataAware<K, V> { }

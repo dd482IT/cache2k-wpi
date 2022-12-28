@@ -44,19 +44,16 @@ public class TimestampFormatterTest {
     return Instant.ofEpochMilli(millis);
   }
 
-  @Test
   public void test() {
     long t0 = 0;
     assertThat(hashDigits(formatTime(toInstant(t0)))).isEqualTo("####-##-##T##:##:##");
   }
 
-  @Test
   public void testWithMillis() {
     long t0 = 123;
     assertThat(hashDigits(formatTime(toInstant(t0)))).isEqualTo("####-##-##T##:##:##.###");
   }
 
-  @Test
   public void testWithMillis2() {
     long t0 = 120;
     assertThat(hashDigits(formatTime(toInstant(t0)))).isEqualTo("####-##-##T##:##:##.##");

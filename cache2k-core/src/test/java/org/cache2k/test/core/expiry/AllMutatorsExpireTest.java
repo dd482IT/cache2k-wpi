@@ -44,14 +44,12 @@ import static org.junit.Assert.*;
  *
  * @author Jens Wilke
  */
-@Category(SlowTests.class) @RunWith(Parameterized.class)
 public class AllMutatorsExpireTest extends TestingBase {
 
   static final long EXPIRY_BEYOND_GAP = getEffectiveSafetyGapMillis() + 3;
   static final Integer KEY = 1;
   static final Integer VALUE = 1;
 
-  @Parameterized.Parameters(name = "{0}")
   public static Collection<Object[]> data() {
     List<Pars> parameterList = new ArrayList<>();
     for (int variant = 0; variant <= 7; variant++) {
@@ -98,7 +96,6 @@ public class AllMutatorsExpireTest extends TestingBase {
   public AllMutatorsExpireTest(Pars p) { pars = p; }
 
 
-  @Test
   public void test() {
     if (pars.sharpExpiry) {
       putExpiresSharply(pars.expiryDurationMillis, pars.variant, pars.keepData);

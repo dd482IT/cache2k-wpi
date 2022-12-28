@@ -51,10 +51,8 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(CacheInvokeTest.class);
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Integer.class, String.class);
   }
@@ -65,7 +63,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     return new MutableConfiguration<Integer, String>().setTypes(Integer.class, String.class);
   }
 
-  @Test
   public void nullKey() {
     try {
       cache.invoke(null, new ThrowExceptionEntryProcessor<Integer, String, Void>(UnsupportedOperationException.class));
@@ -75,7 +72,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     }
   }
 
-  @Test
   public void nullProcessor() {
     try {
       cache.invoke(123, null);
@@ -85,23 +81,19 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     }
   }
 
-  @Test
   public void nullGetValue() {
     String result = cache.invoke(123, new GetEntryProcessor<Integer, String>());
     assertNull(result);
   }
 
-  @Test( expected = EntryProcessorException.class)
   public void setValueToNull() {
     cache.invoke(123, new SetEntryProcessor<Integer, String>(null));
   }
 
-  @Test(expected = NullPointerException.class)
   public void invokeAllNullKeys() {
     cache.invokeAll(null, new NoOpEntryProcessor<Integer, String>());
   }
 
-  @Test(expected = EntryProcessorException.class)
   public void invokeAllEntryProcessorException() {
     Set<Integer> keys = new HashSet<Integer>();
     keys.add(123);
@@ -113,7 +105,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
   /**
    * Added for RI code coverage.
    */
-  @Test
   public void invokeAllEntryProcessorReturnsNullResult() {
     Set<Integer> keys = new HashSet<Integer>();
     keys.add(123);
@@ -126,7 +117,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
   /**
    * Added for RI code coverage.
    */
-  @Test
   public void invokeAllgetResultFromMap() {
     Set<Integer> keys = new HashSet<Integer>();
     keys.add(123);
@@ -137,7 +127,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     assertEquals("aValue", resultMap.get(123).get());
   }
 
-  @Test
   public void close() {
     cache.close();
     try {
@@ -148,7 +137,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     }
   }
 
-  @Test
   public void testProcessorExceptionIsWrapped() {
     try {
       cache.invoke(123, new ThrowExceptionEntryProcessor<Integer, String, Void>(UnsupportedOperationException.class));
@@ -159,7 +147,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     }
   }
 
-  @Test
   public void testProcessorEmptyExceptionIsWrapped() {
     try {
       cache.invoke(123, new ThrowExceptionEntryProcessor<Integer, String, Void>(UnsupportedOperationException.class));
@@ -170,7 +157,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     }
   }
 
-  @Test
   public void noValueNoMutation() {
     final Integer key = 123;
     final Integer ret = 456;
@@ -178,7 +164,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     assertFalse(cache.containsKey(key));
   }
 
-  @Test
   public void varArgumentsPassedIn() {
     final Integer key = 123;
     final Integer ret = 456;
@@ -188,7 +173,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
   }
 
 
-  @Test
   public void noValueSetValue() {
     final Integer key = 123;
     final Integer ret = 456;
@@ -197,7 +181,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     assertEquals(value, cache.get(key));
   }
 
-  @Test
   public void noValueException() {
     final Integer key = 123;
     final String setValue = "abc";
@@ -219,19 +202,16 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     assertFalse(cache.containsKey(key));
   }
 
-  @Test(expected = NullPointerException.class)
   public void invokeAll_keys_null() {
     cache.invoke(null, null);
   }
 
-  @Test(expected = NullPointerException.class)
   public void invokeAll_nullProcessor() {
     Set<Integer> keys = new HashSet<Integer>();
     keys.add(123);
     cache.invokeAll(keys, null);
   }
 
-  @Test
   public void existingReplace() {
     final Integer key = 123;
     final String oldValue = "abc";
@@ -248,7 +228,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     return getRootCause(t.getCause());
   }
 
-  @Test
   public void existingException() {
     final Integer key = 123;
     final String oldValue = "abc";
@@ -271,7 +250,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     assertEquals(oldValue, cache.get(key));
   }
 
-  @Test
   public void removeMissing() {
     final Integer key = 123;
     final String  value = "aba";
@@ -287,7 +265,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
     assertFalse(cache.containsKey(key));
   }
 
-  @Test
   public void removeExisting() {
     final Integer key = 123;
     final String oldValue = "abc";
@@ -297,7 +274,6 @@ public class CacheInvokeTest extends CacheTestSupport<Integer, String> {
   }
 
 
-  @Test
   public void removeException() {
     final Integer key = 123;
     final String oldValue = "abc";

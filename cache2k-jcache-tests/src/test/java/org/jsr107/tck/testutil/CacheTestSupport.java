@@ -56,12 +56,10 @@ public abstract class CacheTestSupport<K, V> extends TestSupport {
   protected MutableCacheEntryListenerConfiguration<K, V> listenerConfiguration;
 
 
-  @Before
   public void setUp() throws IOException  {
     cache = getCacheManager().createCache(getTestCacheName(), extraSetup(newMutableConfiguration()));
   }
 
-  @After
   public void teardown() {
     getCacheManager().destroyCache(getTestCacheName());
   }

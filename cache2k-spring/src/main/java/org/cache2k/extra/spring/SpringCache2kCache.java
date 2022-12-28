@@ -62,7 +62,7 @@ public class SpringCache2kCache implements Cache {
    * the get() method is used by Spring if the sync parameter is not set.
    */
   @Override
-  public @Nullable ValueWrapper get(Object key) {
+  public ValueWrapper get(Object key) {
     CacheEntry<Object, Object> entry = cache.getEntry(key);
     if (entry == null) {
       return null;
@@ -83,7 +83,7 @@ public class SpringCache2kCache implements Cache {
 
   @SuppressWarnings("unchecked")
   @Override
-  public <T> T get(Object key, @Nullable Class<T> type) {
+  public <T> T get(Object key, Class<T> type) {
     Object value = cache.get(key);
     if (value != null && type != null && !type.isInstance(value)) {
       throw new IllegalStateException(

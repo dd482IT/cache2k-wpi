@@ -42,7 +42,6 @@ import java.util.concurrent.TimeUnit;
  * @author Jens Wilke
  * @see <a href="https://github.com/cache2k/cache2k/issues/39">Github issue #39 - Time to Idle</a>
  */
-@Category(TimingTests.class)
 public class TimeTracePlaybackTest {
 
   static final boolean STAT_OUTPUT = true;
@@ -50,14 +49,12 @@ public class TimeTracePlaybackTest {
   static final int TRACE_KEY = 10095;
 
   /** Run with unbounded cache to get trace statistics */
-  @Test
   public void outputTraceStatistics() {
     PlaybackResult res;
     res = playback(new LruCache(), Trace.WEBLOG424_NOROBOTS.get());
     if (STAT_OUTPUT) { System.out.println(res); }
   }
 
-  @Test
   public void lruTimeToIdleTab() {
     System.out.println("_Established Time To Idle semantics_");
     System.out.println("| TTI/Minutes | Maximum cache size | Average cache size | Hitrate |");
@@ -73,7 +70,6 @@ public class TimeTracePlaybackTest {
     System.out.println("| " + i + " | " + res.maxSize + " | " + res.getAverageSize() + " | " + res.getHitrate());
   }
 
-  @Test
   public void cache2kIdleScanTab() {
     System.out.println("_Time To Idle emulation via scanning in cache2k 2.6_");
     System.out.println("| Scan round time/Minutes | Maximum cache size | Average cache size | Hitrate |");
@@ -85,7 +81,6 @@ public class TimeTracePlaybackTest {
     }
   }
 
-  @Test
   public void cache2kIdleScanTab45() {
     System.out.println("_Time To Idle emulation via scanning in cache2k 2.6_");
     System.out.println("| Scan round time/Minutes | Maximum cache size | Average cache size | Hitrate |");
@@ -97,7 +92,6 @@ public class TimeTracePlaybackTest {
     res.histogram.print();
   }
 
-  @Test
   public void cache2kIdleScanTab2000Cap() {
     System.out.println("_Time To Idle emulation via scanning in cache2k 2.6 with capacity limit of 2000 entries_");
     System.out.println("| Scan round time/Minutes | Maximum cache size | Average cache size | Hitrate |");
@@ -108,7 +102,6 @@ public class TimeTracePlaybackTest {
     }
   }
 
-  @Test
   public void cache2kIdleScanTab1000Cap() {
     int[] trace = Trace.WEBLOG424_NOROBOTS.get();
     for (int i = 40; i <= 50; i++) {

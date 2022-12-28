@@ -34,30 +34,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Jens Wilke
  */
-@NotThreadSafe @Category(FastTests.class)
 public class SharedCacheProviderTest {
 
   @SuppressWarnings("Convert2Diamond") // needs Java 9
-  @ClassRule
   public static CacheRule<Integer, Integer> target = new CacheRule<Integer, Integer>() { };
 
-  @Rule
   public TestRule alsoPerMethod = target;
 
   Cache<Integer, Integer> cache = target.cache();
 
-  @Test
   public void test() {
     assertThat(target.cache().getName()).isEqualTo("org.cache2k.test.util.SharedCacheProviderTest");
   }
 
-  @Test
   public void testEmptyAndPut() {
     assertThat(cache.entries().iterator().hasNext()).isFalse();
     cache.put(1,2);
   }
 
-  @Test
   public void testEmptyAndPut2() {
     assertThat(cache.entries().iterator().hasNext()).isFalse();
     cache.put(1,2);

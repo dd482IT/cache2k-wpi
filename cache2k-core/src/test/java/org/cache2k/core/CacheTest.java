@@ -35,10 +35,8 @@ import static org.cache2k.Cache2kBuilder.of;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class CacheTest {
 
-  @Test
   public void testPeekAndPut() {
     Cache<String, String> c =
       of(String.class, String.class)
@@ -52,7 +50,6 @@ public class CacheTest {
     c.close();
   }
 
-  @Test
   public void testGetWithLoader() {
     CacheLoader<String, Integer> lengthCountingSource = String::length;
     Cache<String, Integer> c =
@@ -67,7 +64,6 @@ public class CacheTest {
     c.close();
   }
 
-  @Test
   public void testGetEntry() {
     Cache<String, String> c =
       of(String.class, String.class)
@@ -82,7 +78,6 @@ public class CacheTest {
     c.close();
   }
 
-  @Test
   public void testContains() {
     Cache<String, String> c =
       of(String.class, String.class)
@@ -96,7 +91,6 @@ public class CacheTest {
     c.close();
   }
 
-  @Test
   public void testEntryToString() {
     Cache<Integer, Integer> c =
       of(Integer.class, Integer.class)

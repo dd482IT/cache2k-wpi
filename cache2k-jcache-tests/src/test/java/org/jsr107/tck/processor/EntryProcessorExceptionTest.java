@@ -29,7 +29,6 @@ public class EntryProcessorExceptionTest {
 
 
 
-  @Test
   public void testEntryProcessorException() {
     try {
       throw new EntryProcessorException();
@@ -38,7 +37,6 @@ public class EntryProcessorExceptionTest {
     }
   }
 
-  @Test
   public void testEntryProcessorExceptionCause() {
     try {
       throw new EntryProcessorException(new NullPointerException());
@@ -47,7 +45,6 @@ public class EntryProcessorExceptionTest {
     }
   }
 
-  @Test
   public void testEntryProcessorExceptionCauseAndMessage() {
     try {
       throw new EntryProcessorException("Doh!", new NullPointerException());
@@ -56,7 +53,6 @@ public class EntryProcessorExceptionTest {
     }
   }
 
-  @Test
   public void testEntryProcessorExceptionMessage() {
     try {
       throw new EntryProcessorException("Doh!");

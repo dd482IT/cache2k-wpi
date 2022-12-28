@@ -34,7 +34,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class LogTest {
 
-  @Test
   public void julAdapter() {
     java.util.logging.Logger logger = java.util.logging.Logger.getLogger(this.getClass().getName());
     StringBuilder buf = new StringBuilder();
@@ -55,7 +54,6 @@ public class LogTest {
     assertThat(buf.toString()).isEqualTo("INFO=info,INFO=info,WARNING=warn,WARNING=warn,");
   }
 
-  @Test
   public void suppressionCounter() {
     Log.SuppressionCounter log = new Log.SuppressionCounter();
     assertThat(log.isDebugEnabled()).isTrue();

@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Test;
  */
 class IntegrationVerificationTest {
 
-  @Test
   void test() throws Exception {
     Class.forName("org.cache2k.CacheManager");
   }

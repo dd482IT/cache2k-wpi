@@ -27,10 +27,8 @@ import org.junit.experimental.categories.Category;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class FastAllMutatorsExpireTest extends AllMutatorsExpireTest {
 
-  @Before
   public void setUp() {
     enableFastClock();
   }

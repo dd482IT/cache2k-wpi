@@ -31,10 +31,8 @@ import static org.junit.Assert.assertEquals;
  *
  * @author Jens Wilke
  */
-@Category(SlowTests.class)
 public class IdleScanPlaybackTest {
 
-  @Test
   public void testUnbounded46() {
     int[] trace = Trace.WEBLOG424_NOROBOTS.get();
     TimeTracePlaybackTest.PlaybackResult res =
@@ -44,7 +42,6 @@ public class IdleScanPlaybackTest {
     assertEquals(1373, res.getAverageSize());
   }
 
-  @Test
   public void testCap1000() {
     int[] trace = Trace.WEBLOG424_NOROBOTS.get();
     TimeTracePlaybackTest.PlaybackResult res =

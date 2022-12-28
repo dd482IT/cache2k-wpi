@@ -36,7 +36,6 @@ import static org.cache2k.core.eviction.ClockProPlusEviction.HIT_COUNTER_DECREAS
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class ClockProEvictionTest extends TestingBase {
 
   protected Cache<Integer, Integer> provideCache(long size) {
@@ -46,7 +45,6 @@ public class ClockProEvictionTest extends TestingBase {
       .build();
   }
 
-  @Test
   public void testChunking() {
     final int maxSize = 10000;
     final int minChunkSize = 1;
@@ -69,7 +67,6 @@ public class ClockProEvictionTest extends TestingBase {
       .isGreaterThan(minChunkSize);
   }
 
-  @Test
   public void test1() {
     final int size = 1;
     Cache<Integer, Integer> c = provideCache(size);
@@ -86,7 +83,6 @@ public class ClockProEvictionTest extends TestingBase {
     assertThat(count).isEqualTo(size);
   }
 
-  @Test
   public void test30() {
     final int size = 30;
     Cache<Integer, Integer> c = provideCache(size);
@@ -103,7 +99,6 @@ public class ClockProEvictionTest extends TestingBase {
     assertThat(count).isEqualTo(size);
   }
 
-  @Test
   public void testEvictCold() {
     final int size = 30;
     Cache<Integer, Integer> c = provideCache(size);
@@ -123,7 +118,6 @@ public class ClockProEvictionTest extends TestingBase {
     assertThat(count).isEqualTo(size);
   }
 
-  @Test
   public void testEvictHot() {
     final int size = 30;
     Cache<Integer, Integer> c = provideCache(size);
@@ -155,7 +149,6 @@ public class ClockProEvictionTest extends TestingBase {
   /**
    * Additional test to extend test coverage
    */
-  @Test
   public void testEvictHot2() {
     final int size = 30;
     Cache<Integer, Integer> c = provideCache(size);

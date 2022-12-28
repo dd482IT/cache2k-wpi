@@ -43,8 +43,6 @@ import static org.junit.runners.Parameterized.Parameters;
  *
  * @author Jens Wilke
  */
-@RunWith(Parameterized.class)
-@Category(SlowTests.class)
 @SuppressWarnings({"NullAway", "nullness"})
 public class AtomicOperationsPairwiseStressTest extends PairwiseTestingBase {
 
@@ -52,7 +50,6 @@ public class AtomicOperationsPairwiseStressTest extends PairwiseTestingBase {
     super(obj);
   }
 
-  @Parameters
   public static Iterable<Object[]> data() {
     List l = new ArrayList();
     l.add(new Object[]{new BuilderAugmenter() {

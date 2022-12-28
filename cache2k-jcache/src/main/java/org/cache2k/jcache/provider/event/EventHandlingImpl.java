@@ -137,7 +137,7 @@ public class EventHandlingImpl<K, V> implements EventHandling<K, V>, CacheClosed
    * @return
    */
   @Override
-  public @Nullable CompletableFuture<Void> onCacheClosed(Cache cache) {
+  public CompletableFuture<Void> onCacheClosed(Cache cache) {
     Set<CacheEntryListener> ls = new HashSet<CacheEntryListener>();
     for (Listener l : getAllListeners()) {
       ls.add(l.entryListener);

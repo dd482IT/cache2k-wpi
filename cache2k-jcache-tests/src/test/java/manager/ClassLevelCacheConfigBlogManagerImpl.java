@@ -50,12 +50,10 @@ import java.util.Map;
  * An implementation of BlogManager that uses a variety of annotations
  * @author Rick Hightower
  */
-@CacheDefaults(cacheName = "blgMngr")
 public class ClassLevelCacheConfigBlogManagerImpl implements BlogManager {
 
   private static Map<String, Blog> map = new HashMap<String, Blog>();
 
-  @CacheResult
   public Blog getEntryCached(String title) {
     return map.get(title);
   }
@@ -67,7 +65,6 @@ public class ClassLevelCacheConfigBlogManagerImpl implements BlogManager {
   /**
    * @see manager.BlogManager#clearEntryFromCache(java.lang.String)
    */
-  @CacheRemove
   public void clearEntryFromCache(String title) {
   }
 
@@ -75,7 +72,6 @@ public class ClassLevelCacheConfigBlogManagerImpl implements BlogManager {
     map.put(title, null);
   }
 
-  @CacheRemoveAll
   public void clearCache() {
   }
 
@@ -83,8 +79,7 @@ public class ClassLevelCacheConfigBlogManagerImpl implements BlogManager {
     map.put(blog.getTitle(), blog);
   }
 
-  @CacheResult
-  public Blog getEntryCached(String randomArg, @CacheKey String title,
+  public Blog getEntryCached(String randomArg, String title,
                              String randomArg2) {
     return map.get(title);
   }

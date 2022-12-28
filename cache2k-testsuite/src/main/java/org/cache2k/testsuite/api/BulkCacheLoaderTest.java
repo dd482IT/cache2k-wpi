@@ -38,7 +38,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class BulkCacheLoaderTest {
 
-  @Test
   public void test() {
     List<Object> keys = new ArrayList<>();
     AtomicReference<Throwable> reference = new AtomicReference<>();

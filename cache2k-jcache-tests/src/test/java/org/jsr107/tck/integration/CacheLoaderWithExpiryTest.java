@@ -46,7 +46,6 @@ public class CacheLoaderWithExpiryTest {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(CacheLoaderWithExpiryTest.class);
 
   /**
@@ -68,7 +67,6 @@ public class CacheLoaderWithExpiryTest {
   /**
    * Establish the {@link javax.cache.CacheManager} and {@link javax.cache.Cache} for a test.
    */
-  @Before
   public void onBeforeEachTest() throws IOException {
     //establish and open a CacheLoaderServer to handle cache
     //cache loading requests from a CacheLoaderClient
@@ -98,7 +96,6 @@ public class CacheLoaderWithExpiryTest {
   /**
    * Clean up the {@link javax.cache.CacheManager} and {@link javax.cache.Cache} after a test.
    */
-  @After
   public void onAfterEachTest() {
     //destroy the cache
     String cacheName = cache.getName();
@@ -115,7 +112,6 @@ public class CacheLoaderWithExpiryTest {
    * Ensure that a {@link javax.cache.Cache#get(Object)} for an expired
    * entry will cause a {@link CacheLoaderClient#load(Object)}.
    */
-  @Test
   public void shouldLoadWhenMissCausedByExpiry() {
     RecordingCacheLoader<String> cacheLoader = new RecordingCacheLoader<String>();
     cacheLoaderServer.setCacheLoader(cacheLoader);

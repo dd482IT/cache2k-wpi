@@ -32,16 +32,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PerMethodCacheProviderTest {
 
   @SuppressWarnings("Convert2Diamond") // needs Java 9
-  @Rule
   public CacheRule<Integer, Integer> target = new CacheRule<Integer, Integer>() { };
 
-  @Test
   public void testName() {
     Cache<Integer, Integer> c = target.cache();
     assertThat(c.getName()).isEqualTo("org.cache2k.test.util.PerMethodCacheProviderTest.testName");
   }
 
-  @Test
   public void testClose() {
     target.config(b -> b.entryCapacity(123));
     Cache<Integer, Integer> c = target.cache();

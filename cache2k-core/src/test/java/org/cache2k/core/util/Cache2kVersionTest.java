@@ -34,10 +34,8 @@ import static org.cache2k.core.util.Cache2kVersion.*;
 /**
  * @author Jens Wilke; created: 2015-06-11
  */
-@Category(FastTests.class)
 public class Cache2kVersionTest {
 
-  @Test
   public void testVersion() {
     String v = getVersion();
     assertThat(v).isNotNull();
@@ -48,12 +46,10 @@ public class Cache2kVersionTest {
       .isTrue();
   }
 
-  @Test
   public void skipVariables() {
     assertThat(isDefined("${version}")).isFalse();
   }
 
-  @Test
   public void exception() {
     SuppressionCounter l = new SuppressionCounter();
     registerSuppression(Cache2kVersion.class.getName(), l);

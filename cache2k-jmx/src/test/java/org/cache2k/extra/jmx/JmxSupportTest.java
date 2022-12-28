@@ -57,7 +57,7 @@ public class JmxSupportTest {
 
   private static final MBeanServerConnection SERVER =  ManagementFactory.getPlatformMBeanServer();
 
-  private @Nullable ObjectName objectName;
+  private ObjectName objectName;
 
 
   private static String maybeQuote(String name) {
@@ -71,7 +71,6 @@ public class JmxSupportTest {
     return name.contains(",");
   }
 
-  @Test
   public void testCacheCreated() throws Exception {
     String name = getClass().getName() + ".testCacheCreated";
     Cache c = of(Object.class, Object.class)
@@ -88,7 +87,6 @@ public class JmxSupportTest {
     } catch (InstanceNotFoundException expected) { }
   }
 
-  @Test
   public void testCacheCreated_notFound() throws Exception {
     assertThatCode(() -> {
       String name = getClass().getName() + ".testCacheCreated";
@@ -100,7 +98,6 @@ public class JmxSupportTest {
     }).isInstanceOf(InstanceNotFoundException.class);
   }
 
-  @Test
   public void testInitialProperties() throws Exception {
     Date beforeCreation = new Date();
     String name = getClass().getName() + ".testInitialProperties";
@@ -157,7 +154,6 @@ public class JmxSupportTest {
     c.close();
   }
 
-  @Test
   public void testDisabledStatistics() throws Exception {
     String name = getClass().getName() + ".testDisabledStatistics";
     Cache c = new Cache2kBuilder<Long, List<Collection<Long>>>() { }
@@ -173,7 +169,6 @@ public class JmxSupportTest {
     c.clear();
   }
 
-  @Test
   public void testDisableMonitoring() throws Exception {
     String name = getClass().getName() + ".testDisabledMonitoring";
     Cache c = new Cache2kBuilder<Long, List<Collection<Long>>>() { }
@@ -190,7 +185,6 @@ public class JmxSupportTest {
     c.clear();
   }
 
-  @Test
   public void testWeigherWithSegmentation() throws Exception {
     String name = getClass().getName() + ".testWeigherWithSegmentation";
     Cache c = new Cache2kBuilder<Long, List<Collection<Long>>>() { }
@@ -220,7 +214,6 @@ public class JmxSupportTest {
     c.close();
   }
 
-  @Test
   public void testDisabled() throws Exception {
     String name = getClass().getName() + ".testInitialProperties";
     Cache c = new Cache2kBuilder<Long, List<Collection<Long>>>() { }
@@ -237,7 +230,7 @@ public class JmxSupportTest {
     c.close();
   }
 
-  private void checkAttribute(String name, @Nullable Object expected) throws Exception {
+  private void checkAttribute(String name, Object expected) throws Exception {
     Object v = retrieve(name);
     assertThat(v)
       .as("Value of attribute '" + name + "'")
@@ -276,7 +269,6 @@ public class JmxSupportTest {
       "name=" + maybeQuote(name));
   }
 
-  @Test
   public void testCacheDestroyed() {
     assertThatCode(() -> {
       String name = getClass().getName() + ".testCacheDestroyed";
@@ -291,7 +283,6 @@ public class JmxSupportTest {
     }).isInstanceOf(InstanceNotFoundException.class);
   }
 
-  @Test
   public void testEnableDisableJmxSupport() {
     assertThatCode(() -> {
       String name = getClass().getName() + ".testEnableDisable";

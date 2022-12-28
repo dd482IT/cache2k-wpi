@@ -41,14 +41,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Jens Wilke
  * @see org.cache2k.core.WiredCache
  */
-@Category(FastTests.class)
 public class CacheLoaderWiredCacheTest extends CacheLoaderTest {
 
   {
     target.enforceWiredCache();
   }
 
-  @Test
   public void testLoaderWithListener() {
     AtomicInteger _countCreated =  new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.loader(key -> key * 2)
@@ -65,7 +63,6 @@ public class CacheLoaderWiredCacheTest extends CacheLoaderTest {
   /**
    * @see CacheLoaderTest#advancedLoaderEntryNotSetIfExpired()
    */
-  @Test
   public void asyncLoaderEntryNotSetIfExpired() {
     Cache<Integer, Integer> c = target.cache(new CacheRule.Context<Integer, Integer>() {
       @Override
@@ -84,7 +81,6 @@ public class CacheLoaderWiredCacheTest extends CacheLoaderTest {
   /**
    * @see CacheLoaderTest#advancedLoaderEntrySetIfExpiredWithKeepData()
    */
-  @Test
   public void asyncLoaderEntrySetIfExpiredWithKeepData() {
     AtomicBoolean expectEntry = new AtomicBoolean();
     Cache<Integer, Integer> c = target.cache(new CacheRule.Context<Integer, Integer>() {

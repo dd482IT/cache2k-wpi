@@ -40,7 +40,6 @@ public abstract class AdditionalTestSupport<K, V> extends TestSupport {
 
   protected Cache<K, V> cache;
 
-  @Before
   public void setUp() {
     MutableConfiguration<K, V> config = newMutableConfiguration();
     ConfigurationBuilder<K, V> builder = new ConfigurationBuilder<>(config);
@@ -49,7 +48,6 @@ public abstract class AdditionalTestSupport<K, V> extends TestSupport {
     cache = getCacheManager().createCache(getTestCacheName(), config);
   }
 
-  @After
   public void tearDown() throws Exception {
     getCacheManager().destroyCache(getTestCacheName());
     builderResources.close();

@@ -148,7 +148,6 @@ public class AbstractCacheTester<K, V> extends ForwardingCache<K, V>
     await(null, condition);
   }
 
-  @AfterEach
   public void autoCleanUp() {
     if (createdCache != null) {
       createdCache.close();

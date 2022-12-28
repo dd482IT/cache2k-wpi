@@ -35,7 +35,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  */
 public class SupervisedExecutorTest {
 
-  @Test
   public void all() {
     SupervisedExecutor ex = new SupervisedExecutor(ForkJoinPool.commonPool());
     ex.join();
@@ -51,7 +50,6 @@ public class SupervisedExecutorTest {
       .hasMessageContaining("No exception expected, 1 exceptions, first one propagated");
   }
 
-  @Test
   public void timeout() {
     SupervisedExecutor ex = new SupervisedExecutor(command -> {}, Duration.ZERO);
     ex.execute(() -> {});
@@ -59,7 +57,6 @@ public class SupervisedExecutorTest {
       .isInstanceOf(TimeoutError.class);
   }
 
-  @Test
   public void interruption() {
     Semaphore semaphore = new Semaphore(1);
     Thread.currentThread().interrupt();
@@ -69,7 +66,6 @@ public class SupervisedExecutorTest {
     assertThat(Thread.currentThread().isInterrupted()).isFalse();
   }
 
-  @Test
   public void timeoutSemaphore() {
     Semaphore semaphore = new Semaphore(1);
     SupervisedExecutor.acquireOrTimeout(semaphore, Duration.ZERO);

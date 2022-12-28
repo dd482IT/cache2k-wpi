@@ -47,7 +47,6 @@ import static org.cache2k.expiry.ExpiryTimeValues.ETERNAL;
  * @author Jens Wilke
  */
 @SuppressWarnings("unchecked")
-@Category(FastTests.class)
 public class TimingUnitTest {
 
   private static final Entry ENTRY = new Entry();
@@ -98,7 +97,6 @@ public class TimingUnitTest {
     });
   }
 
-  @Test
   public void eternalSpecified() {
     Timing h = create(
       CLOCK,
@@ -109,7 +107,6 @@ public class TimingUnitTest {
     assertThat(h.getClass()).isEqualTo(ETERNAL_IMMEDIATE.getClass());
   }
 
-  @Test
   public void eternalNotSpecified() {
     Timing h = create(
       CLOCK,
@@ -119,7 +116,6 @@ public class TimingUnitTest {
     assertThat(h.getClass()).isEqualTo(StaticTiming.class);
   }
 
-  @Test
   public void expireAfterWrite_overflow() {
     Timing h = create(
       CLOCK,
@@ -130,7 +126,6 @@ public class TimingUnitTest {
     assertThat(h.getClass()).isEqualTo(StaticTiming.class);
   }
 
-  @Test
   public void almostEternal_noOverflow() {
     long bigValue = MAX_VALUE - 47;
     Timing h = create(
@@ -145,7 +140,6 @@ public class TimingUnitTest {
     assertThat(t).isEqualTo(MAX_VALUE);
   }
 
-  @Test
   public void almostEternal_expiryPolicy_noOverflow() {
     long bigValue = MAX_VALUE - 47;
     Timing h = create(
@@ -164,7 +158,6 @@ public class TimingUnitTest {
   /**
    * Sharp is honored in the calculation phase.
    */
-  @Test
   public void policy_sharp() {
     Timing h = create(
       CLOCK,
@@ -181,7 +174,6 @@ public class TimingUnitTest {
   /**
    * The configuration setting serves as a time limit.
    */
-  @Test
   public void expireAfterWrite_policy_limit() {
     Timing h = create(
       CLOCK,
@@ -201,7 +193,6 @@ public class TimingUnitTest {
   /**
    * Maximum expiry is limited when sharp expiry requested.
    */
-  @Test
   public void expireAfterWrite_policy_limit_sharp() {
     long duration = 1000000;
     final long sharpPointInTime = NOW + 5000000;
@@ -232,7 +223,6 @@ public class TimingUnitTest {
     assertThat(t).isEqualTo(later + 1);
   }
 
-  @Test
   public void expireAfterWrite_policy_limit_nonSharp() {
     long duration = 1000000;
     final long pointInTime = NOW + 5000000;
@@ -267,7 +257,6 @@ public class TimingUnitTest {
    * Maximum expiry is limited when sharp expiry requested.
    * Corner case if expiry will happen close to requested point in time.
    */
-  @Test
   public void expireAfterWrite_policy_limit_sharp_close() {
     long duration = 100;
     final long sharpPointInTime = NOW + 5000;

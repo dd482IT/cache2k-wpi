@@ -44,14 +44,12 @@ public class TimeBoxTest {
   /**
    * TimeoutError thrown directly
    */
-  @Test
   void timeout() {
     setup(100);
     assertThatCode(() -> tb.expectMaybe(() -> {throw new TimeoutError(Duration.ZERO); }))
       .isInstanceOf(TimeoutError.class);
   }
 
-  @Test
   void propagateAssertError() {
     setup(100);
     assertThatCode(() -> tb
@@ -60,7 +58,6 @@ public class TimeBoxTest {
       .isInstanceOf(AssertionError.class);
   }
 
-  @Test
   void propagateAssertErrorInChain() {
     setup(100);
     assertThatCode(() -> tb
@@ -71,7 +68,6 @@ public class TimeBoxTest {
     ).isInstanceOf(AssertionError.class);
   }
 
-  @Test
   void suppressAssertError() {
     setup(100);
     ticks += 100;
@@ -81,7 +77,6 @@ public class TimeBoxTest {
   /**
    * After missing the time box, don't execute / assert anything
    */
-  @Test
   void suppressAssertErrorInChain() {
     setup(100);
     ticks += 100;

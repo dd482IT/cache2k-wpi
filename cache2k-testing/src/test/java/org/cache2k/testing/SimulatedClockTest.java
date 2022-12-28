@@ -43,7 +43,6 @@ public class SimulatedClockTest {
     return v;
   }
 
-  @Test
   public void scheduleAndTrigger() throws InterruptedException {
     assertThat(clock.ticks()).isEqualTo(100000);
     AtomicBoolean trigger = new AtomicBoolean();
@@ -52,7 +51,6 @@ public class SimulatedClockTest {
     assertThat(trigger.get()).isTrue();
   }
 
-  @Test
   public void sequenceSleep0() throws InterruptedException {
     assertThat(clock.ticks()).isEqualTo(100000);
     clock.schedule(new Event(0), 0);
@@ -69,7 +67,6 @@ public class SimulatedClockTest {
     assertThat(trigger.get()).isEqualTo(3);
   }
 
-  @Test
   public void sequence0Sleep0() throws InterruptedException {
     assertThat(clock.ticks()).isEqualTo(100000);
     clock.schedule(new Event(-1), 0);
@@ -79,7 +76,6 @@ public class SimulatedClockTest {
     assertThat(trigger.get()).isEqualTo(3);
   }
 
-  @Test
   public void sequenceSleepX() throws InterruptedException {
     assertThat(clock.ticks()).isEqualTo(100000);
     clock.schedule(new Event(0), 0);
@@ -95,7 +91,6 @@ public class SimulatedClockTest {
   /**
    * Just make sure toString() works / test coverage
    */
-  @Test
   public void testToString()  {
     assertThat(clock.ticks()).isEqualTo(100000);
     clock.schedule(new Event(0), 0);
@@ -106,7 +101,6 @@ public class SimulatedClockTest {
     assertThat(clock.toString()).isNotNull();
   }
 
-  @Test
   public void assertionPropagated() {
     assertThatCode(
       () -> {
@@ -137,7 +131,6 @@ public class SimulatedClockTest {
     }
   }
 
-  @Test
   public void clockAdvancing() {
     long t0 = clock.ticks();
     while (clock.ticks() == t0) {
@@ -149,7 +142,6 @@ public class SimulatedClockTest {
    * Clock is never moving backwards, although when multiple threads are
    * updating the wall clock value
    */
-  @Test
   public void moveForward() {
     AtomicInteger countDown = new AtomicInteger(2);
     SimulatedClock specialClock = new SimulatedClock(100000) {
@@ -162,7 +154,6 @@ public class SimulatedClockTest {
     assertThat(specialClock.now.get()).isEqualTo(100003);
   }
 
-  @Test
   public void wrappedExecutorCornerCases() {
     Executor executor = clock.wrapExecutor(command -> {
       throw new RejectedExecutionException();

@@ -49,7 +49,6 @@ import static org.cache2k.core.timing.TimerTask.Sentinel;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class TimerTest {
 
   final List<MyTimerTask> executed = new CopyOnWriteArrayList<>();
@@ -90,7 +89,6 @@ public class TimerTest {
     return result;
   }
 
-  @Test
   public void misc() {
     long startTime = 10;
     SimulatedClock simulatedClock = new SimulatedClock(startTime);
@@ -118,7 +116,6 @@ public class TimerTest {
   /**
    *
    */
-  @Test
   public void immediateExecution() {
     MyTimerTask t = new MyTimerTask();
     t.markForImmediateExecution();
@@ -135,7 +132,6 @@ public class TimerTest {
     assertThat(t.executed).isTrue();
   }
 
-  @Test
   public void misc2() {
     long startTime = 10;
     long lagTime = 100;
@@ -160,7 +156,6 @@ public class TimerTest {
     assertThat(tt1.executed).isTrue();
   }
 
-  @Test
   public void scheduleInPast() {
     init(100, 10, 10);
     MyTimerTask t = schedule(50).get(0);
@@ -171,7 +166,6 @@ public class TimerTest {
   /**
    * Time is already reached, so task executes immediately.
    */
-  @Test
   public void scheduleStartTime() {
     long startTime = 100;
     init(startTime, 10, 10);
@@ -179,7 +173,6 @@ public class TimerTest {
     assertThat(t.executed).isTrue();
   }
 
-  @Test
   public void scheduleReachedTime0() {
     long startTime = 100;
     init(startTime, 10, 10);
@@ -189,7 +182,6 @@ public class TimerTest {
     assertThat(t.executed).isTrue();
   }
 
-  @Test
   public void scheduleAndCancel() {
     long startTime = 100;
     init(startTime, 10, 10);
@@ -202,7 +194,6 @@ public class TimerTest {
     assertThat(t.executed).isFalse();
   }
 
-  @Test
   public void scheduleAndCancelAll() {
     long startTime = 100;
     init(startTime, 10, 10);
@@ -213,7 +204,6 @@ public class TimerTest {
     assertThat(t.executed).isFalse();
   }
 
-  @Test
   public void scheduleReachedTime1() {
     long startTime = 100;
     init(startTime, 10, 10);
@@ -226,7 +216,6 @@ public class TimerTest {
     assertThat(t.executed).isTrue();
   }
 
-  @Test
   public void scheduleDistantFuture() {
     long startTime = 100;
     init(startTime, 10, 10);
@@ -239,7 +228,6 @@ public class TimerTest {
     assertThat(t.executed).isTrue();
   }
 
-  @Test
   public void scheduleReachedTime2() {
     long startTime = 100;
     long endTime = startTime + 100;
@@ -260,21 +248,18 @@ public class TimerTest {
     });
   }
 
-  @Test
   public void scheduleNow() {
     init(100, 10, 10);
     MyTimerTask t = schedule(0).get(0);
     assertThat(t.executed).isTrue();
   }
 
-  @Test
   public void startTime0() {
     init(0, 10, 10);
     MyTimerTask t = schedule(0).get(0);
     assertThat(t.executed).isTrue();
   }
 
-  @Test
   public void insertSequence() {
     long lagMillis = 2;
     long startTime = 2;
@@ -291,7 +276,6 @@ public class TimerTest {
     }
   }
 
-  @Test
   public void insertSequence3() {
     long lagMillis = 1;
     long startTime = 2;
@@ -319,28 +303,23 @@ public class TimerTest {
     assertThat(t.executed).isTrue();
   }
 
-  @Test
   public void executedAfterLag_2_1() {
     test2_2_x(1);
   }
-  @Test
   public void executedAfterLag_2_2() {
     test2_2_x(2);
   }
 
-  @Test
   public void scheduleMaxMinus1() {
     init(2, 1, 2);
     schedule(Long.MAX_VALUE - 1);
   }
 
-  @Test
   public void schedule100Years() {
     init(System.currentTimeMillis(), 2);
     schedule(clock.ticks() + 100L * 1000 * 60 * 60 * 24 * 365);
   }
 
-  @Test
   public void config() {
     long lag = hashCode();
     assertThat(forUnknownTypes()

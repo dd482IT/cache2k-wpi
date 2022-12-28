@@ -50,10 +50,8 @@ public class CachingProviderClassLoaderTest {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(this.getClass());
 
-  @Before
   public void startUp() {
     //ensure that there are no open CacheManagers for the CachingProvider
     Caching.getCachingProvider().close();
@@ -63,7 +61,6 @@ public class CachingProviderClassLoaderTest {
    * Multiple invocations of {@link javax.cache.spi.CachingProvider#getCacheManager()}
    * will return the same instance.
    */
-  @Test
   public void getCacheManagerSingleton() {
 
     // obtain the default caching provider
@@ -96,7 +93,6 @@ public class CachingProviderClassLoaderTest {
    * The default CacheManager is the same as the CacheManager using the default
    * CachingProvider URI.
    */
-  @Test
   public void getCacheManagerDefaultURI() {
     ClassLoader contextLoader = Thread.currentThread().getContextClassLoader();
 
@@ -119,7 +115,6 @@ public class CachingProviderClassLoaderTest {
    * The URI of the CacheManager returned by {@link CachingProvider#getCacheManager(java.net.URI, ClassLoader)}
    * is the same as the URI used in the invocation.
    */
-  @Test
   public void getCacheManagerSameURI() {
     ClassLoader contextLoader = Thread.currentThread().getContextClassLoader();
 
@@ -143,7 +138,6 @@ public class CachingProviderClassLoaderTest {
    * Close all CacheManagers from a CachingProvider, each CacheManager being
    * based on a different ClassLoader.
    */
-  @Test
   public void closeAllCacheManagers() throws Exception {
     ClassLoader contextLoader = Thread.currentThread().getContextClassLoader();
 
@@ -171,7 +165,6 @@ public class CachingProviderClassLoaderTest {
    * Closing a single CacheManager from a CachingProvider when there are
    * multiple available across different ClassLoaders.
    */
-  @Test
   public void closeCacheManager() throws Exception {
     ClassLoader contextLoader = Thread.currentThread().getContextClassLoader();
 
@@ -199,7 +192,6 @@ public class CachingProviderClassLoaderTest {
    * Attempt to close CacheManagers using URIs and/or ClassLoaders that don't
    * have associated CacheManagers.
    */
-  @Test
   public void closeClassLoader() throws Exception {
     ClassLoader contextLoader = Thread.currentThread().getContextClassLoader();
 

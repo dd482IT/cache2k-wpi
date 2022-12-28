@@ -43,10 +43,8 @@ public class StoreByValueTest extends CacheTestSupport<Date, Date> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass());
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Date.class, Date.class);
   }
@@ -56,7 +54,6 @@ public class StoreByValueTest extends CacheTestSupport<Date, Date> {
     return new MutableConfiguration<Date, Date>().setTypes(Date.class, Date.class);
   }
 
-  @Test
   public void get_Existing_MutateValue() {
     long now = System.currentTimeMillis();
     Date existingKey = new Date(now);
@@ -66,7 +63,6 @@ public class StoreByValueTest extends CacheTestSupport<Date, Date> {
     assertEquals(new Date(now), cache.get(existingKey));
   }
 
-  @Test
   public void get_Existing_MutateKey() {
     long now = System.currentTimeMillis();
     Date existingKey = new Date(now);
@@ -76,7 +72,6 @@ public class StoreByValueTest extends CacheTestSupport<Date, Date> {
     assertEquals(new Date(now), cache.get(new Date(now)));
   }
 
-  @Test
   public void getAndPut_NotThere() {
     if (cache == null) return;
 
@@ -88,7 +83,6 @@ public class StoreByValueTest extends CacheTestSupport<Date, Date> {
     assertEquals(new Date(now), cache.get(existingKey));
   }
 
-  @Test
   public void getAndPut_Existing_MutateValue() {
     long now = System.currentTimeMillis();
     Date existingKey = new Date(now);
@@ -101,7 +95,6 @@ public class StoreByValueTest extends CacheTestSupport<Date, Date> {
     assertEquals(new Date(now + 1), cache.get(existingKey));
   }
 
-  @Test
   public void getAndPut_Existing_NonSameKey_MutateValue() throws Exception {
     long now = System.currentTimeMillis();
     Date key1 = new Date(now);
@@ -116,7 +109,6 @@ public class StoreByValueTest extends CacheTestSupport<Date, Date> {
     assertEquals(new Date(now + 2), cache.get(key2));
   }
 
-  @Test
   public void getAndPut_Existing_NonSameKey_MutateKey() {
     long now = System.currentTimeMillis();
     Date key1 = new Date(now);

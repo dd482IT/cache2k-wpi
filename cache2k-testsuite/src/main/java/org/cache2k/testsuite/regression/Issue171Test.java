@@ -36,16 +36,13 @@ import static org.junit.Assert.fail;
  * @author Jens Wilke
  * @link <a href="https://github.com/cache2k/cache2k/issues/171"/>
  */
-@Category(FastTests.class)
 public class Issue171Test {
 
-  @Test
   public void testNpeWithoutListener() {
     testAndVerifyStacktrace(Cache2kBuilder.of(String.class, String.class)
       .build());
   }
 
-  @Test
   public void testNpeWithListener() {
     testAndVerifyStacktrace(Cache2kBuilder.of(String.class, String.class)
       .addListener((CacheEntryRemovedListener<String, String>) (cache1, cacheEntry) -> {

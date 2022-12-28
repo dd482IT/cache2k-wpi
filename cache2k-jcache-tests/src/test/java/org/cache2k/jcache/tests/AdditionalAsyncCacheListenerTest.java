@@ -53,7 +53,6 @@ import java.util.concurrent.TimeoutException;
  */
 public class AdditionalAsyncCacheListenerTest extends CacheTestSupport<Integer, String> {
 
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass());
 
   private CacheEntryListenerServer cacheEntryListenerServer;
@@ -86,7 +85,6 @@ public class AdditionalAsyncCacheListenerTest extends CacheTestSupport<Integer, 
   /**
    * Test whether async events arrive and are in correct order. Also test with negative key.
    */
-  @Test
   public void testInOrder() throws Exception {
     int KEY = -123;
     cache.put(KEY, "hello");

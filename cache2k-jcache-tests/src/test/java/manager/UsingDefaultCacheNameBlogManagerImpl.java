@@ -58,7 +58,6 @@ public class UsingDefaultCacheNameBlogManagerImpl implements BlogManager {
   /**
    *
    */
-  @CacheResult
   public Blog getEntryCached(String title) {
     return map.get(title);
   }
@@ -75,7 +74,6 @@ public class UsingDefaultCacheNameBlogManagerImpl implements BlogManager {
    *
    * @see manager.BlogManager#clearEntryFromCache(java.lang.String)
    */
-  @CacheRemove(cacheName = "manager.UsingDefaultCacheNameBlogManagerImpl.getEntryCached(java.lang.String)")
   public void clearEntryFromCache(String title) {
   }
 
@@ -93,7 +91,6 @@ public class UsingDefaultCacheNameBlogManagerImpl implements BlogManager {
    *
    * @see manager.BlogManager#clearCache()
    */
-  @CacheRemoveAll(cacheName = "manager.UsingDefaultCacheNameBlogManagerImpl.getEntryCached(java.lang.String)")
   public void clearCache() {
   }
 
@@ -110,8 +107,7 @@ public class UsingDefaultCacheNameBlogManagerImpl implements BlogManager {
    * Have to specify the cache name here, the generated name is:
    * manager.UsingDefaultCacheNameBlogManagerImpl.getEntryCached(java.lang.String,java.lang.String,java.lang.String)
    */
-  @CacheResult(cacheName = "manager.UsingDefaultCacheNameBlogManagerImpl.getEntryCached(java.lang.String)")
-  public Blog getEntryCached(String randomArg, @CacheKey String title, String randomArg2) {
+  public Blog getEntryCached(String randomArg, String title, String randomArg2) {
     return map.get(title);
   }
 

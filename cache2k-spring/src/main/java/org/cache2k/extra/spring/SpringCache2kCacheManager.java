@@ -113,7 +113,7 @@ public class SpringCache2kCacheManager implements CacheManager, DisposableBean {
    * {@link #addCaches} the default setup from {@link #defaultSetup} is applied.
    */
   @Override
-  public @NonNull SpringCache2kCache getCache(String name) {
+  public SpringCache2kCache getCache(String name) {
     return name2cache.computeIfAbsent(name, n -> {
         if (!allowUnknownCache && !configuredCacheNames.contains(n)) {
           return null;

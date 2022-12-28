@@ -37,7 +37,6 @@ public class TimeToIdleExampleTest {
   /**
    * Store, get, and get a non existing mapping
    */
-  @Test
   public void test() {
     WrappedCache<Integer, Integer> wrappedCache =
       new WrappedCache<>(Cache2kBuilder.of(Integer.class, Integer.class).build());

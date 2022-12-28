@@ -36,14 +36,12 @@ public class SpringCache2kCacheTests extends AbstractCacheTests<SpringCache2kCac
   private SpringCache2kCache cache;
   private SpringCache2kCacheManager manager;
 
-  @BeforeEach
   public void setUp() {
     manager = new SpringCache2kCacheManager();
     cache = manager.getCache(CACHE_NAME);
     nativeCache = cache.getNativeCache();
   }
 
-  @AfterEach
   public void tearDown() {
     manager.destroy();
   }

@@ -40,7 +40,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass()) {
 
     /**
@@ -66,7 +65,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
     return new MutableConfiguration<Identifier, String>().setTypes(Identifier.class, String.class);
   }
 
-  @After
   public void teardown() {
     for (String cacheName : cacheManager.getCacheNames()) {
        cacheManager.destroyCache(cacheName);
@@ -74,7 +72,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
     cacheManager.close();
   }
 
-  @Test
   public void sanityCheckTestDomain() {
     Identifier pistachio2Id = new Identifier("Pistachio");
     Beagle pistachio2 = (Beagle) new Beagle().name(pistachio2Id).color("tricolor")
@@ -110,7 +107,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
    * 1) don't declare using generics and
    * 2) don't specify types during configuration.
    */
-  @Test
   public void simpleAPINoGenericsAndNoTypeEnforcementStoreByReference() {
 
       MutableConfiguration config = new MutableConfiguration().setStoreByValue(false);
@@ -149,7 +145,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
    * 1) don't declare using generics and
    * 2) don't specify types during configuration.
    */
-  @Test
   public void simpleAPINoGenericsAndNoTypeEnforcementStoreByValue() {
 
     MutableConfiguration config = new MutableConfiguration();
@@ -186,7 +181,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
    * 1) declare using generics and
    * 2) don't specify types during configuration.
    */
-  @Test
   public void simpleAPIWithGenericsAndNoTypeEnforcement() {
 
     MutableConfiguration config = new MutableConfiguration<String, Integer>();
@@ -225,7 +219,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
    *
    * The configuration checking gets done on put.
    */
-  @Test
   public void genericsEnforcementAndStricterTypeEnforcement() {
 
     //configure the cache
@@ -264,7 +257,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
    * Same as above but using the shorthand Caching to acquire.
    * Should work the same.
    */
-  @Test
   public void genericsEnforcementAndStricterTypeEnforcementFromCaching() {
 
     //configure the cache
@@ -304,7 +296,6 @@ public class TypesTest extends CacheTestSupport<Identifier, String> {
    * 1) declare using generics and
    * 2) specify types during configuration but using Object.class, which is permissive
    */
-  @Test
   public void simpleAPITypeEnforcementObject() {
 
 

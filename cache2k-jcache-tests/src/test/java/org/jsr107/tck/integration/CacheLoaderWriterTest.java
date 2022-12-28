@@ -50,7 +50,6 @@ public class CacheLoaderWriterTest {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(CacheLoaderWriterTest.class);
 
   /**
@@ -92,7 +91,6 @@ public class CacheLoaderWriterTest {
   /**
    * Establish the {@link javax.cache.CacheManager} and {@link Cache} for a test.
    */
-  @Before
   public void onBeforeEachTest() throws IOException {
     //establish and open a CacheLoaderServer to handle cache
     //cache loading requests from a CacheLoaderClient
@@ -135,7 +133,6 @@ public class CacheLoaderWriterTest {
   /**
    * Clean up the {@link javax.cache.CacheManager} and {@link Cache} after a test.
    */
-  @After
   public void onAfterEachTest() {
     //destroy the cache
     String cacheName = cache.getName();
@@ -156,7 +153,6 @@ public class CacheLoaderWriterTest {
    * Ensure that a {@link Cache#get(Object)} for a non-existent entry will
    * cause it to be loaded but not written.
    */
-  @Test
   public void shouldLoadWhenCacheMissUsingGet() {
     String key = "message";
 
@@ -179,7 +175,6 @@ public class CacheLoaderWriterTest {
    * will cause a {@link javax.cache.integration.CacheLoader} to load an entry but
    * not cause it to be written by a {@link javax.cache.integration.CacheWriter}.
    */
-  @Test
   public void shouldLoadWhenAccessingWithEntryProcessor() {
     String key = "message";
 
@@ -201,7 +196,6 @@ public class CacheLoaderWriterTest {
    * Ensure that a {@link Cache#getAll(java.util.Set)} will load the expected
    * entries but not cause them to be written using a {@link javax.cache.integration.CacheWriter}.
    */
-  @Test
   public void shouldLoadUsingGetAll() {
     //construct a set of keys
     HashSet<String> keys = new HashSet<String>();
@@ -241,7 +235,6 @@ public class CacheLoaderWriterTest {
    * Ensure that a {@link javax.cache.integration.CacheLoader} that returns <code>null</code> entries
    * aren't placed in the cache and nothing is written.
    */
-  @Test
   public void shouldNotLoadNullEntries() {
     NullValueCacheLoader<String, String> nullCacheLoader = new NullValueCacheLoader<>();
     cacheLoaderServer.setCacheLoader(nullCacheLoader);
@@ -268,7 +261,6 @@ public class CacheLoaderWriterTest {
    * Ensure that a {@link javax.cache.integration.CacheLoader} that returns <code>null</code> values
    * aren't placed in the cache or written
    */
-  @Test
   public void shouldNotLoadNullValues() {
     NullValueCacheLoader<String, String> cacheLoader = new NullValueCacheLoader<>();
     cacheLoaderServer.setCacheLoader(cacheLoader);
@@ -295,7 +287,6 @@ public class CacheLoaderWriterTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * for a non-existent single value will cause it to be loaded and not written.
    */
-  @Test
   public void shouldLoadSingleMissingEntryUsingLoadAll() throws Exception {
     String key = "message";
     HashSet<String> keys = new HashSet<>();
@@ -319,7 +310,6 @@ public class CacheLoaderWriterTest {
     assertThat(recordingCacheWriter.getDeleteCount(), is(0L));
   }
 
-  @Test
   public void shouldNotWriteThroughUsingLoadAll() throws Exception {
     final int NUMBER_OF_KEYS = 10;
     assertEquals(0, recordingCacheWriter.getWriteCount());
@@ -355,7 +345,6 @@ public class CacheLoaderWriterTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * for an existing single entry will cause it to be reloaded or written.
    */
-  @Test
   public void shouldLoadSingleExistingEntryUsingLoadAll() throws Exception {
     String key = "message";
     HashSet<String> keys = new HashSet<>();
@@ -389,7 +378,6 @@ public class CacheLoaderWriterTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)} )}
    * for multiple non-existing entries will be loaded or written.
    */
-  @Test
   public void shouldLoadMultipleNonExistingEntryUsingLoadAll() throws Exception {
     HashSet<String> keys = new HashSet<>();
     keys.add("gudday");
@@ -424,7 +412,6 @@ public class CacheLoaderWriterTest {
    * Ensure that {@link Cache#loadAll(java.util.Set, boolean, javax.cache.integration.CompletionListener)}
    * for multiple existing entries will be reloaded but not written.
    */
-  @Test
   public void shouldLoadMultipleExistingEntryUsingLoadAll() throws Exception {
     HashSet<String> keys = new HashSet<>();
     keys.add("gudday");

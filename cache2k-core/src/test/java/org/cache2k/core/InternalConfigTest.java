@@ -42,14 +42,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class InternalConfigTest {
 
-  @Test
   public void config() {
     assertThat(new InternalConfig().builder()
       .evictionSegmentCount(123)
       .config().getEvictionSegmentCount()).isEqualTo(123);
   }
 
-  @Test
   public void evictionSegmentCount() {
     Cache<Object, Object> cache =
       Cache2kBuilder.forUnknownTypes()
@@ -60,7 +58,6 @@ public class InternalConfigTest {
     cache.close();
   }
 
-  @Test
   public void threadFactoryProvider() {
     AtomicBoolean executed = new AtomicBoolean();
     Cache<Object, Object> cache =
@@ -79,7 +76,6 @@ public class InternalConfigTest {
     cache.close();
   }
 
-  @Test
   public void commonMetrics() {
     Cache<Object, Object> cache =
       Cache2kBuilder.forUnknownTypes()

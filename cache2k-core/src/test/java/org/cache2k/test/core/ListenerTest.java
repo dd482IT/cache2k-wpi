@@ -59,16 +59,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class ListenerTest {
 
   /**
    * Provide unique standard cache per method
    */
-  @Rule
   public IntCacheRule target = new IntCacheRule();
 
-  @Rule
   public Timeout globalTimeout = new Timeout((int) TestingParameters.MAX_FINISH_WAIT_MILLIS);
 
   /**
@@ -80,7 +77,6 @@ public class ListenerTest {
     return ic.getEntryState(key).contains("lock=EVICT");
   }
 
-  @Test
   public void evictedListenerCalled() {
     target.run(new CountSyncEvents() {
       @Override
@@ -104,7 +100,6 @@ public class ListenerTest {
   /**
    * @see ChangeCapacityOrResizeTest
    */
-  @Test
   public void evictedListenerCalledOnChangeCapacity() {
     target.run(new CountSyncEvents() {
       @Override
@@ -127,7 +122,6 @@ public class ListenerTest {
 
   }
 
-  @Test
   public void createdListenerCalled() {
     target.run(new CountSyncEvents() {
       @Override
@@ -139,7 +133,6 @@ public class ListenerTest {
     });
   }
 
-  @Test
   public void createdListenerNotCalledForImmediateExpiry() {
     target.run(new CountSyncEvents() {
       @Override
@@ -161,7 +154,6 @@ public class ListenerTest {
     });
   }
 
-  @Test
   public void updateListenerCalled() {
     target.run(new CountSyncEvents() {
       @Override
@@ -174,7 +166,6 @@ public class ListenerTest {
     });
   }
 
-  @Test
   public void removedListenerCalled() {
     target.run(new CountSyncEvents() {
       @Override
@@ -192,7 +183,6 @@ public class ListenerTest {
   /**
    * If the listener is not executed in separate thread, this would block
    */
-  @Test
   public void asyncCreatedListenerCalled() {
     AtomicInteger callCount = new AtomicInteger();
     CountDownLatch fire = new CountDownLatch(1);
@@ -216,7 +206,6 @@ public class ListenerTest {
   /**
    * If the listener is not executed in separate thread, this would block
    */
-  @Test
   public void asyncUpdateListenerCalled() {
     AtomicInteger callCount = new AtomicInteger();
     CountDownLatch fire = new CountDownLatch(1);
@@ -238,7 +227,6 @@ public class ListenerTest {
   /**
    * If the listener is not executed in separate thread, this would block
    */
-  @Test
   public void asyncRemovedListenerCalled() {
     AtomicInteger callCount = new AtomicInteger();
     CountDownLatch fire = new CountDownLatch(1);
@@ -262,7 +250,6 @@ public class ListenerTest {
   /**
    * If the listener is not executed in separate thread, this would block
    */
-  @Test
   public void asyncEvictedListenerCalled() {
     AtomicInteger callCount = new AtomicInteger();
     CountDownLatch block = new CountDownLatch(1);
@@ -287,7 +274,6 @@ public class ListenerTest {
     await(() -> callCount.get() >= 1);
   }
 
-  @Test
   public void syncEvictedListenerDoesNotBlockCacheOps() {
     AtomicInteger callCount = new AtomicInteger();
     CountDownLatch block = new CountDownLatch(1);
@@ -329,7 +315,6 @@ public class ListenerTest {
    * ToString will do a global cache lock. This is proof that eviction listener
    * is only locking on the entry not parts of the cache structure.
    */
-  @Test
   public void syncEvictedToString() {
     AtomicInteger callCount = new AtomicInteger();
     CountDownLatch block = new CountDownLatch(1);
@@ -350,7 +335,6 @@ public class ListenerTest {
   /**
    * Check that we do not miss events.
    */
-  @Test
   public void manyAsyncUpdateListenerCalled() {
     AtomicInteger callCount = new AtomicInteger();
     ConcurrentMap<Integer, Integer> seenValues = new ConcurrentHashMap<>();
@@ -371,7 +355,6 @@ public class ListenerTest {
       .isEqualTo(123);
   }
 
-  @Test(expected = Exception.class)
   public void updateListenerException() {
     try (Cache<Integer, Integer> c = target.cache(b ->
       b.addListener((CacheEntryUpdatedListener<Integer, Integer>) (cache, currentEntry, newEntry) -> {
@@ -382,7 +365,6 @@ public class ListenerTest {
     }
   }
 
-  @Test
   public void asyncUpdateListenerException() {
     String logName = getClass().getName() + ".asyncUpdateListenerException";
     Log.SuppressionCounter suppressionCounter = new Log.SuppressionCounter();
@@ -402,7 +384,6 @@ public class ListenerTest {
    * Expire time is 0 if entry is modified, yields: Expiry listener is called and entry
    * is removed from cache.
    */
-  @Test
   public void asyncReallyExpiredAfterUpdate() {
     AtomicInteger expireCallCount = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.addAsyncListener((CacheEntryExpiredListener<Integer, Integer>) (c1, e) -> expireCallCount.incrementAndGet())
@@ -424,7 +405,6 @@ public class ListenerTest {
    * Expire time is load time if entry is modified, yields: Expiry listener is called. Entry
    * is removed.
    */
-  @Test
   public void asyncExpiredAfterUpdate() {
     AtomicInteger expireCallCount = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.addAsyncListener((CacheEntryExpiredListener<Integer, Integer>) (c1, e) -> expireCallCount.incrementAndGet())
@@ -447,7 +427,6 @@ public class ListenerTest {
    * Expire time is load time if entry is modified, yields: Expiry listener is called. Entry
    * is removed.
    */
-  @Test
   public void syncExpiredAfterUpdate() {
     AtomicInteger expireCallCount = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.addListener((CacheEntryExpiredListener<Integer, Integer>) (c1, e) -> expireCallCount.incrementAndGet())
@@ -466,13 +445,11 @@ public class ListenerTest {
     assertThat(latestInfo(c).getExpiredCount()).isEqualTo(1);
   }
 
-  @Test
   public void listenerExampleForDocumentation() {
     Cache2kBuilder.of(Integer.class, Integer.class)
       .addListener((CacheEntryCreatedListener<Integer, Integer>) (cache, entry) -> System.err.println("inserted: " + entry.getValue()));
   }
 
-  @Test
   public void customExecutor() {
     AtomicInteger counter = new AtomicInteger();
     Cache<Integer, Integer> c =
@@ -492,7 +469,6 @@ public class ListenerTest {
    * expire at the end of the operation. That is a special case, since if the entry is
    * expired already the timer event will not be scheduled.
    */
-  @Test
   public void expiredWhileInitialLoad() {
     final long expireAfterWrite = 123;
     SimulatedClock clock = new SimulatedClock(1000);
@@ -525,7 +501,6 @@ public class ListenerTest {
   /**
    * No expiry event during load. Entry expires at end of load operation.
    */
-  @Test
   public void expiredWhileReload() {
     final long expireAfterWrite = 123;
     SimulatedClock clock = new SimulatedClock(1000);
@@ -563,7 +538,6 @@ public class ListenerTest {
    * The value expires during load operation. Since the entry is not removed but locked
    * for the load an update is sent.
    */
-  @Test
   public void expiredWhileReloadUpdate() {
     final long expireAfterWrite = 60;
     SimulatedClock clock = new SimulatedClock(1000);

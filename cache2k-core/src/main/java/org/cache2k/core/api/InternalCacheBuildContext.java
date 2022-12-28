@@ -72,7 +72,7 @@ public interface InternalCacheBuildContext<K, V> extends CacheBuildContext<K, V>
   /**
    * Create the customization. Returns null if supplier is null.
    */
-  @Nullable <T> T createCustomization(CustomizationSupplier<T> supplier);
+  <T> T createCustomization(CustomizationSupplier<T> supplier);
 
   default <T> T createCustomization(CustomizationSupplier<? extends T> supplier,
                                     CustomizationSupplier<? extends T> fallback) {

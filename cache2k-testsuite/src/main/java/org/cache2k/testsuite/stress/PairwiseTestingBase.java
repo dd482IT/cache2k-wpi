@@ -35,13 +35,11 @@ import java.util.List;
 /**
  * @author Jens Wilke
  */
-@RunWith(Parameterized.class)
 public class PairwiseTestingBase {
 
   public int KEY_STEP = 1000;
   public final BuilderAugmenter augmenter;
 
-  @Parameters
   public static Iterable<Object[]> data() {
     return Collections.emptyList();
   }
@@ -51,7 +49,6 @@ public class PairwiseTestingBase {
   }
 
   @SuppressWarnings("unchecked")
-  @Test
   public void test() {
     Cache<Integer, Integer> c =
       augmenter.augment(Cache2kBuilder.of(Integer.class, Integer.class)).build();

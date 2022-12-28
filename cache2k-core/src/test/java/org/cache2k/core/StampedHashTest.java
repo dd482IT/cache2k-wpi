@@ -30,7 +30,6 @@ import org.junit.experimental.categories.Category;
  * @author Jens Wilke
  */
 @SuppressWarnings("rawtypes")
-@Category(FastTests.class)
 public class StampedHashTest {
 
   /**
@@ -38,7 +37,6 @@ public class StampedHashTest {
    *
    * @see <a href="https://github.com/cache2k/cache2k/issues/111">GH#111</a>
    */
-  @Test
   public void testExpansion() {
     StampedHash ht = new StampedHash(null);
     for (int i = 0; i < 20; i++) {

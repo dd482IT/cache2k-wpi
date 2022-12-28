@@ -34,14 +34,12 @@ public class AwaitTest {
 
   Await.YieldCpu yield = () -> { };
 
-  @Test
   public void okay() {
     new Await(yield).await(() -> true);
     AtomicInteger count = new AtomicInteger(2);
     new Await(yield).await(() -> count.decrementAndGet() == 0);
   }
 
-  @Test
   public void timeout() {
     assertThatCode(() -> {
       new Await(yield).await("text", Duration.ZERO, () -> false);
@@ -52,7 +50,6 @@ public class AwaitTest {
     }).isInstanceOf(TimeoutError.class);
   }
 
-  @Test
   public void interrupted() {
     Await.YieldCpu yield = () -> {
       throw new InterruptedException();

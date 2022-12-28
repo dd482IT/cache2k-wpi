@@ -34,7 +34,6 @@ public class TransformingCacheTest {
   /**
    * For test coverage, everything else is tested via TCK.
    */
-  @Test
   public void coverage() {
     Set<Object> target = TransformingCacheProxy.compactSet(Collections.EMPTY_SET, null);
     Assertions.assertThatCode(() ->

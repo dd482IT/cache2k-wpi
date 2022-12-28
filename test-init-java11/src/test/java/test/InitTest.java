@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
  */
 public class InitTest {
 
-  @Test
   public void config() {
     Cache2kBuilder<?, ?> b = forUnknownTypes();
     b.name("testCache");
@@ -41,7 +40,6 @@ public class InitTest {
     assertThat(b.config().getEntryCapacity()).isEqualTo(1802);
   }
 
-  @Test
   public void slf4jInUse() {
     Log l = Log.getLog(InitTest.class);
     assertThat(l).isInstanceOf(Log.Slf4jLogger.class);

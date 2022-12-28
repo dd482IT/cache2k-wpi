@@ -54,7 +54,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
       Long.parseLong(System.getProperty(STATISTICS_UPDATE_TIMEOUT_PROPERTY, "30")) * 1000;
   }
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Long.class, String.class);
     cache.getCacheManager().enableStatistics(cache.getName(), true);
@@ -74,7 +73,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass()) {
 
     /* (non-Javadoc)
@@ -93,7 +91,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
   /**
    * Check that zeroes work
    */
-  @Test
   public void testCacheStatisticsAllZero() throws Exception {
 
     assertEquals(0L, lookupManagementAttribute(cache, CacheStatistics, "CacheHits"));
@@ -109,7 +106,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
 
   }
 
-  @Test
   public void testCacheStatistics() throws Exception {
     final float DELTA=1.0f;
 
@@ -438,7 +434,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
    * The lookup and locking of the key is enough to invoke the hit or miss. No
    * Cache.Entry or MutableEntry operation is required.
    */
-  @Test @Ignore("https://github.com/cache2k/cache2k/issues/132")
   public void testCacheStatisticsInvokeEntryProcessorNoOp() throws Exception {
 
     cache.put(1l, "Sooty");
@@ -471,7 +466,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
    * The lookup and locking of the key is enough to invoke the hit or miss. No
    * Cache.Entry or MutableEntry operation is required.
    */
-  @Test
   public void testCacheStatisticsInvokeEntryProcessorNoOp_ReplaceTckOriginal() throws Exception {
 
     cache.put(1l, "Sooty");
@@ -503,7 +497,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
   }
 
 
-  @Test @Ignore("https://github.com/cache2k/cache2k/issues/132")
   public void testCacheStatisticsInvokeEntryProcessorGet() throws Exception {
 
     cache.put(1l, "Sooty");
@@ -536,7 +529,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
     });
   }
 
-  @Test
   public void testCacheStatisticsInvokeEntryProcessorGet_ReplaceTckOriginal() throws Exception {
 
     cache.put(1l, "Sooty");
@@ -572,7 +564,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
   }
 
 
-  @Test @Ignore("https://github.com/cache2k/cache2k/issues/132")
   public void testCacheStatisticsInvokeEntryProcessorUpdate() throws Exception {
 
     cache.put(1l, "Sooty");
@@ -595,7 +586,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
     });
   }
 
-  @Test
   public void testCacheStatisticsInvokeEntryProcessorUpdate_ReplaceTckOriginal() throws Exception {
 
     cache.put(1l, "Sooty");
@@ -618,7 +608,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
     });
   }
 
-  @Test
   public void testCacheStatisticsInvokeEntryProcessorRemove() throws Exception {
     cache.put(1l, "Sooty");
     String result = cache.invoke(1l, new RemoveEntryProcessor<Long, String, String>(true));
@@ -640,7 +629,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
     });
   }
 
-  @Test
   public void testIterateAndRemove() throws Exception {
     for (long i = 0; i < 100L; i++) {
       String word = "";
@@ -670,7 +658,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
     });
   }
 
-  @Test
   public void testGetAndReplace() throws Exception {
     final AtomicLong hitCount = new AtomicLong();
     final AtomicLong missCount = new AtomicLong();
@@ -733,7 +720,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
 
 
 
-  @Test
   public void testReplace() throws Exception {
     final AtomicLong hitCount = new AtomicLong();
     final AtomicLong missCount = new AtomicLong();
@@ -791,7 +777,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
     });
   }
 
-  @Test
   public void testConditionalReplace() throws Exception {
     final AtomicLong hitCount = new AtomicLong();
     final AtomicLong missCount = new AtomicLong();
@@ -849,7 +834,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
   }
 
 
-  @Test
   public void testPutIfAbsent() throws Exception {
     final AtomicLong hitCount = new AtomicLong();
     final AtomicLong missCount = new AtomicLong();
@@ -881,7 +865,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
     });
   }
 
-  @Test
   public void testGetAndRemove() throws Exception {
     final AtomicLong hitCount = new AtomicLong();
     final AtomicLong missCount = new AtomicLong();
@@ -918,7 +901,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
   }
 
 
-  @Test
   public void testExpiryOnCreation() throws Exception {
 
       // close cache since need to configure cache with ExpireOnCreationPolicy
@@ -942,7 +924,6 @@ public class CacheMBStatisticsBeanTest extends CacheTestSupport<Long, String> {
   }
 
 
-  @Test
   public void testClear() throws Exception {
     // increment all counters
     cache.get(1L);

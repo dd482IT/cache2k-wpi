@@ -22,7 +22,6 @@ public class CacheLoaderClientServerTest {
    * Ensure that values can be loaded from the {@link CacheLoaderClient} via
    * the {@link CacheLoaderServer}.
    */
-  @Test
   public void shouldLoadFromServerWithClient() throws IOException {
     RecordingCacheLoader<String> recordingCacheLoader = new RecordingCacheLoader<String>();
     CacheLoaderServer<String, String> serverCacheLoader = new CacheLoaderServer<String, String>(10000, recordingCacheLoader);
@@ -43,7 +42,6 @@ public class CacheLoaderClientServerTest {
   /**
    * Ensure that exceptions thrown by an underlying cache loader are re-thrown.
    */
-  @Test
   public void shouldRethrowExceptions() throws IOException {
     FailingCacheLoader<String, String> failingCacheLoader = new FailingCacheLoader<>();
     CacheLoaderServer<String, String> serverCacheLoader = new CacheLoaderServer<String, String>(10000, failingCacheLoader);
@@ -63,7 +61,6 @@ public class CacheLoaderClientServerTest {
    * Ensure that <code>null</code> entries can be passed from the
    * {@link CacheLoaderServer} back to the {@link CacheLoaderClient}.
    */
-  @Test
   public void shouldLoadNullValuesFromServerWithClient() throws IOException {
     NullValueCacheLoader<String, String> nullCacheLoader = new NullValueCacheLoader<>();
     CacheLoaderServer<String, String> serverCacheLoader = new CacheLoaderServer<String, String>(10000, nullCacheLoader);

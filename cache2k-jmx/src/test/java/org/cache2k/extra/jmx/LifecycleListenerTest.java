@@ -38,7 +38,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  */
 public class LifecycleListenerTest {
 
-  @Test
   public void ignoreDoubleCreateEvent() {
     LifecycleListener listener = LifecycleListener.SUPPLIER.supply(null);
     Cache cache = Cache2kBuilder.forUnknownTypes().build();
@@ -46,13 +45,11 @@ public class LifecycleListenerTest {
     listener.onCacheCreated(cache, null);
   }
 
-  @Test
   public void unregisterUnknown() {
     LifecycleListener.unregisterBean(ManagementFactory.getPlatformMBeanServer(),
       "org.cache2:type=Cache,name=xyz");
   }
 
-  @Test
   public void rethrowExceptions() {
     assertThatCode(() -> LifecycleListener.registerBean(null, null, null))
       .isInstanceOf(CacheException.class);
@@ -60,7 +57,6 @@ public class LifecycleListenerTest {
       .isInstanceOf(CacheException.class);
   }
 
-  @Test
   public void malformedName() {
     assertThatCode(() -> LifecycleListener.objectName("!@#$%^&*"))
       .getRootCause().isInstanceOf(MalformedObjectNameException.class);

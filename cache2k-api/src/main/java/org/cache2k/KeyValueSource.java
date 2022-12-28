@@ -36,6 +36,6 @@ public interface KeyValueSource<K, V> extends DataAware<K, V> {
    *
    * @see Cache#get(Object)
    */
-  @Nullable V get(K key);
+  V get(K key);
 
 }

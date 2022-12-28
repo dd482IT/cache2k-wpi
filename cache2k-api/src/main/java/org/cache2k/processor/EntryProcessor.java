@@ -66,7 +66,7 @@ import org.cache2k.annotation.Nullable;
  * @see org.cache2k.Cache#invokeAll
  */
 @FunctionalInterface
-public interface EntryProcessor<K, V, @Nullable R> extends DataAware<K, V> {
+public interface EntryProcessor<K, V, R> extends DataAware<K, V> {
 
   /**
    * Examines or mutates an entry.
@@ -84,6 +84,6 @@ public interface EntryProcessor<K, V, @Nullable R> extends DataAware<K, V> {
    *         {@link EntryProcessingException}.
    *         If an exception happens, the cache content will not be altered.
    */
-  @Nullable R process(MutableCacheEntry<K, V> entry) throws Exception;
+  R process(MutableCacheEntry<K, V> entry) throws Exception;
 
 }

@@ -31,7 +31,6 @@ import org.junit.experimental.categories.Category;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class ClockProEvictionWithWeigherTest extends ClockProEvictionTest {
 
   protected Cache<Integer, Integer> provideCache(long size) {

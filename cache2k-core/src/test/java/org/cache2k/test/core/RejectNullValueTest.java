@@ -40,13 +40,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class RejectNullValueTest {
 
   private static final Integer KEY = 1;
   private static final Integer VALUE = 1;
 
-  @ClassRule
   public static final CacheRule<Integer, Integer> staticTarget = new IntCacheRule()
     .config(RejectNullValueTest::configureRejectNull);
 
@@ -71,32 +69,27 @@ public class RejectNullValueTest {
 
   CacheRule<Integer, Integer> target;
 
-  @Before
   public void setup() {
     target = staticTarget;
   }
 
-  @Test(expected = NullPointerException.class)
   public void put() {
     Cache<Integer, Integer> c = target.cache();
     c.put(KEY, null);
   }
 
-  @Test(expected = NullPointerException.class)
   public void replace() {
     Cache<Integer, Integer> c = target.cache();
     c.put(KEY, VALUE);
     c.replace(KEY, null);
   }
 
-  @Test(expected = NullPointerException.class)
   public void replaceIfEquals() {
     Cache<Integer, Integer> c = target.cache();
     c.put(KEY, VALUE);
     c.replaceIfEquals(KEY, VALUE, null);
   }
 
-  @Test
   public void get_nonNull() {
     Cache<Integer, Integer> c = target.cache();
     Integer v = c.get(1);
@@ -106,7 +99,6 @@ public class RejectNullValueTest {
   /**
    * NullPointerException is propagated, since expiry policy says it would store it.
    */
-  @Test(expected = CacheLoaderException.class)
   public void get_null_exception() {
     Cache<Integer, Integer> c = target.cache();
     c.get(2);
@@ -115,7 +107,6 @@ public class RejectNullValueTest {
   /**
    * Special rule if expiry policy says NO_CACHE, value is removed.
    */
-  @Test
   public void get_no_cache() throws ExecutionException, InterruptedException {
     Cache<Integer, Integer> c = target.cache();
     c.put(4, 1);
@@ -124,7 +115,6 @@ public class RejectNullValueTest {
     assertThat(c.containsKey(4)).isFalse();
   }
 
-  @Test(expected = CacheLoaderException.class)
   public void get_expiryPolicy_exception() {
     Cache<Integer, Integer> c = target.cache();
     c.get(8);

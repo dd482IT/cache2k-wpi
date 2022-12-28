@@ -38,13 +38,11 @@ import static org.junit.Assert.*;
 /**
  * @author Jens Wilke
  */
-@Category(SlowTests.class)
 public class AsyncLoaderStressTest {
 
   /**
    * Issue a reload and check whether the updated value is visible afterwards.
    */
-  @Test
   public void testVisibility1() {
     Cache<Integer, Integer> c = Cache2kBuilder.of(Integer.class, Integer.class)
         .loader((AsyncCacheLoader<Integer, Integer>)

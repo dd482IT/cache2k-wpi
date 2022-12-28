@@ -28,7 +28,6 @@ import org.junit.experimental.categories.Category;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class FastExpiryWiredCacheTest extends FastExpiryTest {
 
   @Override

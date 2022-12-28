@@ -32,7 +32,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class IdleScanStressTest<K, V> extends AbstractCacheTester<K, V> {
 
-  @Test
   public void putEvictScan() {
     init(b -> b.idleScanTime(1, TimeUnit.MILLISECONDS));
     ThreadingStressTester tst = new ThreadingStressTester();
@@ -43,7 +42,6 @@ public class IdleScanStressTest<K, V> extends AbstractCacheTester<K, V> {
     tst.run();
   }
 
-  @Test
   public void initClose() {
     ThreadingStressTester tst = new ThreadingStressTester();
     Random random = new Random();

@@ -69,7 +69,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass()) {
 
     /* (non-Javadoc)
@@ -85,7 +84,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   };
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Long.class, String.class);
   }
@@ -95,14 +93,12 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     return new MutableConfiguration<Long, String>().setTypes(Long.class, String.class);
   }
 
-  @Test
   public void sameConfiguration() {
     Configuration<Integer, Integer> config1 = new MutableConfiguration<Integer, Integer>();
     Configuration<Integer, Integer> config2 = new MutableConfiguration<Integer, Integer>();
     assertEquals(config1, config2);
   }
 
-  @Test
   public void simpleAPI() {
     Long key = 1L;
     String value1 = "key";
@@ -116,7 +112,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
 
 
 
-  @Test()
   public void clearTest() {
     Long key = 1L;
     String value1 = "key";
@@ -132,12 +127,10 @@ public class CacheTest extends CacheTestSupport<Long, String> {
   }
 
 
-  @Test
   public void getCacheName() {
     assertEquals(getTestCacheName(), cache.getName());
   }
 
-  @Test
   public void containsKey_Closed() {
     cache.close();
     try {
@@ -148,7 +141,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void containsKey_Null() {
     try {
       assertFalse(cache.containsKey(null));
@@ -158,7 +150,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void containsKey() {
     Map<Long, String> data = createLSData(3);
     for (Map.Entry<Long, String> entry : data.entrySet()) {
@@ -171,7 +162,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void load_Closed() {
     cache.close();
     try {
@@ -182,7 +172,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void load_noLoaderNoCompletionListener() {
 
     // Added for code coverage.
@@ -198,7 +187,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
    *
    * @since cache2k-jcache-tests
    */
-  @Test
   public void load_noLoaderCompletionListener() {
     Set<Long> keys = new HashSet<Long>();
     keys.add(1L);
@@ -213,7 +201,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     assertEquals(1, onCompletionCalled.get());
   }
 
-  @Test
   public void iterator_Closed() {
     cache.close();
     try {
@@ -224,7 +211,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void iterator_Empty() {
     Iterator<Cache.Entry<Long, String>> iterator = cache.iterator();
     assertFalse(iterator.hasNext());
@@ -242,7 +228,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void iterator() {
     LinkedHashMap<Long, String> data = createLSData(3);
     cache.putAll(data);
@@ -256,7 +241,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     assertTrue(data.isEmpty());
   }
 
-  @Test
   public void initialise() {
     try {
       cache.getCacheManager();
@@ -265,7 +249,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void close() {
     cache.close();
 
@@ -283,7 +266,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
   /**
    * Will fail unless CacheImpl specified in pom.xml
    */
-  @Test
   public void testCacheUnwrap() {
     final Class<?> unwrapClass = getUnwrapClass(Cache.class);
     final Object unwrappedCache = cache.unwrap(unwrapClass);
@@ -296,7 +278,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void testCacheUnwrapUnsupported() {
     try {
       cache.unwrap(UnknownDummy.class);
@@ -307,7 +288,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
   /**
    * Will fail unless CacheEntryImpl specified in pom.xml
    */
-  @Test
   public void testCacheEntryUnwrap() {
     final Class<?> unwrapClass = getUnwrapClass(Cache.Entry.class);
     cache.put(1l, "Tonto");
@@ -319,7 +299,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void testCacheEntryUnwrapUnsupported() {
     cache.put(1l, "Tonto");
     Cache.Entry entry = cache.iterator().next();
@@ -332,7 +311,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void testMutableCacheEntryUnwrapUnsupported() {
     cache.put(1l, "Tonto");
     try {
@@ -350,7 +328,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void testGetCacheManager() throws Exception {
     String cacheName = "SampleCache";
 
@@ -375,7 +352,6 @@ public class CacheTest extends CacheTestSupport<Long, String> {
   /**
    * This just illustrates how easily we could discover a runtime annotation.
    */
-  @Test
   public void testAnnotations() {
     Object value = new CacheNameOnEachMethodBlogManagerImpl();
     boolean foundRemoveAllAnnotation = false;

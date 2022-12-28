@@ -36,10 +36,8 @@ import static org.cache2k.Cache2kBuilder.of;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class ConcurrentMapExtraTest {
 
-  @Test
   public void checkForNull() {
     Cache<Integer, String> cache = of(Integer.class, String.class)
       .eternal(true)

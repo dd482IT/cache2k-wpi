@@ -35,7 +35,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class EntryActionTest extends TestingBase {
 
-  @Test
   public void testAbort() {
     BaseCache<Integer, Integer> bc = (BaseCache<Integer, Integer>) builder().build();
     Semantic op = new Semantic<Integer, Integer, Object>() {

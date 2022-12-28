@@ -89,27 +89,22 @@ import static org.cache2k.test.core.expiry.ExpiryTest.EnableExceptionCaching;
  * @see AsyncCacheLoader
  */
 @SuppressWarnings("unchecked")
-@Category(FastTests.class)
 public class CacheLoaderTest extends TestingBase {
 
-  @Rule
   public CacheRule<Integer, Integer> target = new IntCacheRule();
 
-  @Rule
   public Timeout globalTimeout = new Timeout((int) TestingParameters.MAX_FINISH_WAIT_MILLIS * 2);
   volatile int loaderExecutionCount = 0;
 
   /**
    * Some tests expect that there are at least two loader threads.
    */
-  @Test
   public void testThreadCount() {
     Cache<Integer, Integer> c = target.cache(b -> assertThat(b.config().getLoaderThreadCount())
       .describedAs("minim thread count")
       .isGreaterThanOrEqualTo(2));
   }
 
-  @Test
   public void testSeparateLoaderExecutor() throws ExecutionException, InterruptedException {
     AtomicInteger executionCount = new AtomicInteger(0);
     Cache<Integer, Integer> c = target.cache(b -> {
@@ -128,7 +123,6 @@ public class CacheLoaderTest extends TestingBase {
       .isEqualTo(3);
   }
 
-  @Test
   public void testSeparatePrefetchExecutor() throws ExecutionException, InterruptedException {
     AtomicInteger executionCount = new AtomicInteger(0);
     AtomicInteger prefetchExecutionCount = new AtomicInteger(0);
@@ -152,7 +146,6 @@ public class CacheLoaderTest extends TestingBase {
       .isEqualTo(3);
   }
 
-  @Test
   public void testLoader() {
     Cache<Integer, Integer> c = target.cache(b -> b.loader(key -> key * 2));
     assertThat(c.get(5)).isEqualTo((Integer) 10);
@@ -161,7 +154,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(c.containsKey(5)).isTrue();
   }
 
-  @Test
   public void testLoadNull() {
     Cache<Integer, Integer> c = target.cache(b -> b.loader(key -> null)
       .permitNullValues(true));
@@ -175,14 +167,12 @@ public class CacheLoaderTest extends TestingBase {
   /**
    * Test all aspects of when a loader throws an exception permanently.
    */
-  @Test
   public void loadExceptionSyncLoader() {
     Cache<Integer, Integer> c = target.cache(b -> b
       .loader(k -> { throw new AlwaysFailException(); }));
     loadExceptionChecks(c);
   }
 
-  @Test
   public void loadExceptionAsyncSyncLoaderImmediateFail() {
     Cache<Integer, Integer> c = target.cache(b -> b
       .loader((AsyncCacheLoader<Integer, Integer>) (key, context, callback) -> {
@@ -191,14 +181,12 @@ public class CacheLoaderTest extends TestingBase {
     loadExceptionChecks(c);
   }
 
-  @Test
   public void loadExceptionAsyncSyncLoaderDelayedFail() {
     Cache<Integer, Integer> c = target.cache(b -> b
       .loader((AsyncCacheLoader<Integer, Integer>) (key, context, callback) -> context.getExecutor().execute(() -> callback.onLoadFailure(new AlwaysFailException()))));
     loadExceptionChecks(c);
   }
 
-  @Test
   public void loadExceptionBulkSyncLoaderFail() {
     Cache<Integer, Integer> c = target.cache(b -> b
       .bulkLoader(keys -> { throw new AlwaysFailException(); })
@@ -206,7 +194,6 @@ public class CacheLoaderTest extends TestingBase {
     loadExceptionChecks(c);
   }
 
-  @Test
   public void loadExceptionBulkAsyncSyncLoaderImmediateFail() {
     Cache<Integer, Integer> c = target.cache(b -> b
       .bulkLoader((keys, contexts, callback) -> { throw new AlwaysFailException(); })
@@ -214,7 +201,6 @@ public class CacheLoaderTest extends TestingBase {
     loadExceptionChecks(c);
   }
 
-  @Test
   public void loadExceptionBulkAsyncSyncLoaderDelayedFail() {
     Cache<Integer, Integer> c = target.cache(b -> b
       .bulkLoader((keys, contexts, callback) -> contexts.getExecutor().execute(() -> callback.onLoadFailure(new AlwaysFailException())))
@@ -265,7 +251,6 @@ public class CacheLoaderTest extends TestingBase {
       .isEqualTo(123);
   }
 
-  @Test
   public void testLoadNull_Reject() {
     Cache<Integer, Integer> c = target.cache(b -> b.loader(key -> null));
     try {
@@ -274,7 +259,6 @@ public class CacheLoaderTest extends TestingBase {
     } catch (CacheLoaderException expected) { }
   }
 
-  @Test
   public void testLoadNull_NoCache() {
     Cache<Integer, Integer> c = target.cache(b -> b.loader(key -> null)
       .expiryPolicy((key, value, startTime, currentEntry) -> NOW));
@@ -282,7 +266,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(c.containsKey(5)).isFalse();
   }
 
-  @Test
   public void testAdvancedLoader() {
     Cache<Integer, Integer> c = target.cache(b -> b.loader((key, startTime, e) -> key * 2));
     assertThat(c.get(5)).isEqualTo((Integer) 10);
@@ -291,7 +274,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(c.containsKey(5)).isTrue();
   }
 
-  @Test
   public void testLoadAll() throws ExecutionException, InterruptedException {
     AtomicInteger countLoad = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.loader(key -> countLoad.incrementAndGet()));
@@ -303,7 +285,6 @@ public class CacheLoaderTest extends TestingBase {
     c.loadAll(EMPTY_SET);
   }
 
-  @Test
   public void testReloadAll() throws ExecutionException, InterruptedException {
     AtomicInteger countLoad = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.loader(key -> countLoad.incrementAndGet()));
@@ -318,7 +299,6 @@ public class CacheLoaderTest extends TestingBase {
   /**
    * We should always have two loader threads.
    */
-  @Test
   public void testTwoLoaderThreadsAndPoolInfo() throws Exception {
     CountDownLatch inLoader = new CountDownLatch(2);
     CountDownLatch releaseLoader = new CountDownLatch(1);
@@ -355,7 +335,6 @@ public class CacheLoaderTest extends TestingBase {
    * Start two overlapping loads, expect that one is done in the caller thread,
    * since only one thread is available.
    */
-  @Test
   public void testOneLoaderThreadsAndPoolInfo() throws Exception {
     Thread callingThread = currentThread();
     CountDownLatch inLoader = new CountDownLatch(1);
@@ -396,27 +375,22 @@ public class CacheLoaderTest extends TestingBase {
     releaseLoader.countDown();
   }
 
-  @Test
   public void multipleWaitersCompleteAfterLoad_noThreads_sync() {
     multipleWaitersCompleteAfterLoad(false, false, false);
   }
 
-  @Test
   public void multipleWaitersCompleteAfterLoad_threads_sync() {
     multipleWaitersCompleteAfterLoad(true, false, false);
   }
 
-  @Test
   public void multipleWaitersCompleteAfterLoad_noThreads_async() {
     multipleWaitersCompleteAfterLoad(false, true, false);
   }
 
-  @Test
   public void multipleWaitersCompleteAfterLoad_threads_async() {
     multipleWaitersCompleteAfterLoad(true, true, false);
   }
 
-  @Test
   public void multipleWaitersCompleteAfterLoad_threads_async_reload() {
     multipleWaitersCompleteAfterLoad(true, true, true);
   }
@@ -535,7 +509,6 @@ public class CacheLoaderTest extends TestingBase {
       .isTrue();
   }
 
-  @Test
   public void loadAll_syncLoader_completes() {
     Cache<Integer, Integer> c = builder()
       .loader(key -> key)
@@ -544,7 +517,6 @@ public class CacheLoaderTest extends TestingBase {
     completes(c.loadAll(asList(1, 2, 3)));
   }
 
-  @Test
   public void loadAll_asyncLoader_completes() {
     Cache<Integer, Integer> c = builder()
       .loader((key, context, callback) -> {
@@ -557,7 +529,6 @@ public class CacheLoaderTest extends TestingBase {
   /**
    * Execute loader in another thread.
    */
-  @Test
   public void blockAndComplete() throws Exception {
     final int count = 5;
     AtomicInteger loaderCalled = new AtomicInteger();
@@ -598,7 +569,6 @@ public class CacheLoaderTest extends TestingBase {
   /**
    * Execute loader in another thread.
    */
-  @Test
   public void asyncLoaderLoadViaExecutor() {
     AtomicInteger loaderCalled = new AtomicInteger();
     AtomicInteger loaderExecuted = new AtomicInteger();
@@ -616,7 +586,6 @@ public class CacheLoaderTest extends TestingBase {
   /**
    * Call the callback within the loading thread.
    */
-  @Test
   public void asyncLoaderLoadDirect() {
     AtomicInteger loaderCalled = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.loader((key, ctx, callback) -> {
@@ -630,7 +599,6 @@ public class CacheLoaderTest extends TestingBase {
   /**
    * Test whether no loader executor is used
    */
-  @Test
   public void asyncLoader_noLoaderExecutorUsed() throws ExecutionException, InterruptedException {
     AtomicInteger executorUsed = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b
@@ -648,7 +616,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(executorUsed.get() > 0).isFalse();
   }
 
-  @Test
   public void asyncLoader_isRefreshAhead() throws ExecutionException, InterruptedException {
     CountDownLatch waitForRefresh = new CountDownLatch(1);
     Cache<Integer, Integer> c = target.cache(b -> b
@@ -666,7 +633,6 @@ public class CacheLoaderTest extends TestingBase {
     waitForRefresh.await();
   }
 
-  @Test
   public void asyncLoaderContextProperties() throws ExecutionException, InterruptedException {
     AtomicInteger loaderCalled = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.loader((key, ctx, callback) -> {
@@ -684,7 +650,6 @@ public class CacheLoaderTest extends TestingBase {
     c.reloadAll(asList(1)).get();
   }
 
-  @Test(expected = IllegalStateException.class)
   public void exceptionOnEntryAccessOutSideProcessing() {
     AtomicReference<AsyncCacheLoader.Context<Integer, Integer>> contextRef = new AtomicReference<>();
     Cache<Integer, Integer> c = target.cache(b -> b.loader((key, ctx, callback) -> {
@@ -695,7 +660,6 @@ public class CacheLoaderTest extends TestingBase {
     contextRef.get().getCurrentEntry();
   }
 
-  @Test
   public void testAsyncLoaderContextProperties_withException() {
     AtomicInteger loaderCalled = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> {
@@ -722,7 +686,6 @@ public class CacheLoaderTest extends TestingBase {
    * as well. Completing successful despite of load exception would be counter
    * intuitive.
    */
-  @Test
   public void asyncLoader_loadAll_reloadAll_propagate_exception() {
     Cache<Integer, Integer> c = target.cache(b -> {
       b.expireAfterWrite(MAX_FINISH_WAIT_MILLIS, MILLISECONDS);
@@ -753,7 +716,6 @@ public class CacheLoaderTest extends TestingBase {
    * In this case we propagate the exception, since all data is not completely
    * loaded.
    */
-  @Test
   public void asyncLoader_loadAll_reloadAll_propagate_exception_failAnyWay() {
     Cache<Integer, Integer> c = target.cache(b -> {
       b.expireAfterWrite(TestingParameters.MAX_FINISH_WAIT_MILLIS, TimeUnit.MILLISECONDS);
@@ -784,7 +746,6 @@ public class CacheLoaderTest extends TestingBase {
   /**
    * Check that exception isn't blocking anything
    */
-  @Test
   public void asyncLoader_ExceptionInCall() {
     AtomicInteger loaderCalled = new AtomicInteger();
     Cache<Integer, Integer> c = target.cache(b -> b.loader((AsyncCacheLoader<Integer, Integer>) (key, ctx, callback) -> {
@@ -801,7 +762,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(c.get(1)).isNotNull();
   }
 
-  @Test
   public void asyncLoader_concurrentCacheClose() {
     TaskSuccessGuardian guardianOnSuccess = new TaskSuccessGuardian();
     TaskSuccessGuardian guardianOnFailure = new TaskSuccessGuardian();
@@ -838,7 +798,6 @@ public class CacheLoaderTest extends TestingBase {
     guardianOnFailure.awaitCompletionAndAssertSuccess();
   }
 
-  @Test
   public void asyncLoader_viaExecutor() throws ExecutionException, InterruptedException {
     AtomicInteger loaderCalled = new AtomicInteger();
     AtomicInteger loaderExecuted = new AtomicInteger();
@@ -858,7 +817,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(c.peek(1802) != o1).isTrue();
   }
 
-  @Test
   public void testAsyncLoaderWithExecutorWithAsyncCopy() throws Exception {
     Cache<Integer, Integer> c = target.cache(b -> b.loader((AsyncCacheLoader<Integer, Integer>) (key, ctx, callback) ->
       ctx.getLoaderExecutor().execute(() -> callback.onLoadSuccess(key))));
@@ -872,7 +830,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(c.peek(1802) != o1).isTrue();
   }
 
-  @Test
   public void asyncLoader_doubleCallback_yields_exception() throws ExecutionException, InterruptedException {
     AtomicInteger loaderCalled = new AtomicInteger();
     AtomicInteger loaderExecuted = new AtomicInteger();
@@ -917,7 +874,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(c.peek(1802) != o1).isTrue();
   }
 
-  @Test
   public void testAsyncLoaderDoubleCallbackDifferentThreads() throws ExecutionException, InterruptedException {
     AtomicInteger loaderCalled = new AtomicInteger();
     AtomicInteger loaderExecuted = new AtomicInteger();
@@ -969,7 +925,6 @@ public class CacheLoaderTest extends TestingBase {
     }));
   }
 
-  @Test
   public void asyncBulkLoader_direct() throws Exception {
     final int assertKey = 987;
     final int exceptionKey = 789;
@@ -1096,7 +1051,6 @@ public class CacheLoaderTest extends TestingBase {
     public AsyncBulkCacheLoader.BulkCallback<K, V> getOriginalCallback() { return cb; }
   }
 
-  @Test
   public void asyncBulkLoaderComplex() {
     AtomicInteger bulkRequests = new AtomicInteger();
     AsyncLoadBuffer<Integer, Integer> buffer = new AsyncLoadBuffer<>(k -> k);
@@ -1136,7 +1090,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(bulkRequests.get()).isEqualTo(5);
   }
 
-  @Test
   public void asyncBulkLoader_singleLoad() throws Exception {
     AsyncLoadBuffer<Integer, Integer> buffer = new AsyncLoadBuffer<>(k -> k);
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader((keys, context, callback) -> {
@@ -1155,7 +1108,6 @@ public class CacheLoaderTest extends TestingBase {
     req2.get();
   }
 
-  @Test
   public void asyncBulkLoader_immediateException_loadAll_get_getAll() {
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader((keys, contextSet, callback) -> {
       throw new ExpectedException();
@@ -1163,7 +1115,6 @@ public class CacheLoaderTest extends TestingBase {
     asayncBulkLoader_loadAll_get_getAll_epxectException(cache);
   }
 
-  @Test
   public void asyncBulkLoader_failAll1_loadAll_get_getAll() {
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader((keys, contextSet, callback) -> {
       callback.onLoadFailure(new ExpectedException());
@@ -1171,7 +1122,6 @@ public class CacheLoaderTest extends TestingBase {
     asayncBulkLoader_loadAll_get_getAll_epxectException(cache);
   }
 
-  @Test
   public void asyncBulkLoader_failAll2_loadAll_get_getAll() {
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader((keys, contextSet, callback) -> {
       callback.onLoadFailure(keys, new ExpectedException());
@@ -1179,7 +1129,6 @@ public class CacheLoaderTest extends TestingBase {
     asayncBulkLoader_loadAll_get_getAll_epxectException(cache);
   }
 
-  @Test
   public void asyncBulkLoader_failAll3_loadAll_get_getAll() {
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader((keys, contextSet, callback) -> {
       for (Integer key : keys) {
@@ -1209,7 +1158,6 @@ public class CacheLoaderTest extends TestingBase {
       .isInstanceOf(CacheLoaderException.class);
   }
 
-  @Test
   public void asyncBulkLoader_enforceSingleLoad() {
     AtomicInteger bulkRequests = new AtomicInteger();
     AsyncLoadBuffer<Integer, Integer> buffer = new AsyncLoadBuffer<>(k -> k);
@@ -1229,7 +1177,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(bulkRequests.get()).isEqualTo(2);
   }
 
-  @Test
   public void bulkLoader_loadAll() throws Exception {
     AtomicInteger bulkRequests = new AtomicInteger();
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader(keys -> {
@@ -1254,7 +1201,6 @@ public class CacheLoaderTest extends TestingBase {
     assertThat(bulkRequests.get()).isEqualTo(bulkRequests0 + 1);
   }
 
-  @Test
   public void bulkLoader_getAll() throws Exception {
     AtomicInteger bulkRequests = new AtomicInteger();
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader(keys -> {
@@ -1273,7 +1219,6 @@ public class CacheLoaderTest extends TestingBase {
     result3.forEach((k, v) -> assertThat(v).isEqualTo(k));
   }
 
-  @Test
   public void bulkLoader_getAllOnly() throws Exception {
     AtomicInteger bulkRequests = new AtomicInteger();
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader(keys -> {
@@ -1284,7 +1229,6 @@ public class CacheLoaderTest extends TestingBase {
     Map<Integer, Integer> result = cache.getAll(asList(3, 4, 5));
   }
 
-  @Test
   public void bulkLoader_getAll_twoThreads() throws Exception {
     AtomicInteger bulkRequests = new AtomicInteger();
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader(keys -> {
@@ -1298,7 +1242,6 @@ public class CacheLoaderTest extends TestingBase {
     join();
   }
 
-  @Test
   public void bulkLoader_invokeAll() throws Exception {
     AtomicInteger bulkRequests = new AtomicInteger();
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader(keys -> {
@@ -1337,7 +1280,6 @@ public class CacheLoaderTest extends TestingBase {
     return result;
   }
 
-  @Test
   public void asyncBulkLoader_invokeAll() throws Exception {
     AtomicInteger bulkRequests = new AtomicInteger();
     Cache<Integer, Integer> cache = target.cache(b -> b.bulkLoader((keys, context, callback) -> {
@@ -1380,7 +1322,6 @@ public class CacheLoaderTest extends TestingBase {
     callback.onLoadSuccess(result);
   }
 
-  @Test
   public void asyncBulkLoaderContext() throws ExecutionException, InterruptedException {
     AtomicInteger checkCount = new AtomicInteger();
     AtomicReference<Cache> cacheRef = new AtomicReference<>();
@@ -1415,7 +1356,6 @@ public class CacheLoaderTest extends TestingBase {
       .isEqualTo(2);
   }
 
-  @Test
   public void asyncBulkLoaderDuplicateKeyRequests() {
     Cache<Integer, Integer> c = target.cache(new CacheRule.Context<Integer, Integer>() {
       @Override
@@ -1432,7 +1372,6 @@ public class CacheLoaderTest extends TestingBase {
       .isInstanceOf(CacheLoaderException.class);
   }
 
-  @Test
   public void advancedLoaderEntryNotSetIfExpired() {
     Cache<Integer, Integer> c = target.cache(new CacheRule.Context<Integer, Integer>() {
       @Override
@@ -1448,7 +1387,6 @@ public class CacheLoaderTest extends TestingBase {
     c.get(123);
   }
 
-  @Test
   public void advancedLoaderEntrySetIfExpiredWithKeepData() {
     AtomicBoolean expectEntry = new AtomicBoolean();
     Cache<Integer, Integer> c = target.cache(new CacheRule.Context<Integer, Integer>() {

@@ -43,16 +43,13 @@ import static org.junit.Assert.*;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class CacheManagerAndCacheLifeCycleTest {
 
-  @Test(expected = IllegalStateException.class)
   public void setDefaultManagerName_Exception() {
     CacheManager.getInstance();
     CacheManager.setDefaultName("hello");
   }
 
-  @Test
   public void openClose() {
     String uniqueName = this.getClass().getName() + ".openClose";
     CacheManager cm = CacheManager.getInstance(uniqueName);
@@ -62,7 +59,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     cm2.close();
   }
 
-  @Test
   public void differentClassLoaderDifferentManager() {
     getInstance();
     ClassLoader cl1 = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
@@ -82,7 +78,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     assertThat(c2.isClosed()).isTrue();
   }
 
-  @Test
   public void closeSpecific() {
     CacheManager cm0 = getInstance();
     ClassLoader cl1 = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
@@ -94,7 +89,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     assertThat(cm1.isClosed()).isTrue();
   }
 
-  @Test
   public void closesCache() {
     String uniqueName = this.getClass().getName() + ".closesCache";
     CacheManager cm = getInstance(uniqueName);
@@ -112,7 +106,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     assertThat(c.isClosed()).isTrue();
   }
 
-  @Test
   public void clearAllCaches() {
     String uniqueName = this.getClass().getName() + ".clearAllCaches";
     CacheManager cm = getInstance(uniqueName);
@@ -131,7 +124,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     cm.close();
   }
 
-  @Test
   public void createCache() {
     String uniqueName = this.getClass().getName() + ".createCache";
     CacheManager cm = getInstance(uniqueName);
@@ -141,7 +133,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     cm.close();
   }
 
-  @Test
   public void getActiveCaches() {
     String uniqueName = this.getClass().getName() + ".getActiveCaches";
     CacheManager cm = getInstance(uniqueName);
@@ -151,7 +142,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     cm.close();
   }
 
-  @Test
   public void onlyOneCacheForWired() {
     String uniqueName = this.getClass().getName() + ".onlyOneCacheForWired";
     CacheManager cm = getInstance(uniqueName);
@@ -164,7 +154,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     cm.close();
   }
 
-  @Test
   public void testToStringAnon() {
     Cache<Integer, Integer> c =
       Cache2kBuilder.of(Integer.class, Integer.class)
@@ -174,7 +163,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     c.close();
   }
 
-  @Test
   public void testToString() {
     Cache<Integer, Integer> c =
       of(Integer.class, Integer.class)
@@ -186,7 +174,6 @@ public class CacheManagerAndCacheLifeCycleTest {
     assertThat(c.toString()).contains("Cache(name='testToString', closed=true");
   }
 
-  @Test
   public void testToStringWithManager() {
     String managerName = this.getClass().getSimpleName();
     CacheManager cm = getInstance(managerName);

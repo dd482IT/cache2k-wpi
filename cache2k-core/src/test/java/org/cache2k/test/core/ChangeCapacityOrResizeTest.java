@@ -33,10 +33,8 @@ import static org.cache2k.core.eviction.AbstractEviction.MINIMUM_CAPACITY_FOR_CH
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class ChangeCapacityOrResizeTest extends TestingBase {
 
-  @Test
   public void checkResize() {
     Cache<Integer, Integer> cache = builder().entryCapacity(10).build();
     cache.put(1, 2);
@@ -57,7 +55,6 @@ public class ChangeCapacityOrResizeTest extends TestingBase {
       .isTrue();
   }
 
-  @Test
   public void checkResizeBigCache() {
     final long size = 12003;
     assertThat(size > MINIMUM_CAPACITY_FOR_CHUNKING).isTrue();
@@ -76,7 +73,6 @@ public class ChangeCapacityOrResizeTest extends TestingBase {
     return cache;
   }
 
-  @Test
   public void checkResizeSmallCache() {
     final long size = MINIMUM_CAPACITY_FOR_CHUNKING - 1;
     Cache<Integer, Integer> cache = buildAndPopulate(size);
@@ -84,14 +80,12 @@ public class ChangeCapacityOrResizeTest extends TestingBase {
     assertThat(cache.asMap().size()).isEqualTo(1);
   }
 
-  @Test(expected = IllegalArgumentException.class)
   public void resizeTo0() {
     final long size = 1;
     Cache<Integer, Integer> cache = buildAndPopulate(size);
     ((InternalCache) cache).getEviction().changeCapacity(0);
   }
 
-  @Test(expected = IllegalArgumentException.class)
   public void resizeNegative() {
     final long size = 1;
     Cache<Integer, Integer> cache = buildAndPopulate(size);

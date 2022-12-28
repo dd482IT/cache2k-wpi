@@ -29,7 +29,6 @@ import org.junit.Test;
 /**
  * @author Jens Wilke
  */
-@NotThreadSafe
 public class ReadThroughWithCompoundKeyExampleTest {
 
   Cache<Route, String> routeToAirline = new Cache2kBuilder<Route, String>() { }
@@ -38,7 +37,6 @@ public class ReadThroughWithCompoundKeyExampleTest {
     .loader(key -> findFavoriteAirline(key.getOrigin(), key.getDestination()))
     .build();
 
-  @After
   public void tearDown() {
     routeToAirline.close();
   }
@@ -51,7 +49,6 @@ public class ReadThroughWithCompoundKeyExampleTest {
     return routeToAirline.get(new Route(origin, destination));
   }
 
-  @Test
   public void test() {
     lookupFavoirteAirline("MUC", "JFK");
   }

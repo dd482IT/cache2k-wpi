@@ -32,14 +32,12 @@ import static java.util.Collections.singleton;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class CacheClosedTest {
 
   static final Integer VALUE = 1;
   static final Integer KEY = 1;
   static Cache<Integer, Integer> cache;
 
-  @BeforeClass
   public static void setUp() {
     cache = Cache2kBuilder
       .of(Integer.class, Integer.class)
@@ -50,32 +48,26 @@ public class CacheClosedTest {
     cache.close();
   }
 
-  @Test(expected = IllegalStateException.class)
   public void get() {
     cache.get(KEY);
   }
 
-  @Test(expected = IllegalStateException.class)
   public void peek() {
     cache.peek(KEY);
   }
 
-  @Test(expected = IllegalStateException.class)
   public void peekAndRemove() {
     cache.peekAndRemove(KEY);
   }
 
-  @Test(expected = IllegalStateException.class)
   public void peekAll() {
     cache.peekAll(singleton(KEY));
   }
 
-  @Test(expected = IllegalStateException.class)
   public void peekAndPut() {
     cache.peekAndPut(KEY, VALUE);
   }
 
-  @Test(expected = IllegalStateException.class)
   public void peekAndReplace() {
     cache.peekAndReplace(KEY, VALUE);
   }

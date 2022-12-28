@@ -35,16 +35,13 @@ import static org.cache2k.core.CacheManagerImpl.eventuallyThrowException;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class CacheManagerImplTest {
 
-  @Test
   public void eventuallyThrowException_empty() {
     List<Throwable> li = new ArrayList<>();
     CacheManagerImpl.eventuallyThrowException(li);
   }
 
-  @Test(expected = CacheException.class)
   public void eventuallyThrowException_normalException() {
     List<Throwable> li = new ArrayList<>();
     li.add(new IllegalArgumentException());
@@ -52,7 +49,6 @@ public class CacheManagerImplTest {
     fail("exception expected");
   }
 
-  @Test(expected = CacheInternalError.class)
   public void eventuallyThrowException_error() {
     List<Throwable> li = new ArrayList<>();
     li.add(new LinkageError());
@@ -60,7 +56,6 @@ public class CacheManagerImplTest {
     fail("exception expected");
   }
 
-  @Test(expected = CacheInternalError.class)
   public void eventuallyThrowException_ExecutionExceptionWithEWrror() {
     List<Throwable> li = new ArrayList<>();
     li.add(new ExecutionException(new LinkageError()));
@@ -68,7 +63,6 @@ public class CacheManagerImplTest {
     fail("exception expected");
   }
 
-  @Test(expected = CacheInternalError.class)
   public void eventuallyThrowException_ExceptionAndError() {
     List<Throwable> li = new ArrayList<>();
     li.add(new IllegalArgumentException());

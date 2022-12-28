@@ -36,12 +36,10 @@ import static org.cache2k.core.timing.TimeAgnosticTiming.Immediate;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class DefaultResiliencePolicyTest {
 
   Cache<Integer, Integer> cache;
 
-  @After
   public void tearDown() {
     if (cache != null) {
       cache.close();
@@ -56,7 +54,6 @@ public class DefaultResiliencePolicyTest {
    * Values do not expire, exceptions are not suppressed and an immediately
    * retry is done.
    */
-  @Test
   public void eternal() {
     cache = new Cache2kBuilder<Integer, Integer>() { }
       .eternal(true)
@@ -65,7 +62,6 @@ public class DefaultResiliencePolicyTest {
     assertThat(extractHandler() instanceof EternalImmediate).isTrue();
   }
 
-  @Test
   public void expiry0() {
     cache = new Cache2kBuilder<Integer, Integer>() { }
       .expireAfterWrite(0, MINUTES)

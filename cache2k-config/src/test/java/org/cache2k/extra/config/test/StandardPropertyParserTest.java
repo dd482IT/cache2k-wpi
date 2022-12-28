@@ -32,29 +32,24 @@ import static org.cache2k.extra.config.generic.StandardPropertyParser.parseLongW
  */
 public class StandardPropertyParserTest {
 
-  @Test
   public void parseLong_123M() {
     assertThat(parseLongWithUnitSuffix("123M")).isEqualTo(123 * 1000 * 1000);
   }
 
-  @Test
   public void parseLong_123() {
     assertThat(parseLongWithUnitSuffix("123")).isEqualTo(123);
   }
 
-  @Test
   public void parseLong_123_5678() {
     assertThat(parseLongWithUnitSuffix("123_5678")).isEqualTo(1235678);
   }
 
-  @Test
   public void parseLong_123xy() {
     assertThatCode(() -> {
       StandardPropertyParser.parseLongWithUnitSuffix("123xy");
     }).isInstanceOf(NumberFormatException.class);
   }
 
-  @Test
   public void parseLong_xy() {
     assertThatCode(() -> {
       StandardPropertyParser.parseLongWithUnitSuffix("xy");

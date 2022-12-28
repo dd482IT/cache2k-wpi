@@ -70,7 +70,7 @@ public abstract class ToggleFeature implements SingleFeature {
    * Returns the feature instance, if present.
    */
   @SuppressWarnings("unchecked")
-  public static <T extends ToggleFeature> @Nullable T extract(Cache2kBuilder<?, ?> builder,
+  public static <T extends ToggleFeature> T extract(Cache2kBuilder<?, ?> builder,
                                                               Class<T> featureType) {
     for (Feature feature : builder.config().getFeatures()) {
       if (feature.getClass().equals(featureType)) {
@@ -129,7 +129,7 @@ public abstract class ToggleFeature implements SingleFeature {
    * keeping only one feature within the configuration.
    */
   @Override
-  public final boolean equals(@Nullable Object o) {
+  public final boolean equals(Object o) {
     if (o == null) { return false; }
     return getClass().equals(o.getClass());
   }

@@ -35,10 +35,8 @@ import static org.cache2k.core.log.Log.*;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class KeyMismatchTest extends TestingBase {
 
-  @Test
   public void testKeyMismatch() {
     String name = this.getClass().getName() + ".testKeyMismatch";
     SuppressionCounter suppressionCounter = new SuppressionCounter();
@@ -67,7 +65,6 @@ public class KeyMismatchTest extends TestingBase {
     deregisterSuppression(suppressionName);
   }
 
-  @Test
   public void testKeyMismatchLooping() {
     String name = this.getClass().getName() + ".testKeyMismatchLooping";
     SuppressionCounter suppressionCounter = new SuppressionCounter();
@@ -104,7 +101,6 @@ public class KeyMismatchTest extends TestingBase {
     deregisterSuppression(suppressionName);
   }
 
-  @Test
   public void testToStringException() {
     Object defunctKey = new Object() {
       @Override

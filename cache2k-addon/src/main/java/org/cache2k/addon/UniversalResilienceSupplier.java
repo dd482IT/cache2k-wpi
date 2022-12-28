@@ -105,7 +105,7 @@ public class UniversalResilienceSupplier<K, V> implements
   /**
    * Convert duration to millis. Duration is capped to Long.MAX_VALUE by config.
    */
-  private static long toMillis(TimeReference clock, @Nullable Duration d) {
+  private static long toMillis(TimeReference clock, Duration d) {
     if (d == null) {
       return UNSET_LONG;
     }

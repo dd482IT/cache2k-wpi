@@ -37,13 +37,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class ConcurrentMapWithCacheNullValueTest {
 
   Cache<Integer, String> cache;
   ConcurrentMap<Integer, String> map;
 
-  @Before
   public void setUp() {
     cache = Cache2kBuilder.of(Integer.class, String.class)
       .eternal(true).permitNullValues(true)
@@ -51,14 +49,12 @@ public class ConcurrentMapWithCacheNullValueTest {
     map = cache.asMap();
   }
 
-  @After
   public void tearDown() {
     cache.close();
     map = null;
     cache = null;
   }
 
-  @Test
   public void getOrDefault() {
     cache.put(1, null);
     cache.put(2, "abc");

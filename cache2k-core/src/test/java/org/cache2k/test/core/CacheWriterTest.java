@@ -40,14 +40,12 @@ import java.util.concurrent.ExecutionException;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class CacheWriterTest extends TestingBase {
 
   public static final String EXCEPTION_TEXT =
     "org.cache2k.io.CacheWriterException: " +
     "java.lang.Exception: test exception, value: 777";
 
-  @Test
   public void testPutOne() {
     MyWriter w = new MyWriter();
     Cache<Integer, Integer> c = createIntegerCacheWithWriter(w);
@@ -56,7 +54,6 @@ public class CacheWriterTest extends TestingBase {
     assertThat((int) w.content.get(1)).isEqualTo(1);
   }
 
-  @Test
   public void testPutTwo() {
     MyWriter w = new MyWriter();
     Cache<Integer, Integer> c = createIntegerCacheWithWriter(w);
@@ -66,7 +63,6 @@ public class CacheWriterTest extends TestingBase {
     assertThat((int) w.content.get(1)).isEqualTo(2);
   }
 
-  @Test
   public void testTriggerLoadWithGetDoesNotCallWriter() {
     MyWriter w = new MyWriter();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -77,7 +73,6 @@ public class CacheWriterTest extends TestingBase {
     assertThat(w.count.get(1)).isNull();
   }
 
-  @Test
   public void testTriggerLoadWithReloadDoesNotCallWriter() throws ExecutionException, InterruptedException {
     MyWriter w = new MyWriter();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -88,7 +83,6 @@ public class CacheWriterTest extends TestingBase {
     assertThat(w.count.get(1)).isNull();
   }
 
-  @Test
   public void testTriggerLoadWithInvokeDoesNotCallWriter() {
     MyWriter w = new MyWriter();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -102,7 +96,6 @@ public class CacheWriterTest extends TestingBase {
     assertThat(w.count.get(1)).isNull();
   }
 
-  @Test
   public void testTriggeredLoadWithInvokeAndSetDoesCallWriter() {
     MyWriter w = new MyWriter();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -117,7 +110,6 @@ public class CacheWriterTest extends TestingBase {
     assertThat((int) w.count.get(1)).isEqualTo(1);
   }
 
-  @Test
   public void testPutAndDeleteOne() {
     MyWriter w = new MyWriter();
     Cache<Integer, Integer> c = createIntegerCacheWithWriter(w);
@@ -128,7 +120,6 @@ public class CacheWriterTest extends TestingBase {
     assertThat(w.content.get(1)).isNull();
   }
 
-  @Test(expected = RuntimeException.class)
   public void testException() {
     MyWriter w = new MyWriter();
     Cache<Integer, Integer> c = createIntegerCacheWithWriter(w);
@@ -138,7 +129,6 @@ public class CacheWriterTest extends TestingBase {
     c.put(1, 777);
   }
 
-  @Test
   public void testPutWithWriterException() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {
@@ -155,7 +145,6 @@ public class CacheWriterTest extends TestingBase {
     assertThat((int) c.peek(1)).isEqualTo(1);
   }
 
-  @Test
   public void testReplace2ArgWithWriterException() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {
@@ -167,7 +156,6 @@ public class CacheWriterTest extends TestingBase {
     checkState(c);
   }
 
-  @Test
   public void testReplace3ArgWithWriterException() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {
@@ -179,7 +167,6 @@ public class CacheWriterTest extends TestingBase {
     checkState(c);
   }
 
-  @Test
   public void testPeekAndReplaceWithWriterException() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {
@@ -191,7 +178,6 @@ public class CacheWriterTest extends TestingBase {
     checkState(c);
   }
 
-  @Test
   public void testPutIfAbsentWithWriterException() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     c.putIfAbsent(1, 777);
@@ -202,7 +188,6 @@ public class CacheWriterTest extends TestingBase {
     checkState(c);
   }
 
-  @Test
   public void testWithWriterException() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {
@@ -214,7 +199,6 @@ public class CacheWriterTest extends TestingBase {
     checkState(c);
   }
 
-  @Test
   public void testRemoveWriterException() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {
@@ -224,7 +208,6 @@ public class CacheWriterTest extends TestingBase {
     checkState(c);
   }
 
-  @Test
   public void testPutAllWriterException() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {
@@ -239,7 +222,6 @@ public class CacheWriterTest extends TestingBase {
     checkState(c);
   }
 
-  @Test
   public void testDoublePut() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {
@@ -258,7 +240,6 @@ public class CacheWriterTest extends TestingBase {
     checkState(c);
   }
 
-  @Test
   public void testPutAllRemove() {
     Cache<Integer, Integer> c = prepCacheForExceptionTest();
     try {

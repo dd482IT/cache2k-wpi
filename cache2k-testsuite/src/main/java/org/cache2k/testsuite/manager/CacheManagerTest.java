@@ -33,7 +33,6 @@ public class CacheManagerTest {
   /**
    * Defined behavior of null cache name: throw NPE
    */
-  @Test
   public void getInstance_NullName() {
     assertThatCode(() -> {
       CacheManager.getInstance((String) null);

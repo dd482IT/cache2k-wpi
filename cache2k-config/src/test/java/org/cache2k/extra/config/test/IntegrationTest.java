@@ -47,13 +47,11 @@ public class IntegrationTest {
 
   static final CacheConfigProvider PROVIDER = new CacheConfigProviderImpl();
 
-  @Test
   public void listNames() {
     CacheManager mgr = CacheManager.getInstance("customizationExample");
     assertThat(mgr.getConfiguredCacheNames()).contains("flowers", "withLoader", "withLoaderShort");
   }
 
-  @Test
   public void listNamesEmpty() {
     CacheManager mgr = getInstance("unknown");
     assertThat(mgr.getConfiguredCacheNames().iterator().hasNext())
@@ -61,13 +59,11 @@ public class IntegrationTest {
       .isFalse();
   }
 
-  @Test
   public void loaderByClassName() {
     Cache2kConfig cfg = cacheCfgWithLoader();
     assertThat(((CustomizationSupplierByClassName) cfg.getLoader()).getClassName()).isEqualTo("x.y.z");
   }
 
-  @Test
   public void listenerByClassName() {
     Cache2kConfig cfg = cacheCfgWithLoader();
     assertThat(cfg.getListeners().size()).isEqualTo(2);
@@ -90,12 +86,10 @@ public class IntegrationTest {
   }
 
 
-  @Test
   public void defaultIsApplied() {
     assertThat(new Cache2kBuilder<String, String>() { }.config().getLoaderThreadCount()).isEqualTo(5);
   }
 
-  @Test
   public void defaultAndIndividualIsApplied() {
     Cache2kBuilder<String, String> b =
       new Cache2kBuilder<String, String>() { }
@@ -110,7 +104,6 @@ public class IntegrationTest {
     c.close();
   }
 
-  @Test
   public void failIfConfigurationIsMissing() {
     assertThatCode(() -> {
       new Cache2kBuilder<String, String>() { }
@@ -120,7 +113,6 @@ public class IntegrationTest {
     ).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void failIfNameIsMissing() {
     assertThatCode(() -> {
         new Cache2kBuilder<String, String>() {
@@ -135,7 +127,6 @@ public class IntegrationTest {
    * is read. This configuration file disables {@code skipCheckOnStartup}
    * so it should fail immediately.
    */
-  @Test
   public void unknownPropertyYieldsExceptionOnStartup() {
     try {
       new Cache2kBuilder<String, String>() { }
@@ -147,7 +138,6 @@ public class IntegrationTest {
     }
   }
 
-  @Test
   public void unknownPropertyYieldsExceptionOnBuild() {
     try {
       new Cache2kBuilder<String, String>() { }
@@ -160,7 +150,6 @@ public class IntegrationTest {
     }
   }
 
-  @Test
   public void sectionTypeNotFound() {
     try {
       new Cache2kBuilder<String, String>() { }
@@ -173,7 +162,6 @@ public class IntegrationTest {
     }
   }
 
-  @Test
   public void sectionTypeMissing() {
     try {
       new Cache2kBuilder<String, String>() { }
@@ -186,7 +174,6 @@ public class IntegrationTest {
     }
   }
 
-  @Test
   public void templateNotFound() {
     try {
       new Cache2kBuilder<String, String>() { }
@@ -199,7 +186,6 @@ public class IntegrationTest {
     }
   }
 
-  @Test
   public void ignoreAnonymousCache() {
     Cache c =
     new Cache2kBuilder<String, String>() { }
@@ -208,7 +194,6 @@ public class IntegrationTest {
     c.close();
   }
 
-  @Test
   public void ignoreMissingCacheConfiguration() {
     Cache c =
       new Cache2kBuilder<String, String>() { }
@@ -218,7 +203,6 @@ public class IntegrationTest {
     c.close();
   }
 
-  @Test
   public void illegalBoolean() {
     assertThatCode(() -> {
       Cache c =
@@ -242,7 +226,6 @@ public class IntegrationTest {
     assertThat(builder.config().getListeners().size()).isEqualTo(2);
   }
 
-  @Test
   public void typeMismatch() {
     assertThatCode(() -> {
       Cache c =
@@ -255,7 +238,6 @@ public class IntegrationTest {
   }
 
 
-  @Test
   public void featureEnabled() {
     Cache c =
       new Cache2kBuilder<String, String>() { }
@@ -265,7 +247,6 @@ public class IntegrationTest {
     assertThat(wasEnabled(c)).isTrue();
   }
 
-  @Test
   public void featureDisabled() {
     Cache c =
       new Cache2kBuilder<String, String>() { }
@@ -275,7 +256,6 @@ public class IntegrationTest {
     assertThat(wasEnabled(c)).isFalse();
   }
 
-  @Test
   public void notSerializableSection() {
     try {
       new Cache2kBuilder<String, String>() { }
@@ -289,7 +269,6 @@ public class IntegrationTest {
     }
   }
 
-  @Test
   public void parseError() {
     try {
       new Cache2kBuilder<String, String>() { }
@@ -301,7 +280,6 @@ public class IntegrationTest {
     }
   }
 
-  @Test
   public void parseErrorWrongXml() {
     assertThatCode(() -> {
       new Cache2kBuilder<String, String>() { }
@@ -310,14 +288,12 @@ public class IntegrationTest {
     }).isInstanceOf(ConfigurationException.class);
   }
 
-  @Test
   public void noManagerConfiguration() {
     new Cache2kBuilder<String, String>() { }
       .manager(CacheManager.getInstance("noManager"))
       .entryCapacity(1234);
   }
 
-  @Test
   public void noManagerConfigurationAndBuild() {
     Cache c = new Cache2kBuilder<String, String>() { }
       .manager(CacheManager.getInstance("noManager"))
@@ -326,7 +302,6 @@ public class IntegrationTest {
     c.close();
   }
 
-  @Test
   public void onlyDefault() {
     Cache2kConfig<String, String> cfg =
       new Cache2kBuilder<String, String>() { }
@@ -338,7 +313,6 @@ public class IntegrationTest {
     assertThat(cfg.isExternalConfigurationPresent()).isTrue();
   }
 
-  @Test
   public void empty() {
     assertThatCode(() -> {
       Cache c = new Cache2kBuilder<String, String>() { }
@@ -349,7 +323,6 @@ public class IntegrationTest {
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void notPresent() {
     Cache c = new Cache2kBuilder<String, String>() { }
       .manager(CacheManager.getInstance("notPresent"))

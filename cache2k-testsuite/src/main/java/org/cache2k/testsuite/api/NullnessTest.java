@@ -43,10 +43,9 @@ public class NullnessTest {
    * recognize this. What about other tools?
    */
   @SuppressWarnings("NullAway")
-  @Test
   public void nullableTypeAnnotation() {
-    Cache<Integer, @Nullable String> cache =
-      new Cache2kBuilder<Integer, @Nullable String>() { }
+    Cache<Integer, String> cache =
+      new Cache2kBuilder<Integer, String>() { }
       .permitNullValues(true)
       .build();
     cache.put(123, null);
@@ -54,15 +53,13 @@ public class NullnessTest {
     cache.close();
   }
 
-  @Test
   public void nonNullTypeAnnotation() {
-    Cache<Integer, @NonNull String> cache =
-      new Cache2kBuilder<Integer, @NonNull String>() { }
+    Cache<Integer, String> cache =
+      new Cache2kBuilder<Integer, String>() { }
         .build();
     cache.put(125, "abc");
   }
 
-  @Test
   public void iteration_GetAll() {
     Cache<Integer, String> cache =
       new Cache2kBuilder<Integer, String>() { }
@@ -85,7 +82,6 @@ public class NullnessTest {
   }
 
   @SuppressWarnings("nullness")
-  @Test
   public void invoke_get() {
     Cache<Integer, String> cache =
       new Cache2kBuilder<Integer, String>() { }
@@ -93,14 +89,13 @@ public class NullnessTest {
     cache.invoke(345, MutableCacheEntry::getValue);
   }
 
-  <T> @NonNull T nonNull(@Nullable T obj) {
+  <T> T nonNull(T obj) {
     if (obj == null) {
       throw new NullPointerException();
     }
     return obj;
   }
 
-  @Test
   public void increment() {
     Cache<Integer, Integer> cache =
       new Cache2kBuilder<Integer, Integer>() { }

@@ -132,7 +132,7 @@ public interface CacheInfo {
   /**
    * Time of the most recent {@link org.cache2k.Cache#clear} operation.
    */
-  @Nullable Instant getClearedTime();
+  Instant getClearedTime();
 
   /**
    * Configured {@link Cache2kBuilder#expireAfterWrite(Duration)} or {@link Long#MAX_VALUE} if

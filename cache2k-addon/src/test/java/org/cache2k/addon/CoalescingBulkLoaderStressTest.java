@@ -36,7 +36,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class CoalescingBulkLoaderStressTest {
 
-  @Test
   public void test() {
     CoalescingBulkLoaderTest.IdentBulkLoader ibl =
       new CoalescingBulkLoaderTest.IdentBulkLoader();

@@ -39,7 +39,6 @@ public class ExpiryPolicyExampleTest {
   static class Data { }
 
   /** No expiry policy, just constant */
-  @Test
   public void staticExample() {
     Cache<Key, Data> cache = new Cache2kBuilder<Key, Data>() {}
       .loader(k -> new Data())
@@ -51,7 +50,6 @@ public class ExpiryPolicyExampleTest {
   }
 
   /** Sharp expiry with expiry policy */
-  @Test
   public void sharpStaticExample() {
     Cache<Key, Data> cache = new Cache2kBuilder<Key, Data>() {}
       .loader(k -> new Data())
@@ -89,7 +87,6 @@ public class ExpiryPolicyExampleTest {
    * <p>Processing of expiry is very efficient and happens in O(1) time. To achieve that
    * the cache is using a timer wheel algorithm.
    */
-  @Test
   public void maxAgeExample() {
     Cache<Key, DataWithMaxAge> cache = new Cache2kBuilder<Key, DataWithMaxAge>() {}
       .loader(k -> new DataWithMaxAge())
@@ -134,7 +131,6 @@ public class ExpiryPolicyExampleTest {
    * large future time, because the cache will establish data structures to remember
    * that the data needs to expire in thousand years, if instructed so.
    */
-  @Test
   public void pointInTimeExample() {
     Cache<Key, DataWithPointInTime> cache = new Cache2kBuilder<Key, DataWithPointInTime>() { }
       .loader(k -> new DataWithPointInTime())
@@ -153,7 +149,6 @@ public class ExpiryPolicyExampleTest {
    * the expiry policy can return exact times, or times that are based on duration and may
    * have a lag
    */
-  @Test
   public void pointInTimeAndDurationExample() {
     long minimumUpdateIntervalMillis = TimeUnit.MINUTES.toMillis(5);
     long maximumExpectedLagMillis = 10_000;
@@ -197,7 +192,6 @@ public class ExpiryPolicyExampleTest {
    * automatically adds an expiry policy using the value content. No additional configuration
    * is needed.
    */
-  @Test
   public void expiryTimeFromValueExample() {
     Cache<Key, DataWithCacheExpiryTime> cache = new Cache2kBuilder<Key, DataWithCacheExpiryTime>() {}
       .loader(k -> new DataWithCacheExpiryTime())
@@ -223,7 +217,6 @@ public class ExpiryPolicyExampleTest {
   /**
    * Straight forward approach: Once the seat count reaches below 20 update more frequently.
    */
-  @Test
   public void gaugeSimpleApproach() {
     int threshold = 20;
     long relaxedMillis = TimeUnit.MINUTES.toMillis(5);
@@ -254,7 +247,6 @@ public class ExpiryPolicyExampleTest {
    * <p>The example is simple to illustrate the idea. A better solution could do a floating
    * calculation based on the time difference, data delta and tripping points.
    */
-  @Test
   public void gaugeWithDeltaApproach() {
     int threshold = 10;
     long relaxedMillis = TimeUnit.MINUTES.toMillis(5);

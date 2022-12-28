@@ -37,8 +37,6 @@ import java.lang.annotation.Target;
 @Documented
 @Target(value = {ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD,
   ElementType.TYPE_USE})
-@TypeQualifierNickname
-@javax.annotation.Nonnull(when = When.UNKNOWN)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NonNull {
 }

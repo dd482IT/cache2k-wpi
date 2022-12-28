@@ -45,7 +45,6 @@ public class CacheManagerInitTest {
 
   public static void setupOtherDefaultManagerName() { }
 
-  @Test
   public void differentCacheManagerName() {
     assertThat(OTHER_DEFAULT_CACHE_MANAGER_NAME).isEqualTo(getInstance().getName());
     assertThat(STANDARD_DEFAULT_MANAGER_NAME).isNotEqualTo(OTHER_DEFAULT_CACHE_MANAGER_NAME);
@@ -54,7 +53,6 @@ public class CacheManagerInitTest {
   /**
    * After the cache manager is closed, creating a cache, will create a new cache manager.
    */
-  @Test
   public void closeAll() {
     CacheManager cm1 = getInstance();
     CacheManager.closeAll();
@@ -64,7 +62,6 @@ public class CacheManagerInitTest {
     c.close();
   }
 
-  @Test
   public void suppressionCounterInUse() {
     Log l = Log.getLog(CacheManagerInitTest.class);
     Assertions.assertThat(l).isInstanceOf(Log.SuppressionCounter.class);

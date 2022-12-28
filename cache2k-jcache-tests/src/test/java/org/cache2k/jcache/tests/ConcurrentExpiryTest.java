@@ -52,7 +52,6 @@ public class ConcurrentExpiryTest extends AdditionalTestSupport<Integer, String>
 
   final long expireAfterWrite = 123;
 
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass());
 
   @Override
@@ -127,7 +126,6 @@ public class ConcurrentExpiryTest extends AdditionalTestSupport<Integer, String>
   /**
    * Just test that we can start a load
    */
-  @Test
   public void testLoaderCalled() throws Exception {
     cache.loadAll(keys(1), false, null);
     loaderCalled.await();
@@ -143,7 +141,6 @@ public class ConcurrentExpiryTest extends AdditionalTestSupport<Integer, String>
    *
    * <p>If not enough loader threads are available this deadlocks.
    */
-  @Test
   public void testLoaderCalledNotBlocking() throws Exception {
     cache.loadAll(keys(1), false, null);
     cache.loadAll(keys(1), false, null);
@@ -156,7 +153,6 @@ public class ConcurrentExpiryTest extends AdditionalTestSupport<Integer, String>
     releaseLoader.countDown();
   }
 
-  @Test
   public void testExpireListenerCalled() {
     cache.put(1, "hello");
     while (cache.containsKey(1)) { }
@@ -167,7 +163,6 @@ public class ConcurrentExpiryTest extends AdditionalTestSupport<Integer, String>
    * In cache2k expiry events are not sent during an ongoing operation.
    * Test with load.
    */
-  @Test
   public void testExpireWhileLoadNoEvent() throws Exception {
     cache.put(1, "hello");
     cache.loadAll(keys(1), true, null);
@@ -182,7 +177,6 @@ public class ConcurrentExpiryTest extends AdditionalTestSupport<Integer, String>
    * Cache2k semantics: Expiry listener gets called if within entry processor and
    * entry is not locked.
    */
-  @Test
   public void testExpireAnywayWhileReadInvoke() throws Exception {
     cache.put(1, "hello");
     cache.invoke(1, (entry, arguments) -> {
@@ -198,7 +192,6 @@ public class ConcurrentExpiryTest extends AdditionalTestSupport<Integer, String>
    * sending the expiry events. In other words, the expiry processing is done
    * during the cache operation and not later by a timer.
    */
-  @Test
   public void expireWhileInvoke() {
     cache.put(1, "hello");
     cache.invoke(1, (entry, arguments) -> {
@@ -214,7 +207,6 @@ public class ConcurrentExpiryTest extends AdditionalTestSupport<Integer, String>
     assertEquals("Expired while invoke", 1, deltaListenerCall());
   }
 
-  @Test
   public void expireBeforeInvoke() {
     cache.put(1, "hello");
     sleep(expireAfterWrite + 1);

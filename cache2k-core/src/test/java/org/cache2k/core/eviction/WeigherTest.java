@@ -42,7 +42,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class WeigherTest extends TestingBase {
 
   protected Cache<Integer, Integer> provideCache(long size) {
@@ -58,7 +57,6 @@ public class WeigherTest extends TestingBase {
   /**
    * When capacity and weigher are specified, weigher takes precedence
    */
-  @Test
   public void illegalConfigOkay() {
     builder(Integer.class, Integer.class)
       .eternal(true)
@@ -68,13 +66,11 @@ public class WeigherTest extends TestingBase {
       .build();
   }
 
-  @Test
   public void removeOnEmptyCache() {
     Cache<Integer, Integer> c = provideCache(100);
     c.remove(123);
   }
 
-  @Test
   public void evictedWhenOverWeight() {
     long size = 1;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -94,7 +90,6 @@ public class WeigherTest extends TestingBase {
    * Maybe a minimum weight of 1 is a good idea, but better be compatible
    * to the other caches.
    */
-  @Test
   public void zeroWeight() {
     long size = 1;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -109,7 +104,6 @@ public class WeigherTest extends TestingBase {
     assertThat(countEntriesViaIteration()).isEqualTo(2);
   }
 
-  @Test
   public void unboundedWeight() {
     builder(Integer.class, Integer.class)
       .eternal(true)
@@ -120,7 +114,6 @@ public class WeigherTest extends TestingBase {
     assertThat(getInfo().getMaximumWeight()).isEqualTo(MAX_VALUE);
   }
 
-  @Test
   public void weightUpdatedBigRemoveMoreThanOne() {
     int size = 20000000;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -146,7 +139,6 @@ public class WeigherTest extends TestingBase {
     assertThat(c.containsKey(2)).as("the other entry is removed").isFalse();
   }
 
-  @Test
   public void insertBig() {
     int size = 20000000;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -171,7 +163,6 @@ public class WeigherTest extends TestingBase {
     assertThat(c.containsKey(2)).as("the other entry is removed").isFalse();
   }
 
-  @Test
   public void putAndRemove() {
     int size = 20000000;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -191,7 +182,6 @@ public class WeigherTest extends TestingBase {
     assertThat(getInfo().getTotalWeight()).isEqualTo(0);
   }
 
-  @Test
   public void weightUpdatedOnRemove() {
     long size = 2;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -211,7 +201,6 @@ public class WeigherTest extends TestingBase {
     assertThat(getInfo().getEvictedWeight()).isEqualTo(1);
   }
 
-  @Test
   public void weightAccountedForWithLoader() {
     long size = 1;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -227,7 +216,6 @@ public class WeigherTest extends TestingBase {
     assertThat(countEntriesViaIteration()).isEqualTo(1);
   }
 
-  @Test
   public void weightUpdatedWithLoader() throws ExecutionException, InterruptedException {
     long size = 2;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -254,7 +242,6 @@ public class WeigherTest extends TestingBase {
    * Iterate through key range to target different eviction segments and
    * trigger an eviction in it immediately.
    */
-  @Test
   public void evictOneEntryImmediately() {
     int weight = 20;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -273,7 +260,6 @@ public class WeigherTest extends TestingBase {
     }
   }
 
-  @Test
   public void insertAndClear() {
     int weight = 20;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -287,7 +273,6 @@ public class WeigherTest extends TestingBase {
     c.put(2, 10);
   }
 
-  @Test
   public void exception() {
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
       .eternal(true)

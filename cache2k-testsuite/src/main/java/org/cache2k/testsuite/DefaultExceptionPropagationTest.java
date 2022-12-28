@@ -48,14 +48,12 @@ public class DefaultExceptionPropagationTest<K, V> extends AbstractCacheTester<K
   static final long FUTURE_TIME_MILLIS = LocalDateTime.parse(FUTURE_TIME_STRING)
     .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
-  @Test
   public void setAndCheck() {
     init(b -> b.setup(this::resilienceCacheExceptions));
     invoke(k0, entry -> entry.setException(new ExpectedException()));
     checkAccessVariants();
   }
 
-  @Test
   public void loaderExceptionAndCheck() {
     init(b -> b
       .loader(key -> { throw new ExpectedException(); } )
@@ -67,7 +65,6 @@ public class DefaultExceptionPropagationTest<K, V> extends AbstractCacheTester<K
       .hasMessageContaining("expiry=ETERNAL");
   }
 
-  @Test
   public void loaderAndRefreshExceptionAndCheck() {
     init(b -> b
       .expireAfterWrite(TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)
@@ -81,7 +78,6 @@ public class DefaultExceptionPropagationTest<K, V> extends AbstractCacheTester<K
       .hasMessageContaining("expiry=");
   }
 
-  @Test
   public void loaderExceptionUntilFutureTime() {
     init(b -> b
       .refreshAhead(true)
@@ -103,7 +99,6 @@ public class DefaultExceptionPropagationTest<K, V> extends AbstractCacheTester<K
       .hasMessageContaining("expiry=" + FUTURE_TIME_STRING);
   }
 
-  @Test
   public void loaderExceptionImmediateExpiry() {
     init(b -> b
       .loader(key -> { throw new ExpectedException(); } ));

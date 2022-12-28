@@ -31,7 +31,6 @@ import static org.junit.Assert.*;
  */
 public class ListenerExceptionsTest {
 
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass());
 
   static final MutableCacheEntryListenerConfiguration<Object, Object> SYNC_LISTENER =
@@ -39,7 +38,6 @@ public class ListenerExceptionsTest {
 
   private Cache<Object, Object> cache;
 
-  @Test
   public void removedListenerException() {
     CacheEntryRemovedListener<Object, Object> listener = cacheEntryEvents -> {
       throw new TriggerException();
@@ -73,7 +71,6 @@ public class ListenerExceptionsTest {
     cache.close();
   }
 
-  @Test
   public void updatedListenerException() {
     CacheEntryUpdatedListener<Object, Object> listener = cacheEntryEvents -> {
       throw new TriggerException();
@@ -92,7 +89,6 @@ public class ListenerExceptionsTest {
     cache.close();
   }
 
-  @Test
   public void createdListenerException() {
     CacheEntryCreatedListener<Object, Object> listener = cacheEntryEvents -> {
       throw new TriggerException();

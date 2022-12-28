@@ -45,7 +45,7 @@ public abstract class Log {
 
   private static final Map<String, Log> LOGGERS = new HashMap<>();
 
-  private static final @NonNull LogFactory LOG_FACTORY;
+  private static final LogFactory LOG_FACTORY;
 
   /*
    * Initialize used log implementation statically for GraalVM

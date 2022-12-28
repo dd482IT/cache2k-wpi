@@ -55,11 +55,9 @@ public class PutTest extends CacheTestSupport<Long, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass());
 
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Long.class, String.class);
   }
@@ -69,7 +67,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     return new MutableConfiguration<Long, String>().setTypes(Long.class, String.class);
   }
 
-  @Test
   public void put_Closed() {
     cache.close();
     try {
@@ -80,7 +77,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void put_NullKey() throws Exception {
     try {
       cache.put(null, "");
@@ -90,7 +86,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void put_NullValue() throws Exception {
     try {
       cache.put(1L, null);
@@ -100,7 +95,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void put_Existing_NotSameKey() throws Exception {
     Long key1 = System.currentTimeMillis();
     String value1 = "value" + key1;
@@ -111,7 +105,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     assertEquals(value2, cache.get(key2));
   }
 
-  @Test
   public void put_Existing_DifferentKey() throws Exception {
     Long key1 = System.currentTimeMillis();
     String value1 = "value" + key1;
@@ -122,7 +115,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     assertEquals(value2, cache.get(key2));
   }
 
-  @Test
   public void getAndPut_Closed() {
     cache.close();
     try {
@@ -133,7 +125,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAndPut_NullKey() throws Exception {
     try {
       cache.getAndPut(null, "");
@@ -143,7 +134,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAndPut_NullValue() throws Exception {
     try {
       cache.getAndPut(1L, null);
@@ -153,7 +143,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAndPut_NotThere() {
     Long existingKey = System.currentTimeMillis();
     String existingValue = "value" + existingKey;
@@ -161,7 +150,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     assertEquals(existingValue, cache.get(existingKey));
   }
 
-  @Test
   public void getAndPut_Existing() throws Exception {
     Long existingKey = System.currentTimeMillis();
     String value1 = "value1";
@@ -171,7 +159,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     assertEquals(value2, cache.get(existingKey));
   }
 
-  @Test
   public void getAndPut_Existing_NonSameKey() throws Exception {
     Long key1 = System.currentTimeMillis();
     String value1 = "value1";
@@ -183,7 +170,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     assertEquals(value2, cache.get(key2));
   }
 
-  @Test
   public void putIfAbsent_Closed() {
     cache.close();
     try {
@@ -194,7 +180,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void putIfAbsent_NullKey() throws Exception {
     try {
       assertFalse(cache.putIfAbsent(null, ""));
@@ -204,7 +189,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void putIfAbsent_NullValue() {
     try {
       cache.putIfAbsent(1L, null);
@@ -214,7 +198,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void putIfAbsent_Missing() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -222,7 +205,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     assertEquals(value, cache.get(key));
   }
 
-  @Test
   public void putIfAbsent_Same() {
     Long key = System.currentTimeMillis();
     String value = "valueA" + key;
@@ -232,7 +214,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     assertEquals(oldValue, cache.get(key));
   }
 
-  @Test
   public void putAll_Closed() {
     cache.close();
     try {
@@ -243,7 +224,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void putAll_Null() {
     try {
       cache.putAll(null);
@@ -253,7 +233,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void putAll_NullKey() {
     Map<Long, String> data = createLSData(3);
     // note: using LinkedHashMap, we have made an effort to ensure the null
@@ -272,7 +251,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void putAll_NullValue() {
     Map<Long, String> data = createLSData(3);
     // note: using LinkedHashMap, we have made an effort to ensure the null
@@ -286,7 +264,6 @@ public class PutTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void putAll() {
     Map<Long, String> data = createLSData(3);
     cache.putAll(data);

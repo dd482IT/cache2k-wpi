@@ -32,17 +32,14 @@ import static org.cache2k.test.core.StaticUtil.*;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class RejectNullValueWiredCacheTest extends RejectNullValueTest {
 
-  @ClassRule
   public static final CacheRule<Integer, Integer> staticTarget = new IntCacheRule()
     .config(b -> {
       configureRejectNull(b);
       enforceWiredCache(b);
     });
 
-  @Before
   public void setup() {
     target = staticTarget;
   }

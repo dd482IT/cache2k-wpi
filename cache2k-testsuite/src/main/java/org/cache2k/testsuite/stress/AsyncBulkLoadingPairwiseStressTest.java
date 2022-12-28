@@ -38,8 +38,6 @@ import static org.junit.Assert.*;
 /**
  * @author Jens Wilke
  */
-@RunWith(Parameterized.class)
-@Category(SlowTests.class)
 @SuppressWarnings({"NullAway", "nullness"})
 public class AsyncBulkLoadingPairwiseStressTest extends PairwiseTestingBase {
 
@@ -47,7 +45,6 @@ public class AsyncBulkLoadingPairwiseStressTest extends PairwiseTestingBase {
     super(obj);
   }
 
-  @Parameterized.Parameters
   public static Iterable<Object[]> data() {
     List l = new ArrayList();
     l.add(new Object[]{new BuilderAugmenter() {

@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Loaders {
 
-  public static class IdentLoader<@NonNull T> implements CacheLoader<T, T> {
+  public static class IdentLoader<T> implements CacheLoader<T, T> {
 
     @Override
     public T load(T o) {

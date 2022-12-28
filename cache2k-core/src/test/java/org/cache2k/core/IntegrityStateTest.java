@@ -33,17 +33,14 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class IntegrityStateTest {
 
-  @Test
   public void initial() {
     IntegrityState is = new IntegrityState();
     assertThat(is.isFailure()).isFalse();
     assertThat(is.getFailingChecks()).isEqualTo("");
   }
 
-  @Test
   public void allOkay() {
     IntegrityState is = new IntegrityState()
       .check("boolean", true)
@@ -54,7 +51,6 @@ public class IntegrityStateTest {
     assertThat(is.getFailingChecks()).isEqualTo("");
   }
 
-  @Test
   public void allFail() {
     IntegrityState is = new IntegrityState()
       .check("boolean1", false)
@@ -73,7 +69,6 @@ public class IntegrityStateTest {
           "group2:int(1==2), group2:long(1==2)");
   }
 
-  @Test
   public void throwError() {
     IntegrityState is = new IntegrityState()
       .check("boolean", false);

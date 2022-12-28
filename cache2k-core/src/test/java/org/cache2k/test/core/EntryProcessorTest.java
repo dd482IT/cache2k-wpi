@@ -67,14 +67,13 @@ import static org.cache2k.test.core.EntryProcessorTest.IdentCountingLoader.KEY_Y
  * @see Cache#invokeAll(Iterable, EntryProcessor)
  */
 @SuppressWarnings({"rawtypes", "unchecked", "deprecation"})
-@Category(FastTests.class)
 public class EntryProcessorTest {
 
   static final Integer KEY = 3;
   static final Integer VALUE = 7;
 
   /** Provide unique standard cache per method */
-  @Rule public IntCacheRule target = new IntCacheRule();
+  public IntCacheRule target = new IntCacheRule();
   /*
   Cache<Integer, Integer> cache;
   @Before public void setup() { cache = target.cache(); }
@@ -84,7 +83,6 @@ public class EntryProcessorTest {
     return System.currentTimeMillis();
   }
 
-  @Test
   public void initial_noop() {
     Cache<Integer, Integer> c = target.cache();
     EntryProcessor p = e -> null;
@@ -95,7 +93,6 @@ public class EntryProcessorTest {
     assertThat(result2).isEqualTo("hello");
   }
 
-  @Test
   public void initial_otherResult() {
     Cache<Integer, Integer> c = target.cache();
     EntryProcessor p = e -> null;
@@ -103,7 +100,6 @@ public class EntryProcessorTest {
     assertThat(result).isNull();
   }
 
-  @Test(expected = NullPointerException.class)
   public void initial_NullKey() {
     Cache<Integer, Integer> c = target.cache();
     EntryProcessor p = e -> null;
@@ -114,7 +110,6 @@ public class EntryProcessorTest {
   /**
    * Test that exceptions get propagated, otherwise we cannot use assert inside the processor.
    */
-  @Test(expected = EntryProcessingException.class)
   public void exceptionPropagation() {
     Cache<Integer, Integer> c = target.cache();
     c.invoke(KEY, e -> {
@@ -122,7 +117,6 @@ public class EntryProcessorTest {
     });
   }
 
-  @Test
   public void initial_Not_Existing() {
     Cache<Integer, Integer> c = target.cache();
     AtomicBoolean reached = new AtomicBoolean(false);
@@ -139,7 +133,6 @@ public class EntryProcessorTest {
     assertThat(reached.get()).isTrue();
   }
 
-  @Test
   public void initial_GetYieldsNull() {
     Cache<Integer, Integer> c = target.cache();
     AtomicBoolean reached = new AtomicBoolean(false);
@@ -157,7 +150,6 @@ public class EntryProcessorTest {
     assertThat(c.containsKey(key)).isFalse();
   }
 
-  @Test
   public void initial_Return() {
     Cache<Integer, Integer> c = target.cache();
     EntryProcessor p = e -> "abc";
@@ -165,7 +157,6 @@ public class EntryProcessorTest {
     assertThat(result).isEqualTo("abc");
   }
 
-  @Test
   public void initial_exists_Empty() {
     Cache<Integer, Integer> c = target.cache();
     c.invoke(KEY, e -> {
@@ -175,7 +166,6 @@ public class EntryProcessorTest {
     assertThat(target.info().getSize()).isEqualTo(0);
   }
 
-  @Test
   public void initial_Set() {
     Cache<Integer, Integer> c = target.cache();
     EntryProcessor p = e -> {
@@ -186,7 +176,6 @@ public class EntryProcessorTest {
     assertThat(result).isEqualTo("abc");
   }
 
-  @Test
   public void test_Initial_GetSet() {
     target.statistics();
     Cache<Integer, Integer> c = target.cache();
@@ -205,7 +194,6 @@ public class EntryProcessorTest {
       .expectAllZero();
   }
 
-  @Test
   public void invokeAll_exception() {
     Cache<Integer, Integer> c = target.cache();
     Map<Integer, EntryProcessingResult<Object>> resultMap =
@@ -225,7 +213,6 @@ public class EntryProcessorTest {
     }
   }
 
-  @Test
   public void nomap_getRefreshTime() {
     Cache<Integer, Integer> c = target.cache();
     long t0 = millis();
@@ -236,7 +223,6 @@ public class EntryProcessorTest {
     });
   }
 
-  @Test
   public void getCurrentTime_getRefreshTime_setRefreshTime_setValue() {
     Cache<Integer, Integer> c = target.cache(b -> b.recordModificationTime(true));
     long t0 = millis();
@@ -266,7 +252,6 @@ public class EntryProcessorTest {
     });
   }
 
-  @Test
   public void load_unconditional() {
     CacheWithLoader cwl = cacheWithLoader();
     Cache<Integer, Integer> c = cwl.cache;
@@ -286,7 +271,6 @@ public class EntryProcessorTest {
     assertThat(cwl.loader.getCount()).isEqualTo(3);
   }
 
-  @Test
   public void load_unsupported() {
     Cache<Integer, Integer> c = target.cache();
     try {
@@ -300,7 +284,6 @@ public class EntryProcessorTest {
     }
   }
 
-  @Test
   public void load_getRefreshTime() {
     CacheWithLoader cwl = cacheWithLoader();
     Cache<Integer, Integer> c = cwl.cache;
@@ -315,7 +298,6 @@ public class EntryProcessorTest {
     });
   }
 
-  @Test
   public void getValue_load() {
     CacheWithLoader cwl = cacheWithLoader();
     Cache<Integer, Integer> c = cwl.cache;
@@ -334,7 +316,6 @@ public class EntryProcessorTest {
    * After the load, remove() will avoid the mutation again, so nothing is inserted and
    * the final value is null.
    */
-  @Test(expected = EntryProcessingException.class)
   public void exists_set_remove_get_yields_exception() {
     CacheWithLoader cwl = cacheWithLoader();
     Cache<Integer, Integer> c = cwl.cache;
@@ -349,7 +330,6 @@ public class EntryProcessorTest {
     fail("exception expected");
   }
 
-  @Test
   public void initial_getRefreshTime() {
     Cache<Integer, Integer> c = target.cache();
     c.invoke(1, e -> {
@@ -406,7 +386,6 @@ public class EntryProcessorTest {
     return c;
   }
 
-  @Test
   public void getValue_triggerLoad() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -420,7 +399,6 @@ public class EntryProcessorTest {
     assertThat(wl.cache.peek(KEY)).isEqualTo(KEY);
   }
 
-  @Test
   public void getException_triggerLoad() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -434,7 +412,6 @@ public class EntryProcessorTest {
     assertThat(wl.loader.getCount()).isEqualTo(1);
   }
 
-  @Test
   public void getValue_triggerLoad_remove() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -449,7 +426,6 @@ public class EntryProcessorTest {
     assertThat(wl.cache.containsKey(KEY)).isFalse();
   }
 
-  @Test
   public void put_setValue_remove() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.put(KEY, KEY);
@@ -463,7 +439,6 @@ public class EntryProcessorTest {
       .isFalse();
   }
 
-  @Test
   public void setValue_remove() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -479,7 +454,6 @@ public class EntryProcessorTest {
   /**
    * No real remove happens / not counted, since the entry was not there before.
    */
-  @Test
   public void getValue_triggerLoad_remove_statistics() {
     CacheWithLoader wl = cacheWithLoader();
     target.statistics();
@@ -506,7 +480,6 @@ public class EntryProcessorTest {
   /**
    * Test that load count only counts successful loads.
    */
-  @Test
   public void getValue_triggerLoad_exception_count_successful_load() {
     CacheWithLoader wl = cacheWithLoader();
     target.statistics();
@@ -539,7 +512,6 @@ public class EntryProcessorTest {
       .expectAllZero();
   }
 
-  @Test
   public void expires_before_mutation() {
     final long expireAfterWriteMillis = 100;
     AtomicInteger listenerCallCount = new AtomicInteger();
@@ -584,7 +556,6 @@ public class EntryProcessorTest {
   /**
    * Is entry lock given up after an exception?
    */
-  @Test
   public void exception_after_mutation() {
     Cache<Integer, Integer> c = target.cache();
     target.statistics();
@@ -603,7 +574,6 @@ public class EntryProcessorTest {
     c.put(123, 123);
   }
 
-  @Test
   public void remove_after_mutation() {
     Cache<Integer, Integer> c = target.cache();
     target.statistics();
@@ -621,7 +591,6 @@ public class EntryProcessorTest {
     c.put(123, 123);
   }
 
-  @Test
   public void getValue_triggerLoad_setValue() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -636,7 +605,6 @@ public class EntryProcessorTest {
     assertThat((int) wl.cache.peek(KEY)).isEqualTo(4711);
   }
 
-  @Test
   public void getValue_triggerLoad_setException() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -652,7 +620,6 @@ public class EntryProcessorTest {
       .isFalse();
   }
 
-  @Test(expected = EntryProcessingException.class)
   public void setException_getException_getValue_exception() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -668,7 +635,6 @@ public class EntryProcessorTest {
    * An exception within the entry processor aborts the processing and the
    * cache content is not altered.
    */
-  @Test
   public void setValue_throwException() {
     CacheWithLoader wl = cacheWithLoader();
     try {
@@ -683,7 +649,6 @@ public class EntryProcessorTest {
     wl.cache.put(KEY, VALUE);
   }
 
-  @Test
   public void setException_keep_exception() {
     CacheWithLoader wl = cacheWithLoaderKeepExceptions();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -697,7 +662,6 @@ public class EntryProcessorTest {
     }
   }
 
-  @Test
   public void getValue_triggerLoad_setExpiry() {
     CacheWithLoader wl = cacheWithLoader();
     wl.cache.invoke(KEY, (EntryProcessor<Integer, Integer, Void>) e -> {
@@ -718,7 +682,6 @@ public class EntryProcessorTest {
    * We also test combinations with get, since this is the usual use case
    * for TTI.
    */
-  @Test
   public void setExpiry_notExistent_entry() {
     Cache<Integer, Integer> c = target.cache(new CacheRule.Context<Integer, Integer>() {
       @Override
@@ -778,7 +741,6 @@ public class EntryProcessorTest {
     return c;
   }
 
-  @Test
   public void remove_Empty_WriterDelete() {
     CacheWithWriter ww = cacheWithWriter();
     ww.cache.invoke(KEY, e -> {
@@ -788,7 +750,6 @@ public class EntryProcessorTest {
     assertThat(ww.writer.deleteCalled.get()).isEqualTo(1);
   }
 
-  @Test
   public void setValue_Empty_WriterWrite() {
     CacheWithWriter ww = cacheWithWriter();
     ww.cache.invoke(KEY, e -> {
@@ -799,7 +760,6 @@ public class EntryProcessorTest {
     assertThat(ww.writer.writeCalled.get()).isEqualTo(1);
   }
 
-  @Test
   public void setException_propagation() {
     final String text = "set inside process";
     Cache<Integer, Integer> c = target.cache(b -> {
@@ -829,7 +789,6 @@ public class EntryProcessorTest {
     }
   }
 
-  @Test
   public void setException_policy_called() {
     final String text = "set inside process";
     AtomicLong retryLoadAfter = new AtomicLong();
@@ -864,7 +823,6 @@ public class EntryProcessorTest {
   /**
    * When the entry is read and modified, we need three restarts.
    */
-  @Test
   public void read_write_ep_executed_once_after_mutation_lock() {
     Cache<Integer, Integer> c = target.cache();
     c.put(1, 0);
@@ -890,7 +848,6 @@ public class EntryProcessorTest {
   /**
    * Only a write occurs, the entry state is not read. We expect no restart to happen.
    */
-  @Test
   public void write_ep_executed_once() {
     Cache<Integer, Integer> c = target.cache();
     AtomicInteger count0 = new AtomicInteger();
@@ -910,7 +867,6 @@ public class EntryProcessorTest {
       .isEqualTo(1);
   }
 
-  @Test
   public void lock() {
     Cache<Integer, Integer> c = target.cache();
     int key = 123;
@@ -940,7 +896,6 @@ public class EntryProcessorTest {
     });
   }
 
-  @Test
   public void getExceptionInfo() {
     CacheWithLoader cl = cacheWithLoader();
     LoadExceptionInfo<Integer, Integer> info =

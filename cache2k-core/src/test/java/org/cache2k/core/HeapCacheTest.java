@@ -34,7 +34,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  */
 public class HeapCacheTest {
 
-  @Test
   public void unsupported() {
     Cache<Object, Object> c = Cache2kBuilder.forUnknownTypes().build();
     assertThatCode(() ->

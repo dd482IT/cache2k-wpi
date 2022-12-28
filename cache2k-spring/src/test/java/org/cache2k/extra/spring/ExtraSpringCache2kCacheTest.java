@@ -42,7 +42,6 @@ public class ExtraSpringCache2kCacheTest {
 
   SpringCache2kCache cache;
 
-  @AfterEach
   public void tearDown() {
     if (cache != null) {
       cache.getNativeCache().close();
@@ -56,7 +55,6 @@ public class ExtraSpringCache2kCacheTest {
         .getCache(SpringCache2kCacheTests.class.getSimpleName());
   }
 
-  @Test
   public void testNoLoadingCache() {
     assertThat(getCache().isLoaderPresent()).isFalse();
   }
@@ -64,7 +62,6 @@ public class ExtraSpringCache2kCacheTest {
   /**
    * Missing from the generic tests
    */
-  @Test
   public void testEvict() {
     SpringCache2kCache cache = getCache();
     String key = createRandomKey();
@@ -78,7 +75,6 @@ public class ExtraSpringCache2kCacheTest {
   /**
    * Missing from the generic tests
    */
-  @Test
   public void testTypeCheck() {
     SpringCache2kCache cache = getCache();
     String key = AbstractCacheTests.createRandomKey();
@@ -88,7 +84,6 @@ public class ExtraSpringCache2kCacheTest {
       .isInstanceOf(IllegalStateException.class);
   }
 
-  @Test
   public void testLoadingCache() {
     String cacheName = ExtraSpringCache2kCacheTest.class.getSimpleName() + "-withLoader";
     SpringCache2kCache cacheWithLoader = constructCache(cacheName, b ->
@@ -106,7 +101,6 @@ public class ExtraSpringCache2kCacheTest {
       .getCache(cacheName);
   }
 
-  @Test
   public void testLoadingCacheWithException() {
     String cacheName =
       ExtraSpringCache2kCacheTest.class.getSimpleName() + "-withLoaderException";
@@ -118,7 +112,6 @@ public class ExtraSpringCache2kCacheTest {
       .isInstanceOf(CacheLoaderException.class);
   }
 
-  @Test
   public void testLoadingCacheAdvancedLoader() {
     String cacheName =
       ExtraSpringCache2kCacheTest.class.getSimpleName() + "-withAdvancedLoader";

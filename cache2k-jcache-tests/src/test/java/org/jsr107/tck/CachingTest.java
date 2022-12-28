@@ -53,10 +53,8 @@ public class CachingTest {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(this.getClass());
 
-  @Test
   public void getCachingProviderSingleton() {
     CachingProvider provider1 = Caching.getCachingProvider();
     CachingProvider provider2 = Caching.getCachingProvider();
@@ -69,7 +67,6 @@ public class CachingTest {
   /**
    * Multiple invocations of {@link CachingProvider#getCacheManager()} return the same CacheManager
    */
-  @Test
   public void getCacheManager_singleton() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -79,7 +76,6 @@ public class CachingTest {
     assertSame(manager, provider.getCacheManager());
   }
 
-  @Test
   public void getCacheManager_defaultURI() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -91,7 +87,6 @@ public class CachingTest {
   }
 
   // https://github.com/jsr107/jsr107tck/issues/102
-  @Test
   public void getCacheManager_nonNullProperties() {
     // make sure existing cache managers are closed and the non empty properties get picked up
     try {
@@ -111,7 +106,6 @@ public class CachingTest {
    * Multiple invocations of {@link CachingProvider#getCacheManager(java.net.URI, ClassLoader)} with the same name
    * return the same CacheManager instance
    */
-  @Test
   public void getCacheManager_URI() throws Exception {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -124,7 +118,6 @@ public class CachingTest {
     assertEquals(uri, manager.getURI());
   }
 
-  @Test
   public void getCacheManager_nullUriParameter() {
     CachingProvider provider = Caching.getCachingProvider();
     final URI NULL_URI = null;
@@ -133,7 +126,6 @@ public class CachingTest {
     assertEquals(provider.getDefaultURI(), manager.getURI());
   }
 
-  @Test
   public void getCacheManager_nullClassLoader() {
     CachingProvider provider = Caching.getCachingProvider();
     final ClassLoader NULL_CLASSLOADER = null;
@@ -146,7 +138,6 @@ public class CachingTest {
     assertEquals(sameManager.getClassLoader(), manager.getClassLoader());
   }
 
-  @Test
   public void isSupported() {
     CachingProvider provider = Caching.getCachingProvider();
 
@@ -158,7 +149,6 @@ public class CachingTest {
   }
 
 
-  @Test
   public void cachingProviderGetCache() {
     String name = "c1";
     Caching.getCachingProvider().getCacheManager().createCache(name, new MutableConfiguration().setTypes(Long.class, String.class));
@@ -167,14 +157,12 @@ public class CachingTest {
     Caching.getCachingProvider().getCacheManager().destroyCache(name);
   }
 
-  @Test
   public void cachingProviderGetNonExistentCache() {
     String name = "nonExistentCache";
     Cache cache = Caching.getCache(name, Long.class, String.class);
     assertNull(null, cache);
   }
 
-  @Test(expected = NullPointerException.class)
   public void getCacheNullValueClass() {
     String name = "c1";
     CacheManager manager = Caching.getCachingProvider().getCacheManager();
@@ -193,7 +181,6 @@ public class CachingTest {
    * It will fail when run from the IDE.
    * @see #rule
    */
-  @Test
   public void dummyTest() {
     fail();
   }

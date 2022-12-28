@@ -78,7 +78,6 @@ public class CacheManagerManagementTest {
   private Cache<Integer, String> cache1;
   private Cache<Integer, String> cache2;
 
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(this.getClass());
 
   /**
@@ -101,7 +100,6 @@ public class CacheManagerManagementTest {
   /**
    * setup test
    */
-  @Before
   public void setUp() throws Exception {
 
     //ensure that the caching provider is closed
@@ -125,7 +123,6 @@ public class CacheManagerManagementTest {
    * changed in 1.1, CacheManager.getCacheNames()
    * @throws MalformedObjectNameException
    */
-  @After
   public void tearDown() throws MalformedObjectNameException {
     //assertEquals(0, mBeanServer.queryNames(new ObjectName("java.cache:*"), null).size());
     if (!cacheManager.isClosed()) {
@@ -139,12 +136,10 @@ public class CacheManagerManagementTest {
   }
 
 
-  @Test
   public void testNoEntriesWhenNoCaches() throws Exception {
     assertThat(mBeanServer.queryNames(new ObjectName("javax.cache:*"), null), hasSize(EMPTY));
   }
 
-  @Test
   public void testJMXGetsCacheAdditionsAndRemovals() throws Exception {
     assertThat(mBeanServer.queryNames(new ObjectName("javax.cache:*"), null), hasSize(EMPTY));
     cacheManager.createCache("new cache", configuration);
@@ -157,7 +152,6 @@ public class CacheManagerManagementTest {
     assertThat(mBeanServer.queryNames(new ObjectName("javax.cache:*"), null), hasSize(EMPTY));
   }
 
-  @Test
   public void testMultipleCacheManagers() throws Exception {
     cacheManager.createCache("new cache", configuration);
     assertThat(mBeanServer.queryNames(new ObjectName("javax.cache:*"), null), hasSize(2));
@@ -171,7 +165,6 @@ public class CacheManagerManagementTest {
     cacheManager2.close();
   }
 
-  @Test
   public void testDoubleRegistration() throws MalformedObjectNameException {
     cacheManager.createCache("new cache", configuration);
     assertThat(mBeanServer.queryNames(new ObjectName("javax.cache:*"), null), hasSize(2));
@@ -181,7 +174,6 @@ public class CacheManagerManagementTest {
   }
 
 
-  @Test
   public void testCacheStatisticsOffThenOnThenOff() throws Exception {
     MutableConfiguration configuration = new MutableConfiguration();
     configuration.setStatisticsEnabled(false);
@@ -202,7 +194,6 @@ public class CacheManagerManagementTest {
     assertThat(mBeanServer.queryNames(new ObjectName("javax.cache:*"), null), hasSize(2));
   }
 
-  @Test
   public void testCacheManagementOffThenOnThenOff() throws Exception {
     MutableConfiguration configuration = new MutableConfiguration();
     configuration.setManagementEnabled(false);

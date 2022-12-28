@@ -31,7 +31,7 @@ import org.cache2k.annotation.Nullable;
 public final class CustomizationSupplierByClassName<T>
   implements CustomizationSupplier<T>, ValidatingConfigBean {
 
-  private @Nullable String className;
+  private String className;
 
   /**
    * Default constructor for beans.
@@ -50,7 +50,7 @@ public final class CustomizationSupplierByClassName<T>
     this.className = className;
   }
 
-  public @Nullable String getClassName() {
+  public String getClassName() {
     return className;
   }
 
@@ -58,7 +58,7 @@ public final class CustomizationSupplierByClassName<T>
     className = v;
   }
 
-  private String checkNull(@Nullable String className) {
+  private String checkNull(String className) {
     if (className == null) {
       throw new IllegalArgumentException("className not set");
     }
@@ -88,7 +88,7 @@ public final class CustomizationSupplierByClassName<T>
   }
 
   @Override
-  public boolean equals(@Nullable Object other) {
+  public boolean equals(Object other) {
     if (this == other) return true;
     if (!(other instanceof CustomizationSupplierByClassName)) return false;
     CustomizationSupplierByClassName<?> that = (CustomizationSupplierByClassName<?>) other;

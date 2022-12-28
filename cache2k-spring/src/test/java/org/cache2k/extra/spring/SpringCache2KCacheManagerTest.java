@@ -40,33 +40,28 @@ import java.util.concurrent.TimeUnit;
  */
 public class SpringCache2KCacheManagerTest {
 
-  @Test
   public void nameAndManagerMissing() {
     SpringCache2kCacheManager m = getManager();
     assertThatCode(() -> m.addCaches(b -> Cache2kBuilder.forUnknownTypes()))
       .isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void nameMissing() {
     SpringCache2kCacheManager m = getManager();
     assertThatCode(() -> m.addCaches(b -> b)).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void defaultManagerRejected() {
     SpringCache2kCacheManager m = getManager();
     assertThatCode(() -> m.addCaches(b -> Cache2kBuilder.forUnknownTypes().name("abc")))
       .isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void getNativeManager() {
     SpringCache2kCacheManager m = new SpringCache2kCacheManager();
     assertThat(m.getNativeCacheManager().getName()).isEqualTo("springDefault");
   }
 
-  @Test
   public void doubleAdd() {
     SpringCache2kCacheManager m = getManager();
     m.setAllowUnknownCache(true);
@@ -75,7 +70,6 @@ public class SpringCache2KCacheManagerTest {
       .isInstanceOf(IllegalStateException.class);
   }
 
-  @Test
   public void doubleAdd2() {
     SpringCache2kCacheManager m = getManager();
     assertThatCode(() -> m.addCaches(
@@ -84,7 +78,6 @@ public class SpringCache2KCacheManagerTest {
       .isInstanceOf(IllegalStateException.class);
   }
 
-  @Test
   public void defaultAfterAdd() {
     SpringCache2kCacheManager m = getUniqueManager("defaultAfterAdd");
     assertThatCode(() ->
@@ -103,14 +96,12 @@ public class SpringCache2KCacheManagerTest {
         SpringCache2KCacheManagerTest.class.getSimpleName() + qualifier));
   }
 
-  @Test
   public void testMissing() {
     SpringCache2kCacheManager m = getUniqueManager("testMissing");
     m.setAllowUnknownCache(false);
     assertThat(m.getCache("testUnknown")).isNull();
   }
 
-  @Test
   public void testExisting() {
     SpringCache2kCacheManager m = getUniqueManager("testExisting");
     m.addCache("known", b -> b);
@@ -118,7 +109,6 @@ public class SpringCache2KCacheManagerTest {
     m.getCache("known");
   }
 
-  @Test
   public void testAll() {
     SpringCache2kCacheManager m = getUniqueManager("testAll");
     assertThat(m.isAllowUnknownCache())
@@ -131,7 +121,6 @@ public class SpringCache2KCacheManagerTest {
     assertThat(m.getCacheMap().size()).isEqualTo(1);
   }
 
-  @Test
   public void testAddCaches() {
     SpringCache2kCacheManager m = getUniqueManager("addCaches");
     m.addCaches(b -> b.name("cache1"));
@@ -139,7 +128,6 @@ public class SpringCache2KCacheManagerTest {
     assertThat(m.getConfiguredCacheNames().contains("cache1")).isTrue();
   }
 
-  @Test
   public void testDefaultSetup() {
     SpringCache2kCacheManager m = getUniqueManager("defaultSetup");
     m.defaultSetup(b -> b.entryCapacity(1234));
@@ -148,7 +136,6 @@ public class SpringCache2KCacheManagerTest {
     assertThat(of(m.getCache("cache2").getNativeCache()).getEntryCapacity()).isEqualTo(1234);
   }
 
-  @Test
   public void testDefaultSetupTwice() {
     SpringCache2kCacheManager m = getUniqueManager("defaultSetup");
     m.defaultSetup(b -> b.entryCapacity(1234));
@@ -157,7 +144,6 @@ public class SpringCache2KCacheManagerTest {
     }).isInstanceOf(IllegalStateException.class);
   }
 
-  @Test
   public void testDefaultSetup2() {
     SpringCache2kCacheManager m = getUniqueManager("defaultSetup2");
     m.defaultSetup(b -> b.entryCapacity(1234).valueType(String.class).loader(key -> "default"));
@@ -167,7 +153,6 @@ public class SpringCache2KCacheManagerTest {
     assertThat(m.getCache("cache2").get(123).get()).isEqualTo("default");
   }
 
-  @Test
   public void testDynamicCache() {
     SpringCache2kCacheManager m = getUniqueManager("dynamicCache");
     assertThat(m.isAllowUnknownCache()).isTrue();
@@ -178,7 +163,6 @@ public class SpringCache2KCacheManagerTest {
     assertThat(m.getConfiguredCacheNames().size()).isEqualTo(1);
   }
 
-  @Test
   public void testSetDefaultCacheNames() {
     SpringCache2kCacheManager m = getUniqueManager("setDefaultCacheNames");
     m.setDefaultCacheNames();
@@ -187,14 +171,12 @@ public class SpringCache2KCacheManagerTest {
     assertThat(m.getCache(("1"))).isNotNull();
   }
 
-  @Test
   public void testSetDefaultCacheNamesDouble() {
     SpringCache2kCacheManager m = getUniqueManager("setDefaultCacheNamesDouble");
     assertThatCode(() -> m.setDefaultCacheNames("1", "1"))
       .isInstanceOf(IllegalStateException.class);
   }
 
-  @Test
   public void testCombine() {
     SpringCache2kCacheManager m = getUniqueManager("testCombine");
     SpringCache2kCacheManager m2 =
@@ -219,7 +201,6 @@ public class SpringCache2KCacheManagerTest {
       .getEntryCapacity()).isEqualTo(5003);
   }
 
-  @Test
   public void destroy() {
     SpringCache2kCacheManager m =
       new SpringCache2kCacheManager(

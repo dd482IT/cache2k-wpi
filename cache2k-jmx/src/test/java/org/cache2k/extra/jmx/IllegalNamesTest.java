@@ -34,8 +34,6 @@ import static org.cache2k.Cache2kBuilder.forUnknownTypes;
  */
 public class IllegalNamesTest {
 
-  @ParameterizedTest
-  @ValueSource(chars = {'"', '*', '{', '}', '[', ']' , ':', '=', '\\'})
   public void testCache(char illegalChar) {
     assertThatCode(() ->{
       forUnknownTypes()
@@ -44,8 +42,6 @@ public class IllegalNamesTest {
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @ParameterizedTest
-  @ValueSource(chars = {'"', '*', '{', '}', '[', ']' , ':', '=', '\\'})
   public void testManager(char illegalChar) {
     assertThatCode(() ->{
       CacheManager.getInstance(IllegalNamesTest.class.getName() + "-char-" + illegalChar);

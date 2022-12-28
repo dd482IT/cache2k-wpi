@@ -106,7 +106,6 @@ public class TestingBase {
   private TimeReference clock = TimeReference.DEFAULT;
   private Statistics statistics;
 
-  @Rule
   public TestRule checkAndCleanup =
     RuleChain.outerRule(
     new ExternalResource() {

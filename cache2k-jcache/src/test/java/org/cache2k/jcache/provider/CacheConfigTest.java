@@ -39,7 +39,6 @@ public class CacheConfigTest {
   final String CACHE_NAME = getClass().getSimpleName();
   Cache<Object, Object> cache;
 
-  @Test
   public void test() {
     CacheManager mgr = getCachingProvider().getCacheManager();
     cache = mgr.createCache(CACHE_NAME, ExtendedMutableConfiguration.of(

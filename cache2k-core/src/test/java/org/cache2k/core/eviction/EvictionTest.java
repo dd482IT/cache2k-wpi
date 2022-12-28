@@ -28,14 +28,12 @@ import org.junit.Test;
  */
 public class EvictionTest extends TestingBase  {
 
-  @Test(expected = IllegalArgumentException.class)
   public void illegalCapacity() {
     builder(Integer.class, Integer.class)
       .entryCapacity(0)
       .build();
   }
 
-  @Test(expected = IllegalArgumentException.class)
   public void missingMaximumWeight() {
     builder(Integer.class, Integer.class)
       .weigher((key, value) -> 123)

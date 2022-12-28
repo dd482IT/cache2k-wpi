@@ -34,14 +34,12 @@ import static org.cache2k.Cache2kBuilder.of;
  * These tests are not meant to run with the normal tests and should only run on a machine
  * without any other load.
  */
-@Category(TimingTests.class)
 public class BasicTimingTest {
 
   /**
    * Test the time to generate the toString() output on a cache that has 1M entries.
    * Needs 3 seconds on 2015 hardware.
    */
-  @Test(timeout = 4000)
   public void testBigCacheTiming() {
     final int _CACHE_SIZE = 1000000;
     Cache<Integer,Integer> c =
@@ -55,7 +53,6 @@ public class BasicTimingTest {
     assertThat(c.toString()).isNotNull();
   }
 
-  @Test
   public void testBigCacheTimingWithUpdate() {
     final int _CACHE_SIZE = 1000000;
     Cache<Integer,Integer> c =
@@ -72,7 +69,6 @@ public class BasicTimingTest {
     assertThat(c.toString()).isNotNull();
   }
 
-  @Test
   public void testBigCacheTimingPutRemovePut() {
     final int _CACHE_SIZE = 1000000;
     Cache<Integer,Integer> c =
@@ -92,7 +88,6 @@ public class BasicTimingTest {
     assertThat(c.toString()).isNotNull();
   }
 
-  @Test
   public void testBigCacheTimingWithExpiry() {
     final int _CACHE_SIZE = 1000000;
     Cache<Integer,Integer> c =
@@ -110,7 +105,6 @@ public class BasicTimingTest {
    * This is slower then {@link #testBigCacheTimingWithUpdate()} since the timer
    * has to be rescheduled.
    */
-  @Test
   public void testBigCacheTimingWithExpiryWithUpdate() {
     final int _CACHE_SIZE = 1000000;
     Cache<Integer,Integer> c =
@@ -127,7 +121,6 @@ public class BasicTimingTest {
     assertThat(c.toString()).isNotNull();
   }
 
-  @Test
   public void testBigCacheWithEviction() {
     final int _CACHE_SIZE = 1000000;
     Cache<Integer,Integer> c =

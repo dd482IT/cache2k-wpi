@@ -27,7 +27,6 @@ import org.junit.experimental.categories.Category;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class StatisticsWiredCacheTest extends StatisticsTest {
 
   @Override

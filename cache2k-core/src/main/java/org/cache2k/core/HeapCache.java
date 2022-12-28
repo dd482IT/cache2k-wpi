@@ -503,7 +503,7 @@ public class HeapCache<K, V> extends BaseCache<K, V> implements HeapCacheForEvic
   }
 
   @Override
-  public @Nullable V get(K key) {
+  public V get(K key) {
     int hc = spreadHash(key.hashCode());
     int val = toStoredHashCodeOrKey(key, hc);
     if (loader == null) {
@@ -607,7 +607,7 @@ public class HeapCache<K, V> extends BaseCache<K, V> implements HeapCacheForEvic
   }
 
   @Override
-  public @Nullable CacheEntry<K, V> getEntry(K key) {
+  public CacheEntry<K, V> getEntry(K key) {
     return returnEntry(getEntryInternal(key));
   }
 
@@ -696,7 +696,7 @@ public class HeapCache<K, V> extends BaseCache<K, V> implements HeapCacheForEvic
   }
 
   @Override
-  public @Nullable V peekAndPut(K key, V value) {
+  public V peekAndPut(K key, V value) {
     int hc = spreadHash(key.hashCode());
     int val = toStoredHashCodeOrKey(key, hc);
     boolean hasFreshData;
@@ -727,7 +727,7 @@ public class HeapCache<K, V> extends BaseCache<K, V> implements HeapCacheForEvic
   }
 
   @Override
-  public @Nullable V peekAndReplace(K key, V value) {
+  public V peekAndReplace(K key, V value) {
     Entry<K, V> e;
     for (;;) {
       e = lookupEntry(key);
@@ -832,7 +832,7 @@ public class HeapCache<K, V> extends BaseCache<K, V> implements HeapCacheForEvic
   }
 
   @Override
-  public @Nullable V peek(K key) {
+  public V peek(K key) {
     Entry<K, V> e = peekEntryInternal(key);
     if (e != null) {
       return returnValue(e);
@@ -841,7 +841,7 @@ public class HeapCache<K, V> extends BaseCache<K, V> implements HeapCacheForEvic
   }
 
   @Override
-  public @Nullable CacheEntry<K, V> peekEntry(K key) {
+  public CacheEntry<K, V> peekEntry(K key) {
     return returnEntry(peekEntryInternal(key));
   }
 
@@ -985,7 +985,7 @@ public class HeapCache<K, V> extends BaseCache<K, V> implements HeapCacheForEvic
     containsAndRemove(key);
   }
 
-  public @Nullable V peekAndRemove(K key) {
+  public V peekAndRemove(K key) {
     Entry<K, V> e = lookupEntry(key);
     if (e == null) {
       metrics.peekMiss();

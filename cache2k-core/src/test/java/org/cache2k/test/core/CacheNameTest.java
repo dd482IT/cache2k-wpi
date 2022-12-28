@@ -35,13 +35,11 @@ import org.junit.experimental.categories.Category;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class CacheNameTest {
 
   /**
    * Needed by JSR107 TCK tests, e.g.: org.jsr107.tck.CacheManagerTest@6fc6f14e
    */
-  @Test
   public void atCharacter() {
     Cache2kBuilder.forUnknownTypes().name("CacheNameTest@").build().close();
   }
@@ -50,7 +48,6 @@ public class CacheNameTest {
    * Needed by JSR107 annotations that create a cache name with
    * {@code org.example.KeyClass,org.example.ValueClass}
    */
-  @Test
   public void commaCharacter() {
     Cache2kBuilder.forUnknownTypes().name("CacheNameTest,").build().close();
   }
@@ -58,12 +55,10 @@ public class CacheNameTest {
   /**
    * Needed by JSR107 TCK
    */
-  @Test
   public void spaceCharacter() {
     Cache2kBuilder.forUnknownTypes().name("CacheNameTest space").build().close();
   }
 
-  @Test
   public void managerNameInToString() {
     final String _MANAGER_NAME = "managerNameInToString123";
     CacheManager cm = getInstance(_MANAGER_NAME);

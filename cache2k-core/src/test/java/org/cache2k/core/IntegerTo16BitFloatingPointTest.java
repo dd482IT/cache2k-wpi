@@ -34,7 +34,6 @@ import static org.cache2k.core.IntegerTo16BitFloatingPoint.expand;
  */
 public class IntegerTo16BitFloatingPointTest {
 
-  @Test
   public void testRandom() {
     Random rnd = new Random(1802);
     long l1 = 0;
@@ -53,7 +52,6 @@ public class IntegerTo16BitFloatingPointTest {
     assertThat(!(l1 < l2) || (c1 <= c2)).isTrue();
   }
 
-  @Test
   public void testRandom2() {
     Random rnd = new Random(1802);
     int l1 = rnd.nextInt() & 0x7fffffff;
@@ -72,7 +70,6 @@ public class IntegerTo16BitFloatingPointTest {
     assertThat(expand(v)).isEqualTo(v);
   }
 
-  @Test
   public void testExp0() {
     int[] ia = new int[]{0, 1, 2, 0xff, (1 << 10) - 1};
     for (int i : ia) {
@@ -84,7 +81,6 @@ public class IntegerTo16BitFloatingPointTest {
     assertThat(expand(compress((int) v1))).isEqualTo(v2);
   }
 
-  @Test
   public void testPairs() {
     int[] ia = new int[]{
       0, 0,
@@ -107,14 +103,12 @@ public class IntegerTo16BitFloatingPointTest {
     }
   }
 
-  @Test
   public void test1() {
     assertThat(compress(1)).isEqualTo(1);
     assertThat(compress(2)).isEqualTo(2);
     assertThat(compress(4096)).isEqualTo(3584);
   }
 
-  @Test
   public void testCheck() {
     Assertions.assertThatCode(() -> IntegerTo16BitFloatingPoint.compress(-1)).isInstanceOf(IllegalArgumentException.class);
   }

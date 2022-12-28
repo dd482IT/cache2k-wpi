@@ -51,13 +51,11 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule =
       Caching.getCachingProvider().isSupported(OptionalFeature.STORE_BY_REFERENCE) ?
           new ExcludeListExcluder(this.getClass()) :
           new AllTestExcluder();
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Date.class, Date.class);
   }
@@ -75,7 +73,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     return super.extraSetup(configuration).setStoreByValue(false);
   }
 
-  @After
   public void teardown() {
     try {
       Caching.getCachingProvider().close();
@@ -84,7 +81,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     }
   }
 
-  @Test
   public void get_Existing() {
     long now = System.currentTimeMillis();
     Date existingKey = new Date(now);
@@ -95,7 +91,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     assertSame(existingValue, cache.get(existingKey));
   }
 
-  @Test
   public void get_Existing_NotSameKey() {
     long now = System.currentTimeMillis();
     Date existingKey = new Date(now);
@@ -107,7 +102,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
   }
 
 
-  @Test
   public void put_Existing_NotSameKey() throws Exception {
     long now = System.currentTimeMillis();
     Date key1 = new Date(now);
@@ -121,7 +115,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     assertSame(value2, cache.get(key2));
   }
 
-  @Test
   public void getAndPut_NotThere() {
     long now = System.currentTimeMillis();
     Date existingKey = new Date(now);
@@ -132,7 +125,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     assertSame(existingValue, cache.get(existingKey));
   }
 
-  @Test
   public void getAndPut_Existing() {
     long now = System.currentTimeMillis();
     Date existingKey = new Date(now);
@@ -143,7 +135,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     assertSame(value2, cache.get(existingKey));
   }
 
-  @Test
   public void getAndPut_Existing_NotSameKey() {
     long now = System.currentTimeMillis();
     Date key1 = new Date(now);
@@ -156,7 +147,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     assertSame(value2, cache.get(key2));
   }
 
-  @Test
   public void putAll() {
     Map<Date, Date> data = createDDData(3);
     cache.putAll(data);
@@ -165,7 +155,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     }
   }
 
-  @Test
   public void putIfAbsent_Missing() {
     long now = System.currentTimeMillis();
     Date key = new Date(now);
@@ -174,7 +163,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     assertSame(value, cache.get(key));
   }
 
-  @Test
   public void putIfAbsent_There() {
     long now = System.currentTimeMillis();
     Date key = new Date(now);
@@ -185,7 +173,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     assertSame(oldValue, cache.get(key));
   }
 
-  @Test
   public void replace_3arg() throws Exception {
     long now = System.currentTimeMillis();
     Date key = new Date(now);
@@ -196,7 +183,6 @@ public class StoreByReferenceTest extends CacheTestSupport<Date, Date> {
     assertSame(nextValue, cache.get(key));
   }
 
-  @Test
   public void getAndReplace() {
     long now = System.currentTimeMillis();
     Date key = new Date(now);

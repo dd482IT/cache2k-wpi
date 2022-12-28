@@ -35,7 +35,6 @@ import static org.assertj.core.api.Assertions.*;
  */
 public class ActorPairSuiteTest {
 
-  @Test
   public void cleanRun() {
     AtomicInteger count = new AtomicInteger(47);
     ActorPairSuite s = new ActorPairSuite()
@@ -71,7 +70,6 @@ public class ActorPairSuiteTest {
     s.run();
   }
 
-  @Test
   public void interrupted() {
     ActorPairSuite s = new ActorPairSuite()
       .addPair(new DefaultPair<>());
@@ -79,7 +77,6 @@ public class ActorPairSuiteTest {
     s.run();
   }
 
-  @Test
   public void exceptionPropagationFromSetup() {
     ActorPairSuite s = new ActorPairSuite()
       .stopAtFirstException(true)
@@ -94,7 +91,6 @@ public class ActorPairSuiteTest {
       .hasMessageContaining("setup test");
   }
 
-  @Test
   public void exceptionOnSecondRun() {
     AtomicInteger count = new AtomicInteger();
     ActorPairSuite s = new ActorPairSuite()
@@ -112,7 +108,6 @@ public class ActorPairSuiteTest {
       .hasMessageContaining("but was: 1");
   }
 
-  @Test
   public void exceptionPropagationFromActor1() {
     ActorPairSuite s = new ActorPairSuite()
       .stopAtFirstException(true)
@@ -127,7 +122,6 @@ public class ActorPairSuiteTest {
       .hasMessageContaining("actor1");
   }
 
-  @Test
   public void exceptionPropagationFromActor2() {
     ActorPairSuite s = new ActorPairSuite()
       .stopAtFirstException(true)
@@ -142,7 +136,6 @@ public class ActorPairSuiteTest {
       .hasMessageContaining("actor2");
   }
 
-  @Test
   public void exceptionPropagationFromCheck() {
     ActorPairSuite s = new ActorPairSuite()
       .stopAtFirstException(true)
@@ -157,7 +150,6 @@ public class ActorPairSuiteTest {
       .hasMessageContaining("check");
   }
 
-  @Test
   public void exceptionPropagationFromObserver() {
     ActorPairSuite s = new ActorPairSuite()
       .stopAtFirstException(true)
@@ -172,7 +164,6 @@ public class ActorPairSuiteTest {
       .hasMessageContaining("observer");
   }
 
-  @Test
   public void noExceptionOneshot() {
     AtomicBoolean wasRun = new AtomicBoolean();
     ActorPairSuite s = new ActorPairSuite()
@@ -188,7 +179,6 @@ public class ActorPairSuiteTest {
     assertThat(wasRun.get()).isTrue();
   }
 
-  @Test
   public void alternativeExecutor() {
     Executor ex = newCachedThreadPool();
     AtomicBoolean used = new AtomicBoolean();
@@ -204,21 +194,18 @@ public class ActorPairSuiteTest {
     assertThat(used.get()).isTrue();
   }
 
-  @Test
   public void initExceptionNoActorPairs() {
     assertThatCode(() ->
       new ActorPairSuite().run()
     ).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void initExceptionWrongMaxParallel() {
     assertThatCode(() ->
       new ActorPairSuite().addPair(new DefaultPair<>()).maxParallel(0).run()
     ).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void observerDetection() {
     assertThat(OneShotPairRunner.observerPresent(this.getClass())).isFalse();
     assertThat(OneShotPairRunner.observerPresent(DefaultPair.class)).isFalse();
@@ -229,7 +216,6 @@ public class ActorPairSuiteTest {
     assertThat(OneShotPairRunner.observerPresent(withObserver.getClass())).isTrue();
   }
 
-  @Test
   public void observerThrowsException() {
     assertThatCode(() -> new DefaultPair().observe())
       .isInstanceOf(NeverExecutedError.class);

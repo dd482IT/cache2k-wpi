@@ -64,18 +64,15 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author Jens Wilke
  */
 @SuppressWarnings("unchecked")
-@Category(SlowTests.class)
 public class SlowExpiryTest extends TestingBase {
 
   /**
    * Exceptions have minimal retry interval.
    */
-  @Test
   public void testExceptionWithRefresh() {
     testExceptionWithRefreshAndLoader(false);
   }
 
-  @Test
   public void testExceptionWithRefreshAsyncLoader() {
     testExceptionWithRefreshAndLoader(true);
   }
@@ -123,7 +120,6 @@ public class SlowExpiryTest extends TestingBase {
     assertThat(getInfo().getSize()).isEqualTo(0);
   }
 
-  @Test
   public void testExceptionWithRefreshSyncLoader() {
     String cacheName = generateUniqueCacheName(this);
     final int count = 4;
@@ -169,7 +165,6 @@ public class SlowExpiryTest extends TestingBase {
     assertThat(getInfo().getSize()).isEqualTo(0);
   }
 
-  @Test
   public void testExceptionExpirySuppressTwiceWaitForExceptionExpiry() {
     final long exceptionExpiryMillis = TestingParameters.MINIMAL_TICK_MILLIS;
     BasicCacheTest.OccasionalExceptionSource src =
@@ -208,7 +203,6 @@ public class SlowExpiryTest extends TestingBase {
     });
   }
 
-  @Test
   public void testExceptionExpiryNoSuppress() {
     OccasionalExceptionSource src = new OccasionalExceptionSource();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -260,7 +254,6 @@ public class SlowExpiryTest extends TestingBase {
     });
   }
 
-  @Test
   public void testSuppressExceptionImmediateExpiry() {
     OccasionalExceptionSource src = new OccasionalExceptionSource();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -285,7 +278,6 @@ public class SlowExpiryTest extends TestingBase {
     assertThat(getInfo().getSuppressedExceptionCount()).isEqualTo(1);
   }
 
-  @Test
   public void testSuppressExceptionShortExpiry() {
     OccasionalExceptionSource src = new OccasionalExceptionSource();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -316,7 +308,6 @@ public class SlowExpiryTest extends TestingBase {
    * Test with short expiry time to trip a special case during the expiry calculation:
    * the expiry happens during the calculation
    */
-  @Test
   public void testShortExpiryTimeDelayLoad() {
     boolean keepData = true;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -343,7 +334,6 @@ public class SlowExpiryTest extends TestingBase {
    * Should this refuse operation right away since suppressException and keepDataAfterExpired
    * makes no sense in combination? No, since load requests should suppress exceptions, too.
    */
-  @Test(expected = RuntimeException.class)
   public void testNoSuppressExceptionShortExpiry() {
     OccasionalExceptionSource src = new OccasionalExceptionSource();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -357,7 +347,6 @@ public class SlowExpiryTest extends TestingBase {
     fail("not reached");
   }
 
-  @Test
   public void testSuppressExceptionLongExpiryAndReload() throws ExecutionException, InterruptedException {
     BasicCacheTest.OccasionalExceptionSource src = new BasicCacheTest.OccasionalExceptionSource();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -382,7 +371,6 @@ public class SlowExpiryTest extends TestingBase {
     c.get(2);
   }
 
-  @Test
   public void testNeverSuppressWithRetryInterval0() {
     BasicCacheTest.OccasionalExceptionSource src = new BasicCacheTest.OccasionalExceptionSource();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -392,7 +380,6 @@ public class SlowExpiryTest extends TestingBase {
     neverSuppressBody(c);
   }
 
-  @Test
   public void testNeverSuppressWithLoadTimeUntil() {
     BasicCacheTest.OccasionalExceptionSource src = new BasicCacheTest.OccasionalExceptionSource();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -428,7 +415,6 @@ public class SlowExpiryTest extends TestingBase {
     assertThat(getInfo().getLoadCount()).isEqualTo(3);
   }
 
-  @Test
   public void testExpireNoKeepSharpExpiryBeyondSafetyGap() {
     Cache<Integer, Integer> c = cache = builder(Integer.class, Integer.class)
       .loader(new IntCountingCacheSource())
@@ -440,7 +426,6 @@ public class SlowExpiryTest extends TestingBase {
     await(() -> getInfo().getTimerEventCount() >= 3);
   }
 
-  @Test
   public void testExpireNoKeepAsserts() {
     Cache<Integer, Integer> c = cache = builder(Integer.class, Integer.class)
       .loader(new IntCountingCacheSource())
@@ -474,37 +459,30 @@ public class SlowExpiryTest extends TestingBase {
     await(() -> getInfo().getSize() == 0);
   }
 
-  @Test
   public void testExpireNoKeep1() {
     testExpireNoKeep(1);
   }
 
-  @Test
   public void testExpireNoKeep2() {
     testExpireNoKeep(2);
   }
 
-  @Test
   public void testExpireNoKeep3() {
     testExpireNoKeep(3);
   }
 
-  @Test
   public void testExpireNoKeep77() {
     testExpireNoKeep(77);
   }
 
-  @Test
   public void testExpireNoKeepGap() {
     testExpireNoKeep(getEffectiveSafetyGapMillis());
   }
 
-  @Test
   public void testExpireNoKeepAfterGap() {
     testExpireNoKeep(getEffectiveSafetyGapMillis() + 3);
   }
 
-  @Test
   public void expireLoaded_sharp_noKeep() {
     Cache<Integer, Integer> c = cache = builder(Integer.class, Integer.class)
       .loader(new IntCountingCacheSource())
@@ -523,27 +501,22 @@ public class SlowExpiryTest extends TestingBase {
    * if expiry is immediately and keepData false: refresh timer is initiated but entry
    * gets removed immediately
    */
-  @Test
   public void refreshAndSharp_get_expireImmediate_keep() {
     refreshAndSharp_get(true, 0);
   }
 
-  @Test
   public void refreshAndSharp_get_expireMinimalTick_keep() {
     refreshAndSharp_get(true, TestingParameters.MINIMAL_TICK_MILLIS);
   }
 
-  @Test
   public void refreshAndSharp_get_expireGap_keep() {
     refreshAndSharp_get(true, getEffectiveSafetyGapMillis() + 3);
   }
 
-  @Test
   public void refreshAndSharp_get_expireMinimalTick_noKeep() {
     refreshAndSharp_get(false, TestingParameters.MINIMAL_TICK_MILLIS);
   }
 
-  @Test
   public void refreshAndSharp_get_expireGap_noKeep() {
     refreshAndSharp_get(false, getEffectiveSafetyGapMillis() + 3);
   }
@@ -620,7 +593,6 @@ public class SlowExpiryTest extends TestingBase {
    * The sharp expiry switch is only used for the ExpiryPolicy and not for the
    * duration configured via expireAfterWrite.
    */
-  @Test
   public void refresh_sharp_regularExpireAfterWriter_lagging() throws Exception {
     final int key = 1;
     AtomicInteger counter = new AtomicInteger();
@@ -683,18 +655,15 @@ public class SlowExpiryTest extends TestingBase {
       });
   }
 
-  @Test
   public void refresh_sharp_noKeep_0ms() {
     refresh_sharp_noKeep(0);
   }
 
-  @Test
   public void refresh_sharp_noKeep_3ms() {
     refresh_sharp_noKeep(3);
   }
 
   /** Entry disappears because of sharp */
-  @Test
   public void refresh_sharp_keep() {
     final int key = 1;
     BlockCountingLoader loader = new BlockCountingLoader();
@@ -739,7 +708,6 @@ public class SlowExpiryTest extends TestingBase {
   /**
    * Refresh is started immediately if loaded value expired immediately.
    */
-  @Test
   public void refresh_immediate() {
     final int key = 1;
     CountingLoader loader = new CountingLoader();
@@ -764,7 +732,6 @@ public class SlowExpiryTest extends TestingBase {
     await("Refresh is done", () -> loader.getCount() == 2);
   }
 
-  @Test
   public void refresh_sharp_noKeep_eternalAfterRefresh() throws Exception {
     final int key = 1;
     CountingLoader loader = new CountingLoader();
@@ -805,7 +772,6 @@ public class SlowExpiryTest extends TestingBase {
   /**
    * Is refreshing stopped after a remove? Checks whether the timer is cancelled.
    */
-  @Test
   public void refresh_timerStoppedWithRemove() throws InterruptedException {
     final int key = 1;
     CountingLoader loader = new CountingLoader();
@@ -827,7 +793,6 @@ public class SlowExpiryTest extends TestingBase {
     }
   }
 
-  @Test
   public void refresh_secondTimerEvent_allIsCleared() throws InterruptedException {
     final int key = 1;
     CountingLoader loader = new CountingLoader();
@@ -844,7 +809,6 @@ public class SlowExpiryTest extends TestingBase {
     assertThat(loader.getCount()).isEqualTo(2);
   }
 
-  @Test
   public void loadAndExpireRaceNoGone() {
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
       .keepDataAfterExpired(false)
@@ -860,7 +824,6 @@ public class SlowExpiryTest extends TestingBase {
     await(() -> getInfo().getSize() == 0);
   }
 
-  @Test
   public void manualExpire_nowIsh() {
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
       .expireAfterWrite(5, TimeUnit.MINUTES)
@@ -870,17 +833,14 @@ public class SlowExpiryTest extends TestingBase {
     await(() -> !c.containsKey(1));
   }
 
-  @Test
   public void expireAt_nowIsh_doesRefresh() {
     expireAt_x_doesRefresh(ticks() + TestingParameters.MINIMAL_TICK_MILLIS);
   }
 
-  @Test
   public void expireAt_NOW_doesRefresh() {
     expireAt_x_doesRefresh(ticks());
   }
 
-  @Test
   public void expireAt_1234_doesRefresh() {
     expireAt_x_doesRefresh(1234);
   }
@@ -897,7 +857,6 @@ public class SlowExpiryTest extends TestingBase {
     await(() -> getInfo().getRefreshCount() == 1);
   }
 
-  @Test
   public void manualExpire_NOW_doesNotRefresh() {
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
       .expireAfterWrite(MAX_FINISH_WAIT_MILLIS, MILLISECONDS)
@@ -915,7 +874,6 @@ public class SlowExpiryTest extends TestingBase {
       .isEqualTo(0);
   }
 
-  @Test
   public void manualExpire_REFRESH_doesRefresh() {
     AtomicInteger counter = new AtomicInteger();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -934,7 +892,6 @@ public class SlowExpiryTest extends TestingBase {
   /**
    * Check whether raising lag time has effect.
    */
-  @Test
   public void timerLag_raisedLag() {
     long lagMillis = DefaultTimer.DEFAULT_TIMER_LAG_MILLIS + 74;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -947,7 +904,6 @@ public class SlowExpiryTest extends TestingBase {
     });
   }
 
-  @Test
   public void neutralWhenModified() throws Exception {
     final long expiry = 100;
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -971,7 +927,6 @@ public class SlowExpiryTest extends TestingBase {
     assertThat(c.containsKey(1)).isFalse();
   }
 
-  @Test(expected = IllegalArgumentException.class)
   public void neutralWhenCreatedYieldsException() throws Exception {
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
       .sharpExpiry(true)
@@ -980,7 +935,6 @@ public class SlowExpiryTest extends TestingBase {
     c.put(1, 2);
   }
 
-  @Test
   public void expiryPolicy_dontCache_load_exception() {
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
       .sharpExpiry(true)

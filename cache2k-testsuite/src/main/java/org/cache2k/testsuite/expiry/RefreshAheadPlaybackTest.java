@@ -34,7 +34,6 @@ import java.util.Map;
 /**
  * @author Jens Wilke
  */
-@Category(TimingTests.class)
 public class RefreshAheadPlaybackTest {
 
   static class Data {
@@ -186,7 +185,6 @@ public class RefreshAheadPlaybackTest {
     System.err.println(res.toString());
   }
 
-  @Test
   public void caffeine() {
     int i = 50;
     final int ttl = 3 * 60;
@@ -198,7 +196,6 @@ public class RefreshAheadPlaybackTest {
     System.err.println("Caffeine " + i + " " + res.toString());
   }
 
-  @Test
   public void test() {
     int[] trace = Trace.WEBLOG424_NOROBOTS.get();
     final int ttl = 3 * 60;

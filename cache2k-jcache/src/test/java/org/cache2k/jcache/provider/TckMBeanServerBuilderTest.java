@@ -33,7 +33,6 @@ public class TckMBeanServerBuilderTest {
   /**
    * For test coverage
    */
-  @Test
   public void test() {
     TckMBeanServerBuilder.WrapperMBeanServerDelegate v =
       new TckMBeanServerBuilder.WrapperMBeanServerDelegate();

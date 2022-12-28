@@ -29,7 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class CommonMetricsTest {
 
-  @Test
   public void coverage() {
     CommonMetrics.BlackHole update = new CommonMetrics.BlackHole();
     update.timerEvent();

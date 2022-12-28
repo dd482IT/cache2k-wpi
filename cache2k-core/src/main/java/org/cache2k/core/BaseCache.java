@@ -144,7 +144,7 @@ public abstract class BaseCache<K, V> implements InternalCache<K, V> {
    * lots of corner cases for loader and exception handling.
    */
   @Override
-  public <@Nullable R> @Nullable R invoke(K key, EntryProcessor<K, V, R> processor) {
+  public <R> R invoke(K key, EntryProcessor<K, V, R> processor) {
     if (key == null || processor == null) {
       throw new NullPointerException();
     }
@@ -152,7 +152,7 @@ public abstract class BaseCache<K, V> implements InternalCache<K, V> {
   }
 
   @Override
-  public <@Nullable R> Map<K, EntryProcessingResult<R>> invokeAll(Iterable<? extends K> keys,
+  public <R> Map<K, EntryProcessingResult<R>> invokeAll(Iterable<? extends K> keys,
                                                         EntryProcessor<K, V, R> entryProcessor) {
     Map<K, EntryProcessingResult<R>> m = new HashMap<>();
     for (K k : keys) {

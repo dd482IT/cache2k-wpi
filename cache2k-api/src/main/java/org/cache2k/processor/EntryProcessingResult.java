@@ -29,19 +29,19 @@ import org.cache2k.annotation.Nullable;
  * @see org.cache2k.Cache#invokeAll
  * @author Jens Wilke
  */
-public interface EntryProcessingResult<@Nullable R> {
+public interface EntryProcessingResult<R> {
 
   /**
    * Result of entry processing.
    *
    * @throws EntryProcessingException if an exception occurred during processing.
    */
-  @Nullable R getResult();
+  R getResult();
 
   /**
    * Original exception from entry processing or {@code null} if no exception occurred.
    * If this is {@code null}, {@link #getResult} will not throw an exception.
    */
-  @Nullable Throwable getException();
+  Throwable getException();
 
 }

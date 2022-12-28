@@ -52,7 +52,6 @@ public class CacheManagerClassLoadingTest {
    * was loaded by that class loader. equals() needs to work and class loaders needs to be
    * identical
    */
-  @Test
   public void testCorrectClassLoaderForKey() throws Exception {
     SpecialClassLoader loader = new SpecialClassLoader();
     CachingProvider provider = getCachingProvider();
@@ -76,7 +75,6 @@ public class CacheManagerClassLoadingTest {
    * was loaded by that class loader. equals() needs to work and class loaders needs to be
    * identical
    */
-  @Test
   public void testCorrectClassLoaderForValue() throws Exception {
     SpecialClassLoader loader = new SpecialClassLoader();
     CachingProvider provider = getCachingProvider();

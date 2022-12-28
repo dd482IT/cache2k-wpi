@@ -42,7 +42,7 @@ public class JCacheJmxSupport implements CacheClosedListener {
   private JCacheJmxSupport() { }
 
   @Override
-  public @Nullable CompletableFuture<Void> onCacheClosed(Cache cache) {
+  public CompletableFuture<Void> onCacheClosed(Cache cache) {
     disableStatistics(cache);
     disableJmx(cache);
     return null;

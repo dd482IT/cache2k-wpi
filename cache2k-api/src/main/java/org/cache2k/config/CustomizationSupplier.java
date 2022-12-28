@@ -37,7 +37,7 @@ import org.cache2k.annotation.NonNull;
  * @author Jens Wilke
  */
 @FunctionalInterface
-public interface CustomizationSupplier<@NonNull T> {
+public interface CustomizationSupplier<T> {
 
   /**
    * Create or return an existing customization instance.

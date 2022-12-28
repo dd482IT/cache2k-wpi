@@ -37,10 +37,8 @@ import static org.cache2k.core.Entry.num2processingStateText;
  * @author Jens Wilke
  */
 @SuppressWarnings({"rawtypes", "SynchronizationOnLocalVariableOrMethodParameter"})
-@Category(FastTests.class)
 public class EntryTest {
 
-  @Test
   public void testLastModifiedStoresValue() {
     Entry e = new Entry();
     synchronized (e) {
@@ -51,7 +49,6 @@ public class EntryTest {
     }
   }
 
-  @Test
   public void testLastModified50YearsRange() {
     long millis50years = 50L * 365 * 24 * 60 * 60 * 1000;
     long t = System.currentTimeMillis() + millis50years;
@@ -62,7 +59,6 @@ public class EntryTest {
     }
   }
 
-  @Test
   public void testLastModifiedMaxRange() {
     Entry e = new Entry();
     synchronized (e) {
@@ -73,13 +69,11 @@ public class EntryTest {
     }
   }
 
-  @Test
   public void testProcessingStateInitial() {
     Entry e = new Entry();
     assertThat(e.getProcessingState()).isEqualTo(DONE);
   }
 
-  @Test
   public void testHot() {
     Entry e = new Entry();
     assertThat(e.isHot()).isFalse();
@@ -92,13 +86,11 @@ public class EntryTest {
   /**
    * Just check that toString is producing no exception on empty entry.
    */
-  @Test
   public void virginToString() {
     Entry e = new Entry();
     e.toString();
   }
 
-  @Test
   public void timeSpan32Bit() {
     int days = MAX_VALUE
       / 1000
@@ -108,7 +100,6 @@ public class EntryTest {
     assertThat(days).isEqualTo(24);
   }
 
-  @Test
   public void num2processingState() {
     assertThat(num2processingStateText(DONE)).isEqualTo("DONE");
     assertThat(num2processingStateText(READ)).isEqualTo("READ");
@@ -127,7 +118,6 @@ public class EntryTest {
     assertThat(num2processingStateText(LAST)).isEqualTo("LAST");
   }
 
-  @Test
   public void scanRound() {
     Entry e = new Entry();
     assertThat(e.getScanRound()).isEqualTo(0);

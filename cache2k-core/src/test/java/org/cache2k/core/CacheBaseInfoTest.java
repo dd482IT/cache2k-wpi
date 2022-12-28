@@ -30,10 +30,8 @@ import static org.cache2k.core.CacheBaseInfo.formatMillisPerLoad;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class CacheBaseInfoTest {
 
-  @Test
   public void testMSecsPerLoadFormatting() {
     double v = 2.3456789;
     assertThat(formatMillisPerLoad(v)).isEqualTo("2.346");

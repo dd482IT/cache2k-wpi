@@ -48,7 +48,6 @@ public class ConcurrentMapStressTest {
   public static final Set<Function<? extends Target, ? extends MyActorPair>> PAIRS = new HashSet<>();
 
   @SuppressWarnings("unchecked")
-  @Test
   public void test() throws Exception {
     ConcurrentMap<Integer, Integer> map;
     boolean useMap = false;

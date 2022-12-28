@@ -46,7 +46,7 @@ public class StaticTiming<K, V> extends Timing<K, V> {
   protected final ResiliencePolicy<K, V> resiliencePolicy;
   protected final TimeReference clock;
   protected final boolean sharpExpiry;
-  @Nullable protected final RefreshAheadPolicy<? super K, ? super V, Object> refreshAheadPolicy;
+  protected final RefreshAheadPolicy<? super K, ? super V, Object> refreshAheadPolicy;
   protected final long expiryTicks;
   private final Timer timer;
   private TimerEventListener<K, V> target;

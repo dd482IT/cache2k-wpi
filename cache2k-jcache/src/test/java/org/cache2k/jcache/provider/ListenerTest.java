@@ -55,7 +55,6 @@ public class ListenerTest {
   static final String CACHE_NAME = ListenerTest.class.getSimpleName();
   Cache<Object, Object> cache;
 
-  @Test
   public void missingListenerFactory() {
     CacheManager mgr = getCachingProvider().getCacheManager();
     cache = mgr.createCache(CACHE_NAME, new MutableConfiguration<>());
@@ -64,7 +63,6 @@ public class ListenerTest {
     cache.close();
   }
 
-  @Test
   public void eventsWithExceptions() {
     CacheManager mgr = getCachingProvider().getCacheManager();
     cache = mgr.createCache(CACHE_NAME, ExtendedMutableConfiguration.of(

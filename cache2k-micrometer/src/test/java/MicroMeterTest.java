@@ -40,7 +40,6 @@ import org.junit.jupiter.api.Test;
  */
 public class MicroMeterTest {
 
-  @Test
   public void programmaticBind() {
     MeterRegistry registry = new SimpleMeterRegistry();
     Cache cache = forUnknownTypes().build();
@@ -53,7 +52,6 @@ public class MicroMeterTest {
    * Tests a feature of micrometer. Registering twice has no effect.
    * Metrics registered first stay and subsequent are discarded.
    */
-  @Test
   public void doubleBind() {
     MeterRegistry registry = new SimpleMeterRegistry();
     Cache cache = forUnknownTypes().build();
@@ -64,7 +62,6 @@ public class MicroMeterTest {
     cache.close();
   }
 
-  @Test
   public void notBoundToGlobalRegistryWhenDisabled() {
     Cache cache = Cache2kBuilder.forUnknownTypes()
       .name("bindToGlobalRegistryWhenDisabled")
@@ -78,7 +75,6 @@ public class MicroMeterTest {
     } catch (MeterNotFoundException expected) { }
   }
 
-  @Test
   public void bindToGlobalRegistryWhenEnabled() {
     Cache cache = forUnknownTypes()
       .name("bindToGlobalRegistryWhenEnabled")
@@ -90,7 +86,6 @@ public class MicroMeterTest {
       .functionCounter().count() >= 0).isTrue();
   }
 
-  @Test
   public void bindWhenStatisticsEnabled() {
     Cache cache = forUnknownTypes()
       .enable(MicrometerSupport.class)
@@ -102,7 +97,6 @@ public class MicroMeterTest {
       .functionCounter().count() >= 0).isTrue();
   }
 
-  @Test
   public void bindToSpecificRegistry() {
     MeterRegistry registry = new SimpleMeterRegistry();
     Cache cache = forUnknownTypes()
@@ -117,7 +111,6 @@ public class MicroMeterTest {
       tag("cache", cache.getName()).functionCounter().count() >= 0).isTrue();
   }
 
-  @Test
   public void checkBasicMetrics() {
     MeterRegistry registry = new SimpleMeterRegistry();
     Cache cache = forUnknownTypes().build();
@@ -140,7 +133,6 @@ public class MicroMeterTest {
     cache.close();
   }
 
-  @Test
   public void checkLoaderMetrics() throws InterruptedException {
     MeterRegistry registry = new SimpleMeterRegistry();
     Cache cache = forUnknownTypes()
@@ -167,7 +159,6 @@ public class MicroMeterTest {
     cache.close();
   }
 
-  @Test
   public void checkBasicMetricsWithDisabledStatistics() {
     MeterRegistry registry = new SimpleMeterRegistry();
     Cache cache = forUnknownTypes()

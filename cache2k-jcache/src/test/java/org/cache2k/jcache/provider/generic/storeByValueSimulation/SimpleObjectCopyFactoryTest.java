@@ -37,27 +37,22 @@ public class SimpleObjectCopyFactoryTest {
 
   static SimpleObjectCopyFactory factory = new SimpleObjectCopyFactory();
 
-  @AfterAll
   public static void tearDownClass() {
     factory = null;
   }
 
-  @Test
   public void testIntegerIsImmutable() {
     assertThat(isImmutable(((Integer) 123).getClass())).isTrue();
   }
 
-  @Test
   public void testStringIsImmutable() {
     assertThat(isImmutable("abc".getClass())).isTrue();
   }
 
-  @Test
   public void testDateIsCloneable() {
     assertThat(extractPublicClone(Date.class)).isNotNull();
   }
 
-  @Test
   public void testImmutableCompleteInteger() {
     ObjectTransformer<Integer, Integer> t = factory.createCopyTransformer(Integer.class);
     Integer val = 45;
@@ -67,7 +62,6 @@ public class SimpleObjectCopyFactoryTest {
     assertThat(val == v2).isTrue();
   }
 
-  @Test
   public void testDate() {
     ObjectTransformer<Date, Date> t = factory.createCopyTransformer(Date.class);
     assertThat(t).isNotNull();
@@ -75,7 +69,6 @@ public class SimpleObjectCopyFactoryTest {
 
   public static class Dummy { }
 
-  @Test
   public void testNotSerializable() {
     ObjectTransformer<Dummy, Dummy> t = factory.createCopyTransformer(Dummy.class);
     assertThat(t).isNull();
@@ -83,7 +76,6 @@ public class SimpleObjectCopyFactoryTest {
 
   public static class DummySerializable implements Serializable { }
 
-  @Test
   public void testSerializable() {
     ObjectTransformer<DummySerializable, DummySerializable> t = factory.createCopyTransformer(DummySerializable.class);
     assertThat(t).isNotNull();

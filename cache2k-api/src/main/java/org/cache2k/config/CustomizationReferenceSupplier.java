@@ -31,16 +31,16 @@ import java.util.Objects;
  *
  * @author Jens Wilke
  */
-public final class CustomizationReferenceSupplier<@NonNull T> implements CustomizationSupplier<T> {
+public final class CustomizationReferenceSupplier<T> implements CustomizationSupplier<T> {
 
-  private final @NonNull T object;
+  private final T object;
 
   /**
    * Construct a customization factory that returns always the same object instance.
    *
    * @param obj reference to a customization. Not null.
    */
-  public CustomizationReferenceSupplier(@NonNull T obj) {
+  public CustomizationReferenceSupplier(T obj) {
     Objects.requireNonNull(obj);
     object = obj;
   }
@@ -51,7 +51,7 @@ public final class CustomizationReferenceSupplier<@NonNull T> implements Customi
   }
 
   @Override
-  public boolean equals(@Nullable Object other) {
+  public boolean equals(Object other) {
     if (this == other) {
       return true;
     }

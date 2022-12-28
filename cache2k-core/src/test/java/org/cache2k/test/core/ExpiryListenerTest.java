@@ -46,20 +46,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author Jens Wilke
  */
-@Category(SlowTests.class)
 public class ExpiryListenerTest extends TestingBase {
 
-  @Test
   public void simpleAsyncExpiredListenerCalled() {
     testListenerCalled(false, false);
   }
 
-  @Test
   public void asyncExpiredListenerCalled() {
     testListenerCalled(false, true);
   }
 
-  @Test
   public void expireBeforePut() {
     AtomicInteger callCount = new AtomicInteger();
     final long expiryMillis = 100;
@@ -82,7 +78,6 @@ public class ExpiryListenerTest extends TestingBase {
     }
   }
 
-  @Test
   public void expireAtSendsOneEvent() {
     AtomicInteger listenerCallCount = new AtomicInteger();
     Cache<Integer, Integer> c = builder(Integer.class, Integer.class)
@@ -96,7 +91,6 @@ public class ExpiryListenerTest extends TestingBase {
       .isEqualTo(1);
   }
 
-  @Test
   public void normalExpireSendsOneEvent() {
     final long expiryMillis = MINIMAL_TICK_MILLIS;
     AtomicInteger listenerCallCount = new AtomicInteger();
@@ -113,7 +107,6 @@ public class ExpiryListenerTest extends TestingBase {
       .isEqualTo(1);
   }
 
-  @Test
   public void normalExpireSendsOneEvent_sharp() {
     final long expiryMillis = MINIMAL_TICK_MILLIS;
     AtomicInteger listenerCallCount = new AtomicInteger();
@@ -131,7 +124,6 @@ public class ExpiryListenerTest extends TestingBase {
       .isEqualTo(1);
   }
 
-  @Test
   public void expireAfterRefreshProbationEnded() {
     AtomicInteger loaderCount = new AtomicInteger();
     AtomicInteger eventCount = new AtomicInteger();
@@ -157,12 +149,10 @@ public class ExpiryListenerTest extends TestingBase {
   /**
    * Is expiry listener called before the load?
    */
-  @Test
   public void expireBeforeLoadSharp() {
     expireBeforeLoad(true);
   }
 
-  @Test
   public void expireBeforeLoad() {
     expireBeforeLoad(false);
   }
@@ -192,12 +182,10 @@ public class ExpiryListenerTest extends TestingBase {
     await(() -> c.get(anyKey) == 0);
   }
 
-  @Test
   public void simpleAsyncExpiredListenerCalledSharpExpiry() {
     testListenerCalled(true, false);
   }
 
-  @Test
   public void asyncExpiredListenerCalledSharpExpiry() {
     testListenerCalled(true, true);
   }
@@ -223,7 +211,6 @@ public class ExpiryListenerTest extends TestingBase {
     await(() -> callCount.get() == 1);
   }
 
-  @Test
   public void asyncExpiredListenerAfterRefreshCalled() {
     AtomicInteger listenerCallCount = new AtomicInteger();
     AtomicInteger loaderCallCount = new AtomicInteger();
@@ -253,7 +240,6 @@ public class ExpiryListenerTest extends TestingBase {
    * We hold up the insert task with the created listener. Checks that we get an expired
    * event after the insert event. Also checks that the cache entry is not visible.
    */
-  @Test
   public void expiresDuringInsert() throws InterruptedException {
     AtomicInteger gotExpired = new AtomicInteger();
     CountDownLatch gotCreated = new CountDownLatch(1);

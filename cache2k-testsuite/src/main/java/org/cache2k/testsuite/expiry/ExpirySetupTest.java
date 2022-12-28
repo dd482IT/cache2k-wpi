@@ -44,7 +44,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
 
-  @Test
   public void defaults() {
     init(b -> {
       Cache2kConfig<K, V> cfg = b.config();
@@ -53,13 +52,11 @@ public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
     });
   }
 
-  @Test
   public void maxExpireAfterWrite() {
     init(b -> b.expireAfterWrite(TIME_MAX_MILLIS, TimeUnit.MILLISECONDS));
     put(k0, v0);
   }
 
-  @Test
   public void setExpiryTime_maxMinusOne() {
     init();
     mutate(k0, entry -> {
@@ -68,7 +65,6 @@ public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
     });
   }
 
-  @Test
   public void setExpiryTime_max() {
     init();
     mutate(k0, entry -> {
@@ -81,7 +77,6 @@ public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
    * If eternal is set to true, no real expiry that needs the timer is
    * expected. Setting expiry works for NOW and ETERNAL
    */
-  @Test
   public void eternal_true_setExpiryTime() {
     init(b -> b.eternal(true));
     invoke(k0, entry -> entry.setExpiryTime(123));
@@ -99,7 +94,6 @@ public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
     put(k0, v0);
   }
 
-  @Test
   public void eternal_false_setExpiryTime() {
     init(b -> b.eternal(false));
     put(k0, v0);
@@ -122,7 +116,6 @@ public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
     assertThat((long) invoke(k0, entry -> entry.getExpiryTime())).isEqualTo(TIME_MAX_MILLIS);
   }
 
-  @Test
   public void expiryAfterWrite_setExpiryTime() {
     Duration expireAfterWrite = Duration.ofDays(12);
     init(b -> b.expireAfterWrite(expireAfterWrite));
@@ -139,7 +132,6 @@ public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
       .isGreaterThanOrEqualTo(t0 + capTicks);
   }
 
-  @Test
   public void expiryAfterWrite_expireAt() {
     Duration expireAfterWrite = Duration.ofDays(12);
     init(b -> b.expireAfterWrite(expireAfterWrite));
@@ -157,7 +149,6 @@ public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
       .isGreaterThanOrEqualTo(t0 + capTicks);
   }
 
-  @Test
   public void setExpiry_setException() {
     init(b -> b.setup(this::resilienceCacheExceptions));
     invoke(k0, entry -> entry.setException(new ExpectedException()));
@@ -171,19 +162,16 @@ public class ExpirySetupTest<K, V> extends AbstractCacheTester<K, V> {
     }).hasMessageContaining("expiry=");
   }
 
-  @Test
   public void zeroExpiry() {
     init(b -> b.expireAfterWrite(Duration.ZERO));
     assertThat(control().getExpiryAfterWriteTicks()).isEqualTo(0);
   }
 
-  @Test
   public void eternalExpiry() {
     init();
     assertThat(control().getExpiryAfterWriteTicks()).isEqualTo(Long.MAX_VALUE);
   }
 
-  @Test
   public void expiry42sec() {
     init(b -> b.expireAfterWrite(Duration.ofSeconds(42)));
     assertThat(control().getExpiryAfterWriteTicks()).isEqualTo(TimeUnit.SECONDS.toMillis(42));

@@ -50,7 +50,6 @@ import java.net.URI;
  */
 public class CacheManagerTest {
 
-  @Test
   public void testSameProvider() {
     CachingProvider p1 = getCachingProvider();
     CachingProvider p2 = getCachingProvider();
@@ -60,7 +59,6 @@ public class CacheManagerTest {
   /**
    * Test to ensure provider coordinates keep constant.
    */
-  @Test
   public void testGetExplicitProvider() {
     CachingProvider cachingProvider =
       getCachingProvider(
@@ -68,7 +66,6 @@ public class CacheManagerTest {
     assertThat(cachingProvider == getCachingProvider()).isTrue();
   }
 
-  @Test
   public void testSameCacheManager() {
     CachingProvider p = getCachingProvider();
     CacheManager cm1 = p.getCacheManager();
@@ -76,7 +73,6 @@ public class CacheManagerTest {
     assertThat(cm1 == cm2).isTrue();
   }
 
-  @Test
   public void create_empty_config() {
     CachingProvider p = getCachingProvider();
     CacheManager cm = p.getCacheManager();
@@ -89,7 +85,6 @@ public class CacheManagerTest {
     c.close();
   }
 
-  @Test
   public void create_config_cache2k_types() {
     CachingProvider p = getCachingProvider();
     CacheManager cm = p.getCacheManager();
@@ -105,7 +100,6 @@ public class CacheManagerTest {
     c.close();
   }
 
-  @Test
   public void create_cache2k_config_nowrap() {
     CachingProvider p = getCachingProvider();
     CacheManager cm = p.getCacheManager();
@@ -123,7 +117,6 @@ public class CacheManagerTest {
     cache.close();
   }
 
-  @Test
   public void create_cache2k_config_wrap() {
     CachingProvider p = getCachingProvider();
     CacheManager cm = p.getCacheManager();
@@ -139,7 +132,6 @@ public class CacheManagerTest {
     cache.close();
   }
 
-  @Test
   public void create_cache2k_config_key_type_mismatch() {
     assertThatCode(() -> {
       CachingProvider p = Caching.getCachingProvider();
@@ -150,7 +142,6 @@ public class CacheManagerTest {
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void create_cache2k_config_value_type_mismatch() {
     assertThatCode(() -> {
       CachingProvider p = Caching.getCachingProvider();
@@ -161,7 +152,6 @@ public class CacheManagerTest {
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void no_online_listener_attachment_with_cache2k_defaults() {
     assertThatCode(() -> {
       CachingProvider p = Caching.getCachingProvider();
@@ -194,7 +184,6 @@ public class CacheManagerTest {
     }).isInstanceOf(UnsupportedOperationException.class);
   }
 
-  @Test
   public void testIllegalURI1() {
     assertThatCode(() -> {
       CachingProvider p = Caching.getCachingProvider();
@@ -202,7 +191,6 @@ public class CacheManagerTest {
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void testIllegalURI2() {
     assertThatCode(() -> {
       CachingProvider p = Caching.getCachingProvider();
@@ -210,7 +198,6 @@ public class CacheManagerTest {
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void testIllegalURI3() {
     assertThatCode(() -> {
       CachingProvider p = Caching.getCachingProvider();

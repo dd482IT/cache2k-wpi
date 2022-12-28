@@ -37,7 +37,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  */
 public class ThreadingStressTesterTest {
 
-  @Test
   public void initial() {
     ThreadingStressTester tst = new ThreadingStressTester();
     assertThat(tst.getTestTimeMillis()).isEqualTo(1000);
@@ -48,7 +47,6 @@ public class ThreadingStressTesterTest {
     assertThat(tst.getStopTime()).isGreaterThanOrEqualTo(t0);
   }
 
-  @Test
   public void params() {
     ThreadingStressTester tst = new ThreadingStressTester();
     assertThat(tst.getTestTimeMillis()).isEqualTo(1000);
@@ -62,7 +60,6 @@ public class ThreadingStressTesterTest {
 
   }
 
-  @Test
   public void oneshot() {
     AtomicInteger count = new AtomicInteger();
     ThreadingStressTester tst = new ThreadingStressTester();
@@ -72,7 +69,6 @@ public class ThreadingStressTesterTest {
     assertThat(count.get()).isEqualTo(4);
   }
 
-  @Test
   public void exception() {
     ThreadingStressTester tst = new ThreadingStressTester();
     tst.addTask(() -> { throw new ExpectedException(); });
@@ -81,7 +77,6 @@ public class ThreadingStressTesterTest {
       .getRootCause().isInstanceOf(ExpectedException.class);
   }
 
-  @Test
   public void onError() {
     AtomicInteger count = new AtomicInteger();
     ThreadingStressTester tst = new ThreadingStressTester();
@@ -93,7 +88,6 @@ public class ThreadingStressTesterTest {
     assertThat(count.get()).isEqualTo(1);
   }
 
-  @Test
   public void onFinal() {
     AtomicInteger count = new AtomicInteger();
     ThreadingStressTester tst = new ThreadingStressTester();
@@ -104,7 +98,6 @@ public class ThreadingStressTesterTest {
     assertThat(count.get()).isEqualTo(1);
   }
 
-  @Test
   public void onFinalWithException() {
     AtomicInteger count = new AtomicInteger();
     ThreadingStressTester tst = new ThreadingStressTester();
@@ -116,7 +109,6 @@ public class ThreadingStressTesterTest {
     assertThat(count.get()).isEqualTo(1);
   }
 
-  @Test
   public void interrupted() {
     ThreadingStressTester tst = new ThreadingStressTester();
     tst.setDoNotInterrupt(true);
@@ -126,7 +118,6 @@ public class ThreadingStressTesterTest {
       .getRootCause().isInstanceOf(InterruptedException.class);
   }
 
-  @Test
   public void anyException() {
     ThreadingStressTester tst = new ThreadingStressTester();
     tst.setDoNotInterrupt(true);
@@ -136,7 +127,6 @@ public class ThreadingStressTesterTest {
       .getRootCause().isInstanceOf(IOException.class);
   }
 
-  @Test
   public void testTime0AndInterrupt() {
     ThreadingStressTester tst = new ThreadingStressTester();
     tst.addExceptionalTask(() -> Thread.sleep(99999999));
@@ -144,7 +134,6 @@ public class ThreadingStressTesterTest {
     tst.run();
   }
 
-  @Test
   public void testTime0WithTimeout() {
     ThreadingStressTester tst = new ThreadingStressTester();
     tst.setErrorOutput(new PrintStream(new ByteArrayOutputStream()));
@@ -160,7 +149,6 @@ public class ThreadingStressTesterTest {
       .isInstanceOf(ThreadingStressTester.TimeoutThreadingStressTestException.class);
   }
 
-  @Test
   public void oneShotTimeout() {
     ThreadingStressTester tst = new ThreadingStressTester();
     tst.addExceptionalTask(() -> Thread.sleep(99999999));
@@ -171,7 +159,6 @@ public class ThreadingStressTesterTest {
       .isInstanceOf(ThreadingStressTester.TimeoutThreadingStressTestException.class);
   }
 
-  @Test
   public void mainThreadInterrupted() {
     Thread.currentThread().interrupt();
     ThreadingStressTester tst = new ThreadingStressTester();
@@ -180,7 +167,6 @@ public class ThreadingStressTesterTest {
   }
 
   @SuppressWarnings("StatementWithEmptyBody")
-  @Test
   public void busyLoop() {
     ThreadingStressTester tst = new ThreadingStressTester();
     tst.setTestTimeMillis(0);

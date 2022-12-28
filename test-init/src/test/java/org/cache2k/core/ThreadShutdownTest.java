@@ -52,7 +52,6 @@ public class ThreadShutdownTest {
     return cache2kThreadCount;
   }
 
-  @Test
   public void testWithExpiry() throws InterruptedException {
     Cache cache = forUnknownTypes().expireAfterWrite(5, MINUTES).build();
     cache.put(1, 3);

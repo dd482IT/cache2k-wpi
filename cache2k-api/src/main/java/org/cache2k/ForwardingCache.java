@@ -44,7 +44,7 @@ public abstract class ForwardingCache<K, V> implements Cache<K, V> {
    * Subclasses need to implement this method which specifies the delegation
    * target.
    */
-  protected abstract @NonNull Cache<K, V> delegate();
+  protected abstract Cache<K, V> delegate();
 
   @Override
   public String getName() {
@@ -52,22 +52,22 @@ public abstract class ForwardingCache<K, V> implements Cache<K, V> {
   }
 
   @Override
-  public @Nullable V get(K key) {
+  public V get(K key) {
     return delegate().get(key);
   }
 
   @Override
-  public @Nullable CacheEntry<K, V> getEntry(K key) {
+  public CacheEntry<K, V> getEntry(K key) {
     return delegate().getEntry(key);
   }
 
   @Override
-  public @Nullable V peek(K key) {
+  public V peek(K key) {
     return delegate().peek(key);
   }
 
   @Override
-  public @Nullable CacheEntry<K, V> peekEntry(K key) {
+  public CacheEntry<K, V> peekEntry(K key) {
     return delegate().peekEntry(key);
   }
 
@@ -92,7 +92,7 @@ public abstract class ForwardingCache<K, V> implements Cache<K, V> {
   }
 
   @Override
-  public @Nullable V peekAndReplace(K key, V value) {
+  public V peekAndReplace(K key, V value) {
     return delegate().peekAndReplace(key, value);
   }
 
@@ -107,7 +107,7 @@ public abstract class ForwardingCache<K, V> implements Cache<K, V> {
   }
 
   @Override
-  public @Nullable V peekAndRemove(K key) {
+  public V peekAndRemove(K key) {
     return delegate().peekAndRemove(key);
   }
 
@@ -132,7 +132,7 @@ public abstract class ForwardingCache<K, V> implements Cache<K, V> {
   }
 
   @Override
-  public @Nullable V peekAndPut(K key, V value) {
+  public V peekAndPut(K key, V value) {
     return delegate().peekAndPut(key, value);
   }
 
@@ -153,7 +153,7 @@ public abstract class ForwardingCache<K, V> implements Cache<K, V> {
 
   @SuppressWarnings("ConstantConditions")
   @Override
-  public <@Nullable R> @Nullable R invoke(K key, EntryProcessor<K, V, R> processor) {
+  public <R> R invoke(K key, EntryProcessor<K, V, R> processor) {
     return delegate().invoke(key, processor);
   }
 
@@ -163,7 +163,7 @@ public abstract class ForwardingCache<K, V> implements Cache<K, V> {
   }
 
   @Override
-  public <@Nullable R> Map<K, EntryProcessingResult<R>> invokeAll(
+  public <R> Map<K, EntryProcessingResult<R>> invokeAll(
     Iterable<? extends K> keys, EntryProcessor<K, V, R> entryProcessor) {
     return delegate().invokeAll(keys, entryProcessor);
   }

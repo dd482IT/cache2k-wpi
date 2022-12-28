@@ -45,7 +45,6 @@ import org.junit.experimental.categories.Category;
  * @see <a href="https://github.com/cache2k/cache2k/issues/174">Github issue #174</a>
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class MapTest extends TestCase {
 
   public static Test suite() {

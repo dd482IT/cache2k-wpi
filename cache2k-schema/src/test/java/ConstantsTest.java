@@ -29,7 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class ConstantsTest {
 
-  @Test
   public void test() {
     assertThat(Constants.SCHEMA_LOCATION).isNotNull();
   }

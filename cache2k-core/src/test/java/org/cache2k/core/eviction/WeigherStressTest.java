@@ -36,13 +36,11 @@ import static org.cache2k.test.core.TestingParameters.MAX_FINISH_WAIT_MILLIS;
 /**
  * @author Jens Wilke
  */
-@Category(SlowTests.class)
 public class WeigherStressTest extends TestingBase {
 
   /**
    * Insert and remove loop in parallel tasks
    */
-  @Test
   public void testParallelOnce() {
     final int count = 100000;
     final int threads = 4;
@@ -77,7 +75,6 @@ public class WeigherStressTest extends TestingBase {
   /**
    * Insert remove in separate tasks and a cleanup run at the end
    */
-  @Test
   public void testInsertRemoveSeparate() {
     final int count = 100000;
     final int threads = 4;
@@ -120,7 +117,6 @@ public class WeigherStressTest extends TestingBase {
   /**
    * Insert remove in separate tasks and a cleanup run at the end
    */
-  @Test
   public void testInsertAndEvict() {
     final int count = 100000;
     final int threads = 4;

@@ -75,7 +75,6 @@ public class CacheListenerTest extends CacheTestSupport<Long, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass()) {
 
     /* (non-Javadoc)
@@ -91,7 +90,6 @@ public class CacheListenerTest extends CacheTestSupport<Long, String> {
     }
   };
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Long.class, String.class);
   }
@@ -127,7 +125,6 @@ public class CacheListenerTest extends CacheTestSupport<Long, String> {
   /**
    * Clean up the {@link CacheManager} and {@link Cache} after a test.
    */
-  @After
   public void onAfterEachTest() {
     //destroy the cache
     String cacheName = cache.getName();
@@ -143,7 +140,6 @@ public class CacheListenerTest extends CacheTestSupport<Long, String> {
   /**
    * Check the listener is getting reads
    */
-  @Test
   public void testCacheEntryListener() {
     assertEquals(0, listener.getCreated());
     assertEquals(0, listener.getUpdated());
@@ -226,7 +222,6 @@ public class CacheListenerTest extends CacheTestSupport<Long, String> {
   /**
    * Check the listener is only throwing CacheException
    */
-  @Test
   public void testBrokenCacheEntryListener() {
 
     // remove standard listener.
@@ -332,7 +327,6 @@ public class CacheListenerTest extends CacheTestSupport<Long, String> {
   /**
    * Check the listener doesn't get removes from a cache.clear
    */
-  @Test
   public void testCacheClearListener() {
     assertEquals(0, listener.getCreated());
     assertEquals(0, listener.getUpdated());
@@ -368,7 +362,6 @@ public class CacheListenerTest extends CacheTestSupport<Long, String> {
  *
  * @throws InterruptedException
  */
-@Test
 public void testFilteredListener() throws InterruptedException {
   // remove standard listener.
   cacheEntryListenerServer.removeCacheEventListener(this.listener);
@@ -472,7 +465,6 @@ public void testFilteredListener() throws InterruptedException {
   assertEquals(2, filteredListener.getRemoved());
 }
 
-  @Test
   public void  testDynamicRegistration() {
 
     assertEquals(1, getConfigurationCacheEntryListenerConfigurationSize(cache));
@@ -501,7 +493,6 @@ public void testFilteredListener() throws InterruptedException {
     }
   }
 
-  @Test(expected = NullPointerException.class)
   public void testDeregistration_nullParameter() {
     cache.deregisterCacheEntryListener(null);
   }
@@ -515,7 +506,6 @@ public void testFilteredListener() throws InterruptedException {
     return i;
   }
 
-  @Test
   public void  testDeregistration() {
 
     assertEquals(1, getConfigurationCacheEntryListenerConfigurationSize(cache));

@@ -50,7 +50,7 @@ public class EntryProcessorCacheWrapper<K, V> extends ForwardingCache<K, V> {
    * Not replaced by entry processor invocation.
    */
   @Override
-  public @Nullable V get(K key) {
+  public V get(K key) {
     return super.get(key);
   }
 
@@ -58,7 +58,7 @@ public class EntryProcessorCacheWrapper<K, V> extends ForwardingCache<K, V> {
    * Not replaced by entry processor invocation.
    */
   @Override
-  public @Nullable V peek(K key) {
+  public V peek(K key) {
     EntryProcessor<K, V, V> p = e -> {
       if (!e.exists()) {
         return null;

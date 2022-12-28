@@ -50,10 +50,8 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass());
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Long.class, String.class);
   }
@@ -63,7 +61,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     return new MutableConfiguration<Long, String>().setTypes(Long.class, String.class);
   }
 
-  @Test
   public void replace_3arg_Closed() {
     cache.close();
     try {
@@ -74,7 +71,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void replace_3arg_NullKey() {
     try {
       assertFalse(cache.replace(null, "1", "2"));
@@ -84,7 +80,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void replace_3arg_NullValue1() {
     try {
       assertFalse(cache.replace(1L, null, "2"));
@@ -94,7 +89,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void replace_3arg_NullValue2() {
     try {
       assertFalse(cache.replace(1L, "1", null));
@@ -104,14 +98,12 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void replace_3arg_Missing() {
     Long key = System.currentTimeMillis();
     assertFalse(cache.replace(key, "1", "2"));
     assertFalse(cache.containsKey(key));
   }
 
-  @Test
   public void replace_3arg() throws Exception {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -121,7 +113,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     assertEquals(nextValue, cache.get(key));
   }
 
-  @Test
   public void replace_3arg_Equal() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -131,7 +122,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     assertEquals(nextValue, cache.get(key));
   }
 
-  @Test
   public void replace_3arg_Different() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -142,7 +132,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     assertEquals(value, cache.get(key));
   }
 
-  @Test
   public void replace_2arg_Closed() {
     cache.close();
     try {
@@ -153,7 +142,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void replace_2arg_NullKey() {
     try {
       assertFalse(cache.replace(null, ""));
@@ -163,7 +151,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void replace_2arg_NullValue() {
     try {
       assertFalse(cache.replace(1L, null));
@@ -173,14 +160,12 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void replace_2arg_Missing() throws Exception {
     Long key = System.currentTimeMillis();
     assertFalse(cache.replace(key, ""));
     assertFalse(cache.containsKey(key));
   }
 
-  @Test
   public void replace_2arg() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;
@@ -190,7 +175,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     assertEquals(nextValue, cache.get(key));
   }
 
-  @Test
   public void getAndReplace_Closed() {
     cache.close();
     try {
@@ -201,7 +185,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAndReplace_NullKey() {
     try {
       assertNull(cache.getAndReplace(null, ""));
@@ -211,7 +194,6 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAndReplace_NullValue() {
     try {
       assertNull(cache.getAndReplace(1L, null));
@@ -221,14 +203,12 @@ public class ReplaceTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAndReplace_Missing() {
     Long key = System.currentTimeMillis();
     assertNull(cache.getAndReplace(key, ""));
     assertFalse(cache.containsKey(key));
   }
 
-  @Test
   public void getAndReplace() {
     Long key = System.currentTimeMillis();
     String value = "value" + key;

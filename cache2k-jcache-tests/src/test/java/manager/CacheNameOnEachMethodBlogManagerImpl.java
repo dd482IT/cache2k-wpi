@@ -58,7 +58,6 @@ public class CacheNameOnEachMethodBlogManagerImpl implements BlogManager {
   /**
    *
    */
-  @CacheResult(cacheName = "blogManager")
   public Blog getEntryCached(String title) {
     return map.get(title);
   }
@@ -75,7 +74,6 @@ public class CacheNameOnEachMethodBlogManagerImpl implements BlogManager {
    *
    * @see manager.BlogManager#clearEntryFromCache(java.lang.String)
    */
-  @CacheRemove(cacheName = "blogManager")
   public void clearEntryFromCache(String title) {
   }
 
@@ -93,7 +91,6 @@ public class CacheNameOnEachMethodBlogManagerImpl implements BlogManager {
    *
    * @see manager.BlogManager#clearCache()
    */
-  @CacheRemoveAll(cacheName = "blogManager")
   public void clearCache() {
   }
 
@@ -109,8 +106,7 @@ public class CacheNameOnEachMethodBlogManagerImpl implements BlogManager {
   /**
    *
    */
-  @CacheResult(cacheName = "blogManager")
-  public Blog getEntryCached(String randomArg, @CacheKey String title, String randomArg2) {
+  public Blog getEntryCached(String randomArg, String title, String randomArg2) {
     return map.get(title);
   }
 

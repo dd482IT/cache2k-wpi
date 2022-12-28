@@ -62,7 +62,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public ExcludeListExcluder rule = new ExcludeListExcluder(this.getClass());
 
   /**
@@ -85,7 +84,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * Configure write-through before each test.
    */
-  @Before
   public void onBeforeEachTest() throws IOException {
     // establish and open a CacheWriterServer to handle cache
     // cache loading requests from a CacheWriterClient
@@ -110,7 +108,6 @@ public class CacheWriterTest extends TestSupport {
     cache = getCacheManager().getCache("cache-writer-test", Integer.class, String.class);
   }
 
-  @After
   public void cleanup() {
 
     // destroy the cache
@@ -124,7 +121,6 @@ public class CacheWriterTest extends TestSupport {
     cache = null;
   }
 
-  @Test
   public void shouldNotWriteThroughCallingContainsKeyOnExistingKey() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -139,7 +135,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(0, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldNotInvokeWriteThroughCallingContainsKeyOnMissingKey() {
 
     // containsKey returns false case.
@@ -150,7 +145,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(0, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldNotInvokeWriteThroughCallingGetOnMissingEntry() {
 
     // get returns null case.
@@ -161,7 +155,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(0, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldNotInvokeWriteThroughCallingGetOnExistingEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -177,7 +170,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(0, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldNotInvokeWriteThroughCallingGetAll() {
     int NUM_KEYS = 4;
     Set<Integer> keys = new HashSet<>();
@@ -207,7 +199,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(0, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldWriteThroughUsingGetAndPut_SingleEntryMultipleTimes() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -221,7 +212,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Gudday World", cacheWriter.get(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingGetAndPut_DifferentEntries() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -242,7 +232,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Hello World", cacheWriter.get(3));
   }
 
-  @Test
   public void shouldWriteThroughUsingGetAndRemove_MissingSingleEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -254,7 +243,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(1, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldWriteThroughUsingGetAndRemove_ExistingSingleEntry() {
     int nDelete = 0;
     assertEquals(0, cacheWriter.getWriteCount());
@@ -271,7 +259,6 @@ public class CacheWriterTest extends TestSupport {
     assertFalse(cacheWriter.hasWritten(1));
   }
 
-  @Test
   public void shouldNotWriteThroughUsingGetAndReplace_MissingSingleEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -284,7 +271,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(0, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldWriteThroughUsingGetAndReplace_ExistingSingleEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -299,7 +285,6 @@ public class CacheWriterTest extends TestSupport {
     assertTrue(cacheWriter.hasWritten(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingGetAndReplace_SingleEntryMultipleTimes() {
     int nWrite = 0;
     assertEquals(0, cacheWriter.getWriteCount());
@@ -336,7 +321,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Hello World", cacheWriter.get(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingInvoke_setValue_CreateEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -348,7 +332,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Gudday World", cacheWriter.get(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingInvokeAll_setValue_CreateEntry() {
     final String VALUE_PREFIX = "value_";
     final int NUM_KEYS = 10;
@@ -373,7 +356,6 @@ public class CacheWriterTest extends TestSupport {
     }
   }
 
-  @Test
   public void shouldWriteThroughUsingInvoke_setValue_UpdateEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -386,7 +368,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Hello World", cacheWriter.get(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingInvokeAll_setValue_UpdateEntry() {
     final String VALUE_PREFIX_ORIGINAL = "value_";
     final String VALUE_PREFIX_UPDATED = "updateValue_";
@@ -413,7 +394,6 @@ public class CacheWriterTest extends TestSupport {
     }
   }
 
-  @Test
   public void shouldWriteThroughUsingInvoke_remove() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -426,7 +406,6 @@ public class CacheWriterTest extends TestSupport {
     assertFalse(cacheWriter.hasWritten(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingInvokeAll_setValue_RemoveEntry() {
     final String VALUE_PREFIX = "value_";
     final int NUM_KEYS = 10;
@@ -454,7 +433,6 @@ public class CacheWriterTest extends TestSupport {
     }
   }
 
-  @Test
   public void shouldWriteThroughUsingInvoke_remove_nonExistingEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -465,7 +443,6 @@ public class CacheWriterTest extends TestSupport {
     assertFalse(cacheWriter.hasWritten(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingInvoke_remove_createEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -484,7 +461,6 @@ public class CacheWriterTest extends TestSupport {
     assertTrue(cacheWriter.hasWritten(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingInvoke_setValue_CreateEntryThenRemove() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -503,7 +479,6 @@ public class CacheWriterTest extends TestSupport {
     assertFalse(cache.containsKey(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingInvoke_setValue_CreateEntryGetValue() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -523,7 +498,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Gudday World", cacheWriter.get(1));
   }
 
-  @Test
   public void shouldNotWriteThroughUsingIterator() {
     final String VALUE_PREFIX = "value_";
     final int NUMBER_OF_KEYS = 10;
@@ -554,7 +528,6 @@ public class CacheWriterTest extends TestSupport {
    * Test constraint that cache is not mutated when CacheWriterException is thrown by
    * {@link javax.cache.integration.CacheWriter#write(javax.cache.Cache.Entry)}
    */
-  @Test
   public void shouldNotPutWhenWriteThroughFails() {
     cacheWriterServer.setCacheWriter(new FailingCacheWriter<Integer, String>());
 
@@ -572,7 +545,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void shouldNotPutViaGetAndPutWhenWriteThroughFails() {
     cacheWriterServer.setCacheWriter(new FailingCacheWriter<Integer, String>());
     try {
@@ -587,7 +559,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void shouldNotPutViaPutIfAbsentWhenWriteThroughFails() {
     cacheWriterServer.setCacheWriter(new FailingCacheWriter<Integer, String>());
     try {
@@ -599,7 +570,6 @@ public class CacheWriterTest extends TestSupport {
     assertFalse(cache.containsKey(1));
   }
 
-  @Test
   public void shouldWriteThoughUsingPutSingleEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -612,7 +582,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Gudday World", cacheWriter.get(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingPutSingleEntryMultipleTimes() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -627,7 +596,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Hello World", cacheWriter.get(1));
   }
 
-  @Test
   public void shouldWriteThroughUsingPutOfDifferentEntries() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -649,7 +617,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Hello World", cacheWriter.get(3));
   }
 
-  @Test
   public void shouldWriteThoughUsingPutAll() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -686,7 +653,6 @@ public class CacheWriterTest extends TestSupport {
     }
   }
 
-  @Test
   public void shouldWriteThoughUsingPutAll_partialSuccess() {
     cacheWriter = new BatchPartialSuccessRecordingClassWriter<>(3, 100);
     cacheWriterServer.setCacheWriter(cacheWriter);
@@ -730,7 +696,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(0, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldWriteThoughUsingPutIfAbsent_SingleEntryMultipleTimes() {
     int nWrite = 0;
     assertEquals(0, cacheWriter.getWriteCount());
@@ -752,7 +717,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Gudday World", cacheWriter.get(1));
   }
 
-  @Test
   public void shouldWriteThroughRemoveNonexistentKey() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -762,7 +726,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(1, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldWriteThroughRemove_SingleEntry() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -781,7 +744,6 @@ public class CacheWriterTest extends TestSupport {
    * Test constraint that cache is not mutated when CacheWriterException is thrown by
    * {@link javax.cache.integration.CacheWriter#delete(Object)}
    */
-  @Test
   public void shouldNotRemoveWhenWriteThroughFails() {
     cache.put(1, "Gudday World");
     assertTrue(cache.containsKey(1));
@@ -802,7 +764,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void shouldNotRemoveViaRemoveTwoArgWhenWriteThroughFails() {
     cache.put(1, "Gudday World");
     assertTrue(cache.containsKey(1));
@@ -819,7 +780,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void shouldNotRemoveViaGetAndRemoveWhenWriteThroughFails() {
     cache.put(1, "Gudday World");
     assertTrue(cache.containsKey(1));
@@ -836,7 +796,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void shouldNotModifyViaReplaceWhenWriteThroughFails() {
     cache.put(1, "Gudday World");
     assertTrue(cache.containsKey(1));
@@ -853,7 +812,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void shouldNotModifyViaReplaceTwoArgWhenWriteThroughFails() {
     cache.put(1, "Gudday World");
     assertTrue(cache.containsKey(1));
@@ -870,7 +828,6 @@ public class CacheWriterTest extends TestSupport {
   /**
    * @since cache2k-jcache-tests
    */
-  @Test
   public void shouldNotModifyViaGetAndReplaceWhenWriteThroughFails() {
     cache.put(1, "Gudday World");
     assertTrue(cache.containsKey(1));
@@ -884,7 +841,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals("Gudday World", cache.get(1));
   }
 
-  @Test
   public void shouldWriteThroughRemove_SingleEntryMultipleTimes() {
     int nDelete = 0;
     assertEquals(0, cacheWriter.getWriteCount());
@@ -907,7 +863,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(nDelete, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldWriteThroughRemove_SpecificEntry() {
     int nDelete = 0;
 
@@ -931,7 +886,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(1, cacheWriter.getWriteCount());
   }
 
-  @Test
   public void shouldWriteThroughCacheIteratorRemove() {
     int nDelete = 0;
     assertEquals(0, cacheWriter.getWriteCount());
@@ -955,7 +909,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(nDelete, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldWriteThroughRemoveAll() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -1013,7 +966,6 @@ public class CacheWriterTest extends TestSupport {
     }
   }
 
-  @Test
   public void shouldWriteThroughRemoveAll_partialSuccess() {
     cacheWriter = new BatchPartialSuccessRecordingClassWriter<>(100, 3);
     cacheWriterServer.setCacheWriter(cacheWriter);
@@ -1068,7 +1020,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(numSuccess, cacheWriter.getDeleteCount());
   }
 
-  @Test
   public void shouldUseWriteThroughRemoveAllSpecific() {
     assertEquals(0, cacheWriter.getWriteCount());
     assertEquals(0, cacheWriter.getDeleteCount());
@@ -1122,7 +1073,6 @@ public class CacheWriterTest extends TestSupport {
     assertTrue(cache.containsKey(4));
   }
 
-  @Test
   public void shouldWriteThroughRemoveAllSpecific_partialSuccess() {
     cacheWriter = new BatchPartialSuccessRecordingClassWriter<>(100, 3);
     cacheWriterServer.setCacheWriter(cacheWriter);
@@ -1189,7 +1139,6 @@ public class CacheWriterTest extends TestSupport {
    * Write-through Test for  method
    * boolean replace(K key, V value)
    */
-  @Test
   public void shouldNotWriteThroughReplaceNonExistentKey() {
     int nWrites = 0;
     assertEquals(nWrites, cacheWriter.getWriteCount());
@@ -1206,7 +1155,6 @@ public class CacheWriterTest extends TestSupport {
    * Write-through Test for  method
    * boolean replace(K key, V value)
    */
-  @Test
   public void shouldWriteThroughReplaceExisting_SingleEntryMultipleTimes() {
     int nWrites = 0;
     assertEquals(nWrites, cacheWriter.getWriteCount());
@@ -1238,7 +1186,6 @@ public class CacheWriterTest extends TestSupport {
    * Write-through Test for  method
    * boolean replace(K key, V oldValue, V newValue)
    */
-  @Test
   public void shouldNotUseWriteThroughReplaceDoesNotMatch() {
     int nWriter = 0;
     assertEquals(nWriter, cacheWriter.getWriteCount());
@@ -1258,7 +1205,6 @@ public class CacheWriterTest extends TestSupport {
     assertEquals(cache.get(1), cacheWriter.get(1));
   }
 
-  @Test
   public void shouldWrapWriterExceptions() throws IOException {
     //we need to create a custom writer
     cleanup();

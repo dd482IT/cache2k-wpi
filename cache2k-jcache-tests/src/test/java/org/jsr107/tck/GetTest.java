@@ -59,11 +59,9 @@ public class GetTest extends CacheTestSupport<Long, String> {
   /**
    * Rule used to exclude tests
    */
-  @Rule
   public MethodRule rule = new ExcludeListExcluder(this.getClass());
 
 
-  @Before
   public void moreSetUp() {
     cache = getCacheManager().getCache(getTestCacheName(), Long.class, String.class);
   }
@@ -73,7 +71,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     return new MutableConfiguration<Long, String>().setTypes(Long.class, String.class);
   }
 
-  @Test
   public void get_Closed() {
     cache.close();
     try {
@@ -84,7 +81,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void get_NullKey() {
     try {
       assertNull(cache.get(null));
@@ -94,7 +90,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void get_NotExisting() {
     Long existingKey = System.currentTimeMillis();
     String existingValue = "value" + existingKey;
@@ -104,7 +99,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     assertNull(cache.get(key1));
   }
 
-  @Test
   public void get_Existing() {
     Long existingKey = System.currentTimeMillis();
     String existingValue = "value" + existingKey;
@@ -112,7 +106,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     assertEquals(existingValue, cache.get(existingKey));
   }
 
-  @Test
   public void get_Existing_NotSameKey() {
     Long existingKey = System.currentTimeMillis();
     String existingValue = "value" + existingKey;
@@ -120,7 +113,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     assertEquals(existingValue, cache.get(new Long(existingKey)));
   }
 
-  @Test
   public void getAll_Closed() {
     cache.close();
     try {
@@ -131,7 +123,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAll_Null() {
     try {
       cache.getAll(null);
@@ -141,7 +132,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAll_NullKey() {
     HashSet<Long> keys = new HashSet<Long>();
     keys.add(1L);
@@ -155,7 +145,6 @@ public class GetTest extends CacheTestSupport<Long, String> {
     }
   }
 
-  @Test
   public void getAll() {
     ArrayList<Long> keysInCache = new ArrayList<Long>();
     keysInCache.add(1L);

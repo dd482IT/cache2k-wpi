@@ -37,7 +37,6 @@ public class Slf4jLogTest {
   /**
    * Expect Slf4j is active
    */
-  @Test
   public void usingSlf4j() {
     assertThat(Log.getLog("any").getClass()).isEqualTo(Log.Slf4jLogger.class);
   }
@@ -45,7 +44,6 @@ public class Slf4jLogTest {
   /**
    * Test all relevant log methods via a simple proxy
    */
-  @Test
   public void slf4jAdapter() {
     InvocationsRecorder recorder = new InvocationsRecorder();
     Log log = new Log.Slf4jLogger(recorder.getProxy(Logger.class));

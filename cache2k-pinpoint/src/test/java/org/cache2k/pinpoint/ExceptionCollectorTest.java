@@ -32,7 +32,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  */
 public class ExceptionCollectorTest {
 
-  @Test
   public void initial() {
     ExceptionCollector collector = new ExceptionCollector();
     collector.assertNoException();
@@ -40,7 +39,6 @@ public class ExceptionCollectorTest {
     assertThat(collector.getExceptionCount()).isEqualTo(0);
   }
 
-  @Test
   public void oneException() {
     ExceptionCollector collector = new ExceptionCollector();
     ExpectedException exception = new ExpectedException();
@@ -52,7 +50,6 @@ public class ExceptionCollectorTest {
       .hasMessageContaining("No exception expected, 1 exceptions, first one propagated");
   }
 
-  @Test
   public void twoExceptions() {
     ExceptionCollector collector = new ExceptionCollector();
     ExpectedException exception = new ExpectedException();

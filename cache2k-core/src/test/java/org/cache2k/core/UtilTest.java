@@ -36,7 +36,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  */
 public class UtilTest {
 
-  @Test
   public void waitFor() {
     CompletableFuture<Void> uncompleted = new CompletableFuture<>();
     Thread.currentThread().interrupt();

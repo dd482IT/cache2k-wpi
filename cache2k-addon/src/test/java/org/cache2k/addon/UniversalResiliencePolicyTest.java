@@ -43,8 +43,8 @@ import static org.cache2k.addon.UniversalResiliencePolicy.supplier;
  */
 public class UniversalResiliencePolicyTest {
 
-  @Nullable Cache<Integer, Integer> cache;
-  @Nullable UniversalResiliencePolicy<?, ?> policy;
+  Cache<Integer, Integer> cache;
+  UniversalResiliencePolicy<?, ?> policy;
   boolean nextLoadThrowsException;
 
   int load(int k) {
@@ -54,7 +54,6 @@ public class UniversalResiliencePolicyTest {
     return k;
   }
 
-  @AfterEach
   public void tearDown() {
     if (cache != null) {
       cache.close();
@@ -83,7 +82,6 @@ public class UniversalResiliencePolicyTest {
   }
 
   /* Set supplier and add config section in two commands */
-  @Test
   public void configVariant_setSupplier() {
     cache = builder()
       .set(cfg -> cfg.setResiliencePolicy(UniversalResiliencePolicy.supplier()))
@@ -94,7 +92,6 @@ public class UniversalResiliencePolicyTest {
   }
 
   /* An exhausting set of alternatives to enable the policy and disable it. */
-  @Test
   public void configVariant_enableDisable() {
     cache = builder()
       .set(cfg -> cfg.setResiliencePolicy(UniversalResiliencePolicy.supplier()))
@@ -105,7 +102,6 @@ public class UniversalResiliencePolicyTest {
   }
 
   /* enable and add config section in single command */
-  @Test
   public void configVariant_singleApply() {
     cache = builder()
       .setupWith(UniversalResiliencePolicy::enable, b -> b
@@ -118,7 +114,6 @@ public class UniversalResiliencePolicyTest {
    * Enable the resilience in a global section, set some defaults and
    * overwrite the values again later.
    */
-  @Test
   public void configVariant_overwrites() {
       cache = builder()
         .setupWith(UniversalResiliencePolicy::enable, b -> b
@@ -141,7 +136,6 @@ public class UniversalResiliencePolicyTest {
    * If expiry is set to 0, everything expires immediately and nothing will be cached,
    * including exceptions. The resilience policy is not created, since it would have no effect.
    */
-  @Test
   public void expiry0_any() {
     cache = new Cache2kBuilder<Integer, Integer>() { }
       .setup(UniversalResiliencePolicy::enable)
@@ -154,7 +148,6 @@ public class UniversalResiliencePolicyTest {
     assertThat(cache.containsKey(1)).isFalse();
   }
 
-  @Test
   public void enableDisable() {
     cache = builder()
       .setup(UniversalResiliencePolicy::enable)
@@ -163,7 +156,6 @@ public class UniversalResiliencePolicyTest {
     assertThat(policy).isNull();
   }
 
-  @Test
   public void enableDisableViaResilience0() {
     cache = builder()
       .setup(UniversalResiliencePolicy::enable)
@@ -178,7 +170,6 @@ public class UniversalResiliencePolicyTest {
    * If no {@link Cache2kBuilder#expireAfterWrite(long, TimeUnit)} is set
    * resilience is not enabled even if the policy is added.
    */
-  @Test
   public void noExpiry_noResilienceParameters() {
     cache = builder()
       .set(cfg -> cfg.setResiliencePolicy(supplier()))
@@ -191,7 +182,6 @@ public class UniversalResiliencePolicyTest {
    * In case, for any reason, it is wanted that values are not cached, but exceptions
    * are, it is possible to specify an expiry policy with immediate expiry.
    */
-  @Test
   public void expiryPolicy() {
     cache = builder()
       .setup(UniversalResiliencePolicy::enable)
@@ -213,7 +203,6 @@ public class UniversalResiliencePolicyTest {
    * continuously receives exceptions, the retry intervals are
    * exponentially increased up to 10 minutes.
    */
-  @Test
   public void expiry10m() {
     cache = builder()
       .setup(UniversalResiliencePolicy::enable)
@@ -226,7 +215,6 @@ public class UniversalResiliencePolicyTest {
     assertThat(policy.getRetryInterval()).isEqualTo(MINUTES.toMillis(1));
   }
 
-  @Test
   public void expiry10m_duration30s() {
     cache = builder()
       .setupWith(UniversalResiliencePolicy::enable, b -> b
@@ -267,7 +255,6 @@ public class UniversalResiliencePolicyTest {
       .isGreaterThanOrEqualTo(t0 + SECONDS.toMillis(3));
   }
 
-  @Test
   public void expiry10m_retry10s() {
     cache = builder()
       .expireAfterWrite(10, MINUTES)
@@ -292,7 +279,6 @@ public class UniversalResiliencePolicyTest {
    * exception happens in this case it is suppressed for 30 seconds. A first retry
    * is done after 3 seconds.
    */
-  @Test
   public void eternal_duration30s() {
     cache = builder()
       .eternal(true)
@@ -318,7 +304,6 @@ public class UniversalResiliencePolicyTest {
    * exception happens in this case it is suppressed for 30 seconds. A first retry
    * is done after 3 seconds.
    */
-  @Test
   public void eternal_duration30s_retry10s() {
     cache = builder()
       .eternal(true)
@@ -339,7 +324,6 @@ public class UniversalResiliencePolicyTest {
    * is with a reload operation. In this case we do not want suppression, unless
    * specified explicitly.
    */
-  @Test
   public void eternal_retry10s() {
     cache = builder()
       .eternal(true)

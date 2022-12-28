@@ -40,19 +40,16 @@ import static org.assertj.core.api.Assertions.*;
 /**
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class IdleScanTest {
 
   static final long START_OFFSET_MILLIS = 1000;
 
-  @Test
   public void zeroScanTime() {
     assertThatCode(() ->
       Cache2kBuilder.forUnknownTypes().idleScanTime(0, MILLISECONDS)
       ).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void scanningTooSlow() throws InterruptedException {
     SimulatedClock clock = new SimulatedClock(true, START_OFFSET_MILLIS);
     Cache<Integer, Integer> cache =
@@ -76,14 +73,12 @@ public class IdleScanTest {
     assertThat(cache.toString()).contains("IDLE");
   }
 
-  @Test
   public void testIntervalCalculation() {
     assertThat(calculateWakeupIntervalTicks(1000, 10)).isEqualTo(100);
     assertThat(calculateWakeupIntervalTicks(1000, 1111)).isEqualTo(10);
     assertThat(calculateWakeupIntervalTicks(1000, 10_000)).isEqualTo(5);
   }
 
-  @Test
   public void stayIdle() throws InterruptedException {
     SimulatedClock clock = new SimulatedClock(true, START_OFFSET_MILLIS);
     Cache<Integer, Integer> cache =
@@ -101,7 +96,6 @@ public class IdleScanTest {
     cache.close();
   }
 
-  @Test
   public void idleScanTwoRounds() throws InterruptedException, ExecutionException {
     SimulatedClock clock = new SimulatedClock(true, START_OFFSET_MILLIS);
     Cache<Integer, Integer> cache =
@@ -130,7 +124,6 @@ public class IdleScanTest {
   /**
    * Check that there is compensation for removed entries and the scan is slowed down
    */
-  @Test
   public void idleScanTwoRoundsWithRemovals() throws InterruptedException, ExecutionException {
     SimulatedClock clock = new SimulatedClock(true, START_OFFSET_MILLIS);
     Cache<Integer, Integer> cache =

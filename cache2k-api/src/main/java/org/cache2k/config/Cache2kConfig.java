@@ -94,14 +94,14 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
   public static final long UNSET_LONG = -1;
 
   private boolean storeByReference;
-  private @Nullable String name;
+  private String name;
   private boolean nameWasGenerated;
-  private @Nullable CacheType<K> keyType;
-  private @Nullable CacheType<V> valueType;
+  private CacheType<K> keyType;
+  private CacheType<V> valueType;
   private long entryCapacity = UNSET_LONG;
-  private @Nullable Duration expireAfterWrite = null;
-  private @Nullable Duration idleScanTime = null;
-  private @Nullable Duration timerLag = null;
+  private Duration expireAfterWrite = null;
+  private Duration idleScanTime = null;
+  private Duration timerLag = null;
   private long maximumWeight = UNSET_LONG;
   private int loaderThreadCount;
 
@@ -119,33 +119,33 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
 
   private boolean externalConfigurationPresent = false;
 
-  private @Nullable CustomizationSupplier<? extends Executor> loaderExecutor;
-  private @Nullable CustomizationSupplier<? extends Executor> refreshExecutor;
-  private @Nullable CustomizationSupplier<? extends Executor> asyncListenerExecutor;
-  private @Nullable CustomizationSupplier<? extends Executor> executor;
-  private @Nullable
+  private CustomizationSupplier<? extends Executor> loaderExecutor;
+  private CustomizationSupplier<? extends Executor> refreshExecutor;
+  private CustomizationSupplier<? extends Executor> asyncListenerExecutor;
+  private CustomizationSupplier<? extends Executor> executor;
+  private 
     CustomizationSupplier<? extends ExpiryPolicy<? super K, ? super V>> expiryPolicy;
-  private @Nullable CustomizationSupplier<? extends TimeReference> timeReference;
-  private @Nullable CustomizationSupplier<? extends Scheduler> scheduler;
-  private @Nullable
+  private CustomizationSupplier<? extends TimeReference> timeReference;
+  private CustomizationSupplier<? extends Scheduler> scheduler;
+  private 
     CustomizationSupplier<? extends ResiliencePolicy<? super K, ? super V>> resiliencePolicy;
-  private @Nullable
+  private 
     CustomizationSupplier<? extends RefreshAheadPolicy<? super K, ? super V, ?>> refreshAheadPolicy;
-  private @Nullable CustomizationSupplier<? extends CacheWriter<K, V>> writer;
-  private @Nullable CustomizationSupplier<? extends CacheLoader<K, V>> loader;
-  private @Nullable CustomizationSupplier<? extends AdvancedCacheLoader<K, V>> advancedLoader;
-  private @Nullable CustomizationSupplier<? extends AsyncCacheLoader<K, V>> asyncLoader;
-  private @Nullable
+  private CustomizationSupplier<? extends CacheWriter<K, V>> writer;
+  private CustomizationSupplier<? extends CacheLoader<K, V>> loader;
+  private CustomizationSupplier<? extends AdvancedCacheLoader<K, V>> advancedLoader;
+  private CustomizationSupplier<? extends AsyncCacheLoader<K, V>> asyncLoader;
+  private 
     CustomizationSupplier<? extends ExceptionPropagator<? super K, ? super V>> exceptionPropagator;
-  private @Nullable CustomizationSupplier<? extends Weigher<K, V>> weigher;
-  private @Nullable Collection<CustomizationSupplier<CacheEntryOperationListener<K, V>>> listeners;
-  private @Nullable
+  private CustomizationSupplier<? extends Weigher<K, V>> weigher;
+  private Collection<CustomizationSupplier<CacheEntryOperationListener<K, V>>> listeners;
+  private 
     Collection<CustomizationSupplier<CacheEntryOperationListener<K, V>>> asyncListeners;
-  private @Nullable Collection<CustomizationSupplier<? extends CacheLifecycleListener>> lifecycleListeners;
-  private @Nullable Set<Feature> features;
-  private @Nullable SectionContainer sections;
-  private @Nullable CacheWrapper traceCacheWrapper;
-  private @Nullable CacheWrapper cacheWrapper;
+  private Collection<CustomizationSupplier<? extends CacheLifecycleListener>> lifecycleListeners;
+  private Set<Feature> features;
+  private SectionContainer sections;
+  private CacheWrapper traceCacheWrapper;
+  private CacheWrapper cacheWrapper;
 
   /**
    * Construct a config instance setting the type parameters and returning a
@@ -178,13 +178,13 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
   /**
    * @see Cache2kBuilder#name(String)
    */
-  public @Nullable String getName() { return name; }
+  public String getName() { return name; }
 
   /**
    *
    * @see Cache2kBuilder#name(String)
    */
-  public void setName(@Nullable String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
@@ -225,7 +225,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     this.refreshAhead = v;
   }
 
-  public @Nullable CacheType<K> getKeyType() {
+  public CacheType<K> getKeyType() {
     return keyType;
   }
 
@@ -233,7 +233,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    * @see Cache2kBuilder#keyType(CacheType)
    * @see CacheType for a general discussion on types
    */
-  public void setKeyType(@Nullable CacheType<K> v) {
+  public void setKeyType(CacheType<K> v) {
     if (v == null) {
       valueType = null;
       return;
@@ -244,7 +244,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     keyType = v;
   }
 
-  public @Nullable CacheType<V> getValueType() {
+  public CacheType<V> getValueType() {
     return valueType;
   }
 
@@ -252,7 +252,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    * @see Cache2kBuilder#valueType(CacheType)
    * @see CacheType for a general discussion on types
    */
-  public void setValueType(@Nullable CacheType<V> v) {
+  public void setValueType(CacheType<V> v) {
     if (v == null) {
       valueType = null;
       return;
@@ -263,7 +263,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     valueType = v;
   }
 
-  public @Nullable Duration getExpireAfterWrite() {
+  public Duration getExpireAfterWrite() {
     return expireAfterWrite;
   }
 
@@ -273,18 +273,18 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    *
    * @see Cache2kBuilder#expireAfterWrite(Duration)
    */
-  public void setExpireAfterWrite(@Nullable Duration v) {
+  public void setExpireAfterWrite(Duration v) {
     this.expireAfterWrite = durationCheckAndSanitize(v);
   }
 
-  public @Nullable Duration getIdleScanTime() {
+  public Duration getIdleScanTime() {
     return idleScanTime;
   }
 
   /**
    * @see Cache2kBuilder#idleScanTime(Duration) 
    */
-  public void setIdleScanTime(@Nullable Duration v) {
+  public void setIdleScanTime(Duration v) {
     if (v != null && Duration.ZERO.compareTo(v) >= 0) {
       throw new IllegalArgumentException("idleScanTime must be greater than 0");
     }
@@ -302,14 +302,14 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     this.eternal = v;
   }
 
-  public @Nullable Duration getTimerLag() {
+  public Duration getTimerLag() {
     return timerLag;
   }
 
   /**
    * @see Cache2kBuilder#timerLag(Duration)
    */
-  public void setTimerLag(@Nullable Duration v) {
+  public void setTimerLag(Duration v) {
     this.timerLag = durationCheckAndSanitize(v);
   }
 
@@ -378,15 +378,15 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     getSections().addAll(c);
   }
 
-  public @Nullable CustomizationSupplier<? extends CacheLoader<K, V>> getLoader() {
+  public CustomizationSupplier<? extends CacheLoader<K, V>> getLoader() {
     return loader;
   }
 
-  public void setLoader(@Nullable CustomizationSupplier<? extends CacheLoader<K, V>> v) {
+  public void setLoader(CustomizationSupplier<? extends CacheLoader<K, V>> v) {
     loader = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends AdvancedCacheLoader<K, V>> getAdvancedLoader() {
+  public CustomizationSupplier<? extends AdvancedCacheLoader<K, V>> getAdvancedLoader() {
     return advancedLoader;
   }
 
@@ -394,18 +394,18 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    * @see Cache2kBuilder#loader(AdvancedCacheLoader)
    */
   public void setAdvancedLoader(
-    @Nullable CustomizationSupplier<? extends AdvancedCacheLoader<K, V>> v) {
+    CustomizationSupplier<? extends AdvancedCacheLoader<K, V>> v) {
     advancedLoader = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends AsyncCacheLoader<K, V>> getAsyncLoader() {
+  public CustomizationSupplier<? extends AsyncCacheLoader<K, V>> getAsyncLoader() {
     return asyncLoader;
   }
 
   /**
    * @see Cache2kBuilder#loader(AsyncCacheLoader)
    */
-  public void setAsyncLoader(@Nullable CustomizationSupplier<? extends AsyncCacheLoader<K, V>> v) {
+  public void setAsyncLoader(CustomizationSupplier<? extends AsyncCacheLoader<K, V>> v) {
     asyncLoader = v;
   }
 
@@ -420,24 +420,24 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     loaderThreadCount = v;
   }
 
-  public @Nullable
+  public 
     CustomizationSupplier<? extends ExpiryPolicy<? super K, ? super V>> getExpiryPolicy() {
     return expiryPolicy;
   }
 
   public void setExpiryPolicy(
-    @Nullable CustomizationSupplier<? extends ExpiryPolicy<? super K, ? super V>> v) {
+    CustomizationSupplier<? extends ExpiryPolicy<? super K, ? super V>> v) {
     expiryPolicy = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends CacheWriter<K, V>> getWriter() {
+  public CustomizationSupplier<? extends CacheWriter<K, V>> getWriter() {
     return writer;
   }
 
   /**
    * @see Cache2kBuilder#writer(CacheWriter)
    */
-  public void setWriter(@Nullable CustomizationSupplier<? extends CacheWriter<K, V>> v) {
+  public void setWriter(CustomizationSupplier<? extends CacheWriter<K, V>> v) {
     writer = v;
   }
 
@@ -452,7 +452,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     storeByReference = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends ExceptionPropagator<? super K, ? super V>>
+  public CustomizationSupplier<? extends ExceptionPropagator<? super K, ? super V>>
     getExceptionPropagator() {
     return exceptionPropagator;
   }
@@ -461,7 +461,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    * @see Cache2kBuilder#exceptionPropagator(ExceptionPropagator)
    */
   public void setExceptionPropagator(
-    @Nullable CustomizationSupplier<? extends ExceptionPropagator<? super K, ? super V>> v) {
+    CustomizationSupplier<? extends ExceptionPropagator<? super K, ? super V>> v) {
     exceptionPropagator = v;
   }
 
@@ -475,7 +475,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    *
    * @return Mutable collection of listeners
    */
-  public @NonNull
+  public 
   Collection<CustomizationSupplier<CacheEntryOperationListener<K, V>>> getListeners() {
     if (listeners == null) {
       listeners = new ArrayList<>();
@@ -506,7 +506,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    *
    * @return Mutable collection of listeners
    */
-  public @NonNull
+  public 
   Collection<CustomizationSupplier<CacheEntryOperationListener<K, V>>> getAsyncListeners() {
     if (asyncListeners == null) {
       asyncListeners = new ArrayList<>();
@@ -537,7 +537,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    *
    * @return Mutable collection of listeners
    */
-  public @NonNull
+  public 
   Collection<CustomizationSupplier<? extends CacheLifecycleListener>> getLifecycleListeners() {
     if (lifecycleListeners == null) {
       lifecycleListeners = new ArrayList<>();
@@ -558,11 +558,11 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    * construct a set or list, like Springs' bean XML configuration.
    */
   public void setLifecycleListeners(
-    @NonNull Collection<CustomizationSupplier<? extends CacheLifecycleListener>> c) {
+    Collection<CustomizationSupplier<? extends CacheLifecycleListener>> c) {
     getLifecycleListeners().addAll(c);
   }
 
-  public @NonNull
+  public 
   Set<Feature> getFeatures() {
     if (features == null) {
       features = new HashSet<>();
@@ -574,11 +574,11 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     return features != null && !features.isEmpty();
   }
 
-  public void setFeatures(@NonNull Set<? extends Feature> v) {
+  public void setFeatures(Set<? extends Feature> v) {
     getFeatures().addAll(v);
   }
 
-  public @Nullable CustomizationSupplier<? extends ResiliencePolicy<? super K, ? super V>>
+  public CustomizationSupplier<? extends ResiliencePolicy<? super K, ? super V>>
     getResiliencePolicy() {
     return resiliencePolicy;
   }
@@ -587,7 +587,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
    * @see Cache2kBuilder#resiliencePolicy
    */
   public void setResiliencePolicy(
-    @Nullable CustomizationSupplier<? extends ResiliencePolicy<? super K, ? super V>> v) {
+    CustomizationSupplier<? extends ResiliencePolicy<? super K, ? super V>> v) {
     resiliencePolicy = v;
   }
 
@@ -596,7 +596,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
   }
 
   public void setRefreshAheadPolicy(
-    @Nullable CustomizationSupplier<? extends RefreshAheadPolicy<? super K, ? super V, ?>> refreshAheadPolicy) {
+    CustomizationSupplier<? extends RefreshAheadPolicy<? super K, ? super V, ?>> refreshAheadPolicy) {
     this.refreshAheadPolicy = refreshAheadPolicy;
   }
 
@@ -633,14 +633,14 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     disableStatistics = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends Executor> getLoaderExecutor() {
+  public CustomizationSupplier<? extends Executor> getLoaderExecutor() {
     return loaderExecutor;
   }
 
   /**
    * @see Cache2kBuilder#loaderExecutor(Executor)
    */
-  public void setLoaderExecutor(@Nullable CustomizationSupplier<? extends Executor> v) {
+  public void setLoaderExecutor(CustomizationSupplier<? extends Executor> v) {
     loaderExecutor = v;
   }
 
@@ -655,51 +655,51 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     recordModificationTime = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends Executor> getRefreshExecutor() {
+  public CustomizationSupplier<? extends Executor> getRefreshExecutor() {
     return refreshExecutor;
   }
 
   /**
    * @see Cache2kBuilder#refreshExecutor(Executor)
    */
-  public void setRefreshExecutor(@Nullable CustomizationSupplier<? extends Executor> v) {
+  public void setRefreshExecutor(CustomizationSupplier<? extends Executor> v) {
     refreshExecutor = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends Executor> getExecutor() {
+  public CustomizationSupplier<? extends Executor> getExecutor() {
     return executor;
   }
 
   /**
    * @see Cache2kBuilder#executor(Executor)
    */
-  public void setExecutor(@Nullable CustomizationSupplier<? extends Executor> v) {
+  public void setExecutor(CustomizationSupplier<? extends Executor> v) {
     executor = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends Executor> getAsyncListenerExecutor() {
+  public CustomizationSupplier<? extends Executor> getAsyncListenerExecutor() {
     return asyncListenerExecutor;
   }
 
   /**
    * @see Cache2kBuilder#asyncListenerExecutor(Executor)
    */
-  public void setAsyncListenerExecutor(@Nullable CustomizationSupplier<? extends Executor> v) {
+  public void setAsyncListenerExecutor(CustomizationSupplier<? extends Executor> v) {
     asyncListenerExecutor = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends Weigher<K, V>> getWeigher() {
+  public CustomizationSupplier<? extends Weigher<K, V>> getWeigher() {
     return weigher;
   }
 
   /**
    * @see Cache2kBuilder#weigher(Weigher)
    */
-  public void setWeigher(@Nullable CustomizationSupplier<? extends Weigher<K, V>> v) {
+  public void setWeigher(CustomizationSupplier<? extends Weigher<K, V>> v) {
     weigher = v;
   }
 
-  public @Nullable CustomizationSupplier<? extends Scheduler> getScheduler() {
+  public CustomizationSupplier<? extends Scheduler> getScheduler() {
     return scheduler;
   }
 
@@ -707,7 +707,7 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     this.scheduler = scheduler;
   }
 
-  public @Nullable CustomizationSupplier<? extends TimeReference> getTimeReference() {
+  public CustomizationSupplier<? extends TimeReference> getTimeReference() {
     return timeReference;
   }
 
@@ -737,18 +737,17 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
     this.disableMonitoring = disableMonitoring;
   }
 
-  public @Nullable CacheWrapper getTraceCacheWrapper() {
+  public CacheWrapper getTraceCacheWrapper() {
     return traceCacheWrapper;
   }
 
   /**
    * @see CacheWrapper
    */
-  public void setTraceCacheWrapper(@Nullable CacheWrapper traceCacheWrapper) {
+  public void setTraceCacheWrapper(CacheWrapper traceCacheWrapper) {
     this.traceCacheWrapper = traceCacheWrapper;
   }
 
-  @Nullable
   public CacheWrapper getCacheWrapper() {
     return cacheWrapper;
   }
@@ -756,11 +755,11 @@ public class Cache2kConfig<K, V> implements ConfigBean<Cache2kConfig<K, V>, Cach
   /**
    * @see CacheWrapper
    */
-  public void setCacheWrapper(@Nullable CacheWrapper cacheWrapper) {
+  public void setCacheWrapper(CacheWrapper cacheWrapper) {
     this.cacheWrapper = cacheWrapper;
   }
 
-  private @Nullable Duration durationCheckAndSanitize(@Nullable Duration v) {
+  private Duration durationCheckAndSanitize(Duration v) {
     if (v == null) {
       return null;
     }

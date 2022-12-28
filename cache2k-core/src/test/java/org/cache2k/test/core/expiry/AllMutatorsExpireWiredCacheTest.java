@@ -30,7 +30,6 @@ import org.junit.experimental.categories.Category;
  *
  * @author Jens Wilke
  */
-@Category(SlowTests.class)
 public class AllMutatorsExpireWiredCacheTest extends AllMutatorsExpireTest {
 
   @Override

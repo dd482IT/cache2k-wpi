@@ -42,7 +42,6 @@ public class ReadThroughExampleTest {
     })
     .build();
 
-  @After
   public void tearDown() {
     routeToAirline.close();
   }
@@ -60,7 +59,6 @@ public class ReadThroughExampleTest {
     return routeToAirline.get(route);
   }
 
-  @Test
   public void test() {
     lookupFavoriteAirline("MUC", "JFK");
   }

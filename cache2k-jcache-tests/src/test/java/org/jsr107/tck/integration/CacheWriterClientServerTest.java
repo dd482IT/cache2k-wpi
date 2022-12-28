@@ -21,7 +21,6 @@ public class CacheWriterClientServerTest {
      * Ensure that entry can be written from the {@link CacheWriterClient} via
      * the {@link CacheWriterServer}.
      */
-    @Test
     public void shouldWriteFromServerWithClient() throws Exception {
 
         RecordingCacheWriter<String, String> recordingCacheWriter = new RecordingCacheWriter<>();
@@ -46,7 +45,6 @@ public class CacheWriterClientServerTest {
     /**
      * Ensure that exceptions thrown by an underlying cache Writer are re-thrown.
      */
-    @Test
     public void shouldRethrowExceptions() throws Exception {
 
         FailingCacheWriter<String, String> failingCacheWriter = new FailingCacheWriter<>();

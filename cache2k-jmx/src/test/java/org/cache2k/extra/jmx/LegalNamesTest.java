@@ -39,7 +39,6 @@ public class LegalNamesTest {
   private static final String LEGAL_CHARACTERS =
     ",-()~_.+!'%#";
 
-  @Test
   public void testCache() throws Exception {
     for (char aChar : LEGAL_CHARACTERS.toCharArray()) {
       String name = LegalNamesTest.class.getName() + "-test-with-char-" + aChar;

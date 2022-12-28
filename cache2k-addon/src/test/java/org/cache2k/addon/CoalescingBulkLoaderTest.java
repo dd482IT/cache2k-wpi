@@ -128,14 +128,12 @@ public class CoalescingBulkLoaderTest {
       .build();
   }
 
-  @Test
   public void enableDisable() {
     Cache2kBuilder.of(Integer.class, Integer.class)
       .setup(CoalescingBulkLoaderSupport::enable)
       .setup(CoalescingBulkLoaderSupport::disable);
   }
 
-  @Test
   public void missingBulkLoader() {
     assertThatCode(() -> {
       Cache2kBuilder.of(Integer.class, Integer.class)
@@ -143,7 +141,6 @@ public class CoalescingBulkLoaderTest {
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test
   public void nonBulkLoader() {
     assertThatCode(() -> {
       Cache2kBuilder.of(Integer.class, Integer.class)
@@ -157,7 +154,6 @@ public class CoalescingBulkLoaderTest {
    * Init via declarative config scheme. We issue multiple loads with one key and
    * expect that the bulk loader is called with more than one key, so coalescing effective.
    */
-  @Test
   public void testDeclarative() throws Exception {
     final int maxLoadSize = 3;
     IdentBulkLoader bulkLoader = new IdentBulkLoader();
@@ -180,7 +176,6 @@ public class CoalescingBulkLoaderTest {
     cache.close();
   }
 
-  @Test
   public void testDeclarative_refreshOnly() throws Exception {
     final int maxLoadSize = 3;
     IdentBulkLoader bulkLoader = new IdentBulkLoader();
@@ -223,7 +218,6 @@ public class CoalescingBulkLoaderTest {
     public int getMaxBulkRequestSize() { return maxBulkRequestSize.get(); }
   }
 
-  @Test
   public void testWithTimer() throws ExecutionException, InterruptedException {
     int maxBatchSize = 2;
     IdentBulkLoader bulkLoader = new IdentBulkLoader();
@@ -255,7 +249,6 @@ public class CoalescingBulkLoaderTest {
     cache.close();
   }
 
-  @Test
   public void constructor() {
     assertThatCode(() -> {
       CoalescingBulkLoader<Integer, Integer> coalescingLoader = new CoalescingBulkLoader<>(
@@ -264,13 +257,11 @@ public class CoalescingBulkLoaderTest {
     ).isInstanceOf(NullPointerException.class);
   }
 
-  @Test
   public void config() {
     CoalescingBulkLoaderConfig cfg = new CoalescingBulkLoaderConfig();
     assertThat(cfg == cfg.builder().config()).isTrue();
   }
 
-  @Test
   public void checkLoaderContext() throws ExecutionException, InterruptedException {
     TimeReference clock = DEFAULT;
     AtomicBoolean checked = new AtomicBoolean();
@@ -327,7 +318,6 @@ public class CoalescingBulkLoaderTest {
    * Test single threaded via wrapping. We call the CoalescingBulkLoader directly
    * for checks.
    */
-  @Test
   public void coalescingAsyncBulkLoader_singleThread() throws Exception {
     AsyncBulkCacheLoader<Integer, Integer> loader = (keys, context, callback) -> {
       boolean partialException = false;

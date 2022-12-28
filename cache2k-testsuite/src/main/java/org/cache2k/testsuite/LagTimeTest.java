@@ -59,7 +59,6 @@ public class LagTimeTest<K, V> extends AbstractCacheTester<K, V> {
       .scheduler(scheduler);
   }
 
-  @Test
   public void lagTimeSetExpireTime() {
     long lagTimeTicks = 100;
     int timeSpan = 1234;
@@ -92,7 +91,6 @@ public class LagTimeTest<K, V> extends AbstractCacheTester<K, V> {
     assertThat(expiryCount.get()).isEqualTo(timeSpan);
   }
 
-  @Test
   public void maxDelayIsLagTime2() {
     long lagTimeTicks = 31;
     int count = (int) lagTimeTicks * 3;
@@ -115,7 +113,6 @@ public class LagTimeTest<K, V> extends AbstractCacheTester<K, V> {
     }
   }
 
-  @Test
   public void testOneScheduleWithinLag() {
     long lagTimeTicks = 100;
     init(b -> b
@@ -133,7 +130,6 @@ public class LagTimeTest<K, V> extends AbstractCacheTester<K, V> {
     assertThat(scheduler.getScheduleCount()).isEqualTo(1);
   }
 
-  @Test
   public void testOneScheduleAfterLag() {
     long lagTimeTicks = 100;
     init(b -> b
@@ -157,7 +153,6 @@ public class LagTimeTest<K, V> extends AbstractCacheTester<K, V> {
     assertThat(scheduler.getScheduleCount()).isEqualTo(2);
   }
 
-  @Test
   public void reschedule() {
     long lagTimeTicks = 100;
     init(b -> b
@@ -173,7 +168,6 @@ public class LagTimeTest<K, V> extends AbstractCacheTester<K, V> {
     assertThat(containsKey(k0)).isFalse();
   }
 
-  @Test
   public void reschedule2() {
     long lagTimeTicks = 100;
     init(b -> b

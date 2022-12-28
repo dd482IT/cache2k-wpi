@@ -53,7 +53,4 @@ import java.lang.annotation.Target;
 @Target(value = {ElementType.PACKAGE, ElementType.TYPE})
 @Retention(value = RetentionPolicy.CLASS)
 @Documented
-@Nonnull
-@TypeQualifierDefault(value = {ElementType.METHOD, ElementType.PARAMETER})
-@UnderMigration(status = MigrationStatus.STRICT)
 public @interface NonNullApi { }

@@ -41,19 +41,16 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Jens Wilke
  */
-@Category(FastTests.class)
 public class IteratorTest {
 
   Cache<Integer, Integer> cache;
 
-  @After
   public void tearDown() {
     if (cache != null) {
       cache.close();
     }
   }
 
-  @Test
   public void testExpansion() {
     Cache<Integer, Integer> c = createCacheWith20Entries();
     Iterator<CacheEntry<Integer,Integer>> it = c.entries().iterator();
@@ -76,7 +73,6 @@ public class IteratorTest {
     assertThat(_keysSeen.contains(19)).isTrue();
   }
 
-  @Test
   public void testIterateEmpty_hasNext() {
     Cache<Integer, Integer> c = createEmptyCache();
     Iterator<CacheEntry<Integer,Integer>> it = c.entries().iterator();
@@ -88,7 +84,6 @@ public class IteratorTest {
     assertThat(it.hasNext()).isFalse();
   }
 
-  @Test(expected = NoSuchElementException.class)
   public void testIterateEmpty_next() {
     Cache<Integer, Integer> c = createEmptyCache();
     Iterator<CacheEntry<Integer,Integer>> it = c.entries().iterator();
@@ -111,7 +106,6 @@ public class IteratorTest {
     return c;
   }
 
-  @Test
   public void keyIteration() {
     Cache<Integer, Integer> c = createCacheWith20Entries();
     Set<Integer> _keysSeen = new HashSet<>();
@@ -122,7 +116,6 @@ public class IteratorTest {
     c.close();
   }
 
-  @Test(expected = CacheClosedException.class)
   public void testClose() {
     Cache<Integer, Integer> c = createCacheWith20Entries();
     Iterator<CacheEntry<Integer,Integer>> it = c.entries().iterator();

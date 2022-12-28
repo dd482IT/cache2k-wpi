@@ -34,13 +34,11 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  */
 public class TaskSuccessGuardianTest {
 
-  @Test
   public void immediateTimeout() {
     TaskSuccessGuardian guard = new TaskSuccessGuardian(Duration.ZERO);
     assertThatCode(() -> guard.awaitCompletionAndAssertSuccess()).isInstanceOf(TimeoutError.class);
   }
 
-  @Test
   public void expectException() {
     TaskSuccessGuardian guard = new TaskSuccessGuardian();
     guard.executeGuarded(() -> { throw new ExpectedException(); });
@@ -48,7 +46,6 @@ public class TaskSuccessGuardianTest {
       .isInstanceOf(AssertionError.class);
   }
 
-  @Test
   public void expectSuccess() {
     TaskSuccessGuardian guard = new TaskSuccessGuardian();
     AtomicBoolean executed = new AtomicBoolean();

@@ -29,7 +29,7 @@ import org.cache2k.annotation.Nullable;
  */
 public class CacheException extends RuntimeException {
 
-  protected CacheException(@Nullable String message, @Nullable Throwable cause,
+  protected CacheException(String message, Throwable cause,
                            boolean enableSuppression,
                            boolean writableStackTrace) {
     super(message, cause, enableSuppression, writableStackTrace);
