@@ -133,6 +133,7 @@
               <arg>-Aannotations</arg>
               <arg>-Anolocations</arg>
             </compilerArgs>
+            <showWarnings>true</showWarnings>
           </configuration>
         </plugin>
       </plugins>
