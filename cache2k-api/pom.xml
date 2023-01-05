@@ -121,13 +121,19 @@
               <path>
                 <groupId>org.checkerframework</groupId>
                 <artifactId>checker</artifactId>
-                <version>3.7.1</version>
+                <version>3.28.1-SNAPSHOT</version>
               </path>
             </annotationProcessorPaths>
             <annotationProcessors>
               <!-- Add all the checkers you want to enable here -->
               <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
             </annotationProcessors>
+            <compilerArgs>
+      				<arg>-Ainfer=ajava</arg>
+				      <arg>-Awarns</arg>
+				      <arg>-AinferOutputOriginal</arg>
+				      <arg>-Aajava=/tmp/WPITEMPCACHE2K</arg>
+            </compilerArgs>
           </configuration>
         </plugin>
       </plugins>
@@ -137,7 +143,12 @@
       <dependency>
         <groupId>org.checkerframework</groupId>
         <artifactId>checker</artifactId>
-        <version>3.7.1</version>
+        <version>3.28.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+         <groupId>org.checkerframework</groupId>
+         <artifactId>checker-qual</artifactId>
+         <version>3.28.1-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </profile>
