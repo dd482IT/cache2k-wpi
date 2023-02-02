@@ -58,10 +58,6 @@ while : ; do
 	echo ${DIFF_RESULT} > iteration$count.diff
     fi
     [[ "$DIFF_RESULT" != "" ]] || break
-    if [[ "$count" == 20 ]]
-    then
-        break
-    fi
     rm -rf ${WPITEMPDIR}
     mv ${WPIOUTDIR} ${WPITEMPDIR}
     ((count++))

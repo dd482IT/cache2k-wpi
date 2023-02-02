@@ -121,7 +121,7 @@
               <path>
                 <groupId>org.checkerframework</groupId>
                 <artifactId>checker</artifactId>
-                <version>3.28.1-SNAPSHOT</version>
+                <version>3.29.1-SNAPSHOT</version>
               </path>
             </annotationProcessorPaths>
             <annotationProcessors>
@@ -132,7 +132,7 @@
       				<arg>-Ainfer=ajava</arg>
 				      <arg>-Awarns</arg>
 				      <arg>-AinferOutputOriginal</arg>
-				      <arg>-Aajava=/tmp/WPITEMPCACHE2K</arg>
+				      <arg>-Aajava=/tmp/WPITEMP-cache2k</arg>
             </compilerArgs>
           </configuration>
         </plugin>
@@ -143,12 +143,12 @@
       <dependency>
         <groupId>org.checkerframework</groupId>
         <artifactId>checker</artifactId>
-        <version>3.28.1-SNAPSHOT</version>
+        <version>3.29.1-SNAPSHOT</version>
       </dependency>
       <dependency>
          <groupId>org.checkerframework</groupId>
          <artifactId>checker-qual</artifactId>
-         <version>3.28.1-SNAPSHOT</version>
+         <version>3.29.1-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </profile>
