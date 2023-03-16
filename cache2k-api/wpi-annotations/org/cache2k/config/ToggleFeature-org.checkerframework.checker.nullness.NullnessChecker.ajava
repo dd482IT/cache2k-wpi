@@ -44,7 +44,7 @@ public abstract class ToggleFeature implements SingleFeature {
      *
      * @return the created feature to set additional parameters
      */
-    public static <T extends ToggleFeature> @org.checkerframework.checker.nullness.qual.NonNull T enable(Cache2kBuilder<?, ?> builder, Class<T> featureType) {
+    public static <T extends ToggleFeature> T enable(Cache2kBuilder<?, ?> builder, Class<T> featureType) {
         try {
             T feature = featureType.getConstructor().newInstance();
             Set<Feature> features = builder.config().getFeatures();
@@ -66,7 +66,7 @@ public abstract class ToggleFeature implements SingleFeature {
     /**
      * Returns the feature instance, if present.
      */
-    public static <T extends ToggleFeature> @org.checkerframework.checker.initialization.qual.FBCBottom @org.checkerframework.checker.nullness.qual.Nullable T extract(@org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull Cache2kBuilder<?, ?> builder, @org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull Class<T> featureType) {
+    public static <T extends ToggleFeature> @org.checkerframework.checker.nullness.qual.Nullable T extract(@org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull Cache2kBuilder<?, ?> builder, @org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull Class<T> featureType) {
         for (Feature feature : builder.config().getFeatures()) {
             if (feature.getClass().equals(featureType)) {
                 return (T) feature;

@@ -52,7 +52,7 @@ public interface BulkCacheLoader<K, V> extends CacheLoader<K, V> {
     /**
      * By default uses {@link #loadAll} to load a singe value.
      */
-    default @org.checkerframework.checker.nullness.qual.Nullable V load(@org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull BulkCacheLoader<K, V> this, K key) throws Exception {
+    default V load(@org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull BulkCacheLoader<K, V> this, K key) throws Exception {
         return loadAll(Collections.singleton(key)).get(key);
     }
 }

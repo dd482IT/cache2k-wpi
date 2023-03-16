@@ -20,16 +20,11 @@ package org.cache2k.config;
  * #L%
  */
 /**
- * Marker for cache configuration beans. The marker is not mandatory.
- *
- * <p>Every bean that is used in a cache configuration should adhere to the Java Beans standard.
- * The objects need to be serializable since this is used to copy the default configuration.
- *
  * @author Jens Wilke
  */
-@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.nullness.NullnessChecker")
-public interface ConfigBean<SELF extends ConfigBean<SELF, B>, B extends ConfigBuilder<B, SELF>> extends BeanMarker {
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.nullness.KeyForSubchecker")
+public interface ConfigBuilder<SELF extends ConfigBuilder<SELF, T>, T extends ConfigBean<T, SELF>> {
 
     @org.checkerframework.dataflow.qual.Pure
-    @org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull B builder();
+    T config();
 }

@@ -35,7 +35,7 @@ import org.cache2k.annotation.NonNull;
  *           {@link java.util.concurrent.Executor} as well
  * @author Jens Wilke
  */
-@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.nullness.KeyForSubchecker")
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.nullness.NullnessChecker")
 public interface CustomizationSupplier<T> {
 
     /**
@@ -44,5 +44,5 @@ public interface CustomizationSupplier<T> {
      * @return created customization, never {@code null}
      */
     @org.checkerframework.dataflow.qual.Pure
-     T supply(CacheBuildContext<?, ?> buildContext);
+    T supply(CacheBuildContext<?, ?> buildContext);
 }

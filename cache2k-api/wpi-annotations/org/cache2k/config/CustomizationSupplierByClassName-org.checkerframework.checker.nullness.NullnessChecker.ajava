@@ -86,7 +86,7 @@ public final class CustomizationSupplierByClassName<T> implements CustomizationS
     }
 
     @org.checkerframework.checker.nullness.qual.EnsuresNonNull({ "this.className" })
-    public @org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull T supply(@org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull CustomizationSupplierByClassName<T> this, @org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull CacheBuildContext<?, ?> ctx) {
+    public T supply(@org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull CustomizationSupplierByClassName<T> this, @org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull CacheBuildContext<?, ?> ctx) {
         try {
             return (T) ctx.getCacheManager().getClassLoader().loadClass(checkNull(className)).getConstructor().newInstance();
         } catch (Exception e) {

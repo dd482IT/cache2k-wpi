@@ -78,7 +78,7 @@ public final class CustomizationSupplierByClassName<T> implements CustomizationS
         throw new UnsupportedOperationException();
     }
 
-    public  T supply( CustomizationSupplierByClassName<T> this,  CacheBuildContext<?, ?> ctx) {
+    public T supply( CustomizationSupplierByClassName<T> this,  CacheBuildContext<?, ?> ctx) {
         try {
             return (T) ctx.getCacheManager().getClassLoader().loadClass(checkNull(className)).getConstructor().newInstance();
         } catch (Exception e) {

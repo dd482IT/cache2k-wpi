@@ -45,7 +45,7 @@ public final class CustomizationReferenceSupplier<T> implements CustomizationSup
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.nullness.qual.NonNull T supply(@org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull CustomizationReferenceSupplier<T> this, @org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull CacheBuildContext<?, ?> ignored) {
+    public T supply(@org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull CustomizationReferenceSupplier<T> this, @org.checkerframework.checker.initialization.qual.Initialized @org.checkerframework.checker.nullness.qual.NonNull CacheBuildContext<?, ?> ignored) {
         return object;
     }
 

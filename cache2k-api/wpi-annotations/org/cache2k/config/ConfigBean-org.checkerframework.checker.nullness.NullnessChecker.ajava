@@ -27,9 +27,9 @@ package org.cache2k.config;
  *
  * @author Jens Wilke
  */
-@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.nullness.KeyForSubchecker")
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.nullness.NullnessChecker")
 public interface ConfigBean<SELF extends ConfigBean<SELF, B>, B extends ConfigBuilder<B, SELF>> extends BeanMarker {
 
     @org.checkerframework.dataflow.qual.Pure
-     B builder(ConfigBean<SELF, B> this);
+    B builder();
 }

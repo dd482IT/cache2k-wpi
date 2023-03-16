@@ -84,5 +84,5 @@ public interface CacheLoader<K, V> extends DataAwareCustomization<K, V> {
      *                   wrapped and rethrown via a {@link CacheLoaderException}. Rethrow
      */
     @org.checkerframework.dataflow.qual.Pure
-    @org.checkerframework.checker.nullness.qual.Nullable V load(K key) throws Exception;
+    V load(K key) throws Exception;
 }

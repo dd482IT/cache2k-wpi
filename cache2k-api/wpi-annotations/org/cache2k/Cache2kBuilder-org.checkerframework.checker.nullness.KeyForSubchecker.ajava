@@ -495,7 +495,7 @@ public class Cache2kBuilder<K, V> implements ConfigBuilder<Cache2kBuilder<K, V>,
     /**
      * Wraps to factory but passes on nulls.
      */
-    private static <T>  CustomizationReferenceSupplier<T> wrapCustomizationInstance( T obj) {
+    private static <T>  CustomizationReferenceSupplier<T> wrapCustomizationInstance(T obj) {
         return new CustomizationReferenceSupplier<>(obj);
     }
 
