@@ -1,0 +1,52 @@
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/Cache.java:[913,17] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
+  found   : K extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/Cache.java:[913,20] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
+  found   : V extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[365,27] [contracts.precondition.override] Subclass precondition is stronger for 'this.advancedLoader' in getSections.
+    In superclass org.cache2k.config.ConfigWithSections: no information
+    In subclass org.cache2k.config.Cache2kConfig: @Nullable
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/SectionContainer.java:[85,36] [purity.not.sideeffectfree.call] call to side-effecting getClass().getSimpleName not allowed in side-effect-free method
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[44,28] [argument] incompatible argument for parameter arg0 of requireNonNull.
+  found   : T extends @Initialized @Nullable Object
+  required: T extends @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/AsyncBulkCacheLoader.java:[101,32] [argument] incompatible argument for parameter arg0 of requireNonNull.
+  found   : K extends @Initialized @Nullable Object
+  required: K extends @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/AsyncBulkCacheLoader.java:[112,32] [argument] incompatible argument for parameter arg0 of requireNonNull.
+  found   : K extends @Initialized @Nullable Object
+  required: K extends @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/BulkCacheLoader.java:[57,51] [return] incompatible types in return.
+  type of expression: V[ extends @Initialized @Nullable Object super @Initialized @Nullable Void]
+  method return type: V[ extends @Initialized @Nullable Object super @Initialized @NonNull Void]
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/BulkCacheLoader.java:[57,52] [argument] incompatible argument for parameter arg0 of get.
+  found   : K extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[52,59] [contracts.precondition] precondition of builder.config().getFeatures is not satisfied.
+  found   : builder.config().advancedLoader is @Nullable
+  required: builder.config().advancedLoader is @Nullable
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[66,33] [contracts.precondition] precondition of builder.config().getFeatures is not satisfied.
+  found   : builder.config().advancedLoader is @Nullable
+  required: builder.config().advancedLoader is @Nullable
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[75,56] [contracts.precondition] precondition of builder.config().getFeatures is not satisfied.
+  found   : builder.config().advancedLoader is @Nullable
+  required: builder.config().advancedLoader is @Nullable
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[77,16] [return] incompatible types in return.
+  type of expression: T extends @Initialized @NonNull ToggleFeature
+  method return type: T extends @Initialized @Nullable ToggleFeature
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[150,36] [purity.not.sideeffectfree.call] call to side-effecting getClass().getSimpleName not allowed in side-effect-free method
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[232,24] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
+  found   : K extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[232,27] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
+  found   : V extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[241,41] [purity.not.sideeffectfree.call] call to side-effecting this.getClass().getSimpleName not allowed in side-effect-free method
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/AbstractCache.java:[219,24] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
+  found   : K extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/AbstractCache.java:[219,27] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
+  found   : V extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CacheTypeCapture.java:[130,55] [purity.not.sideeffectfree.call] call to side-effecting getTypeName not allowed in side-effect-free method
