@@ -126,46 +126,6 @@
 [WARNING] **************************************************************************************************************************************************************************
 [WARNING] * Required filename-based automodules detected: [jsr305-3.0.2.jar, kotlin-annotations-jvm-1.6.0.jar]. Please don't publish this project to a public artifact repository! *
 [WARNING] **************************************************************************************************************************************************************************
-[INFO] Compiling 1 source file to /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/target/classes
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  41.229 s
-[INFO] Finished at: 2023-03-15T20:16:06-04:00
-[INFO] ------------------------------------------------------------------------
-[INFO] Scanning for projects...
-[INFO]
-[INFO] ----------------------< org.cache2k:cache2k-api >-----------------------
-[INFO] Building cache2k API 2.8-SNAPSHOT
-[INFO]   from pom.xml
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO]
-[INFO] --- clean:3.1.0:clean (default-clean) @ cache2k-api ---
-[INFO] Deleting /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/target
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.770 s
-[INFO] Finished at: 2023-03-15T20:16:09-04:00
-[INFO] ------------------------------------------------------------------------
-realpath: iteration4.diff: No such file or directory
-putting the diff for iteration 4 into
-entering iteration 5
-[INFO] Scanning for projects...
-[INFO]
-[INFO] ----------------------< org.cache2k:cache2k-api >-----------------------
-[INFO] Building cache2k API 2.8-SNAPSHOT
-[INFO]   from pom.xml
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO]
-[INFO] --- enforcer:3.0.0-M2:enforce (enforce-versions) @ cache2k-api ---
-[INFO]
-[INFO] --- resources:3.1.0:resources (default-resources) @ cache2k-api ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/resources
-[INFO]
-[INFO] --- compiler:3.8.1:compile (java-8-compile) @ cache2k-api ---
-[INFO] Compiling 87 source files to /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/target/classes
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by org.checkerframework.javacutil.Resolver (file:/Users/daniel/.m2/repository/org/checkerframework/checker/3.32.1-SNAPSHOT/checker-3.32.1-SNAPSHOT.jar) to method com.sun.tools.javac.comp.Resolve.findMethod(com.sun.tools.javac.comp.Env,com.sun.tools.javac.code.Type,com.sun.tools.javac.util.Name,com.sun.tools.javac.util.List,com.sun.tools.javac.util.List,boolean,boolean)
 WARNING: Please consider reporting this to the maintainers of org.checkerframework.javacutil.Resolver
@@ -293,8 +253,6 @@ WARNING: All illegal access operations will be denied in a future release
 [WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/event/CacheEntryEvictedListener.java:[41,8] [purity.deterministic.void.method] a method without return value cannot be deterministic
 [WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/event/CacheEntryUpdatedListener.java:[49,8] [purity.deterministic.void.method] a method without return value cannot be deterministic
 [WARNING] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/event/CacheEntryCreatedListener.java:[47,8] [purity.deterministic.void.method] a method without return value cannot be deterministic
-[INFO]
-[INFO] --- compiler:3.8.1:compile (java-11-compile) @ cache2k-api ---
 [WARNING] Parameter 'compileSourceRoots' is read-only, must not be used in configuration
 [WARNING] **************************************************************************************************************************************************************************
 [WARNING] * Required filename-based automodules detected: [jsr305-3.0.2.jar, kotlin-annotations-jvm-1.6.0.jar]. Please don't publish this project to a public artifact repository! *
