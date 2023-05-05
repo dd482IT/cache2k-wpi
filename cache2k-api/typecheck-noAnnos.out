@@ -1,257 +1,132 @@
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/Cache.java:[913,17] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
-  found   : K extends @Initialized @Nullable Object
-  required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/Cache.java:[913,20] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
-  found   : V extends @Initialized @Nullable Object
-  required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/CacheEntry.java:[78,25] [return] incompatible types in return.
-  type of expression: @Initialized @Nullable Throwable
-  method return type: @Initialized @NonNull Throwable
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[97,18] [initialization.field.uninitialized] the default constructor does not initialize field name
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[99,24] [initialization.field.uninitialized] the default constructor does not initialize field keyType
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[100,24] [initialization.field.uninitialized] the default constructor does not initialize field valueType
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[102,39] [assignment] incompatible types in assignment.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[97,18] [initialization.field.uninitialized] the default constructor does not initialize field name
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[99,24] [initialization.field.uninitialized] the default constructor does not initialize field keyType
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[100,24] [initialization.field.uninitialized] the default constructor does not initialize field valueType
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[102,39] [assignment] incompatible types in assignment.
   found   : null (NullType)
   required: @Initialized @NonNull Duration
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[103,35] [assignment] incompatible types in assignment.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[103,35] [assignment] incompatible types in assignment.
   found   : null (NullType)
   required: @Initialized @NonNull Duration
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[104,31] [assignment] incompatible types in assignment.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[104,31] [assignment] incompatible types in assignment.
   found   : null (NullType)
   required: @Initialized @NonNull Duration
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[122,53] [initialization.field.uninitialized] the default constructor does not initialize field loaderExecutor
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[123,53] [initialization.field.uninitialized] the default constructor does not initialize field refreshExecutor
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[124,53] [initialization.field.uninitialized] the default constructor does not initialize field asyncListenerExecutor
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[125,53] [initialization.field.uninitialized] the default constructor does not initialize field executor
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[127,73] [initialization.field.uninitialized] the default constructor does not initialize field expiryPolicy
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[128,58] [initialization.field.uninitialized] the default constructor does not initialize field timeReference
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[129,54] [initialization.field.uninitialized] the default constructor does not initialize field scheduler
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[131,77] [initialization.field.uninitialized] the default constructor does not initialize field resiliencePolicy
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[133,82] [initialization.field.uninitialized] the default constructor does not initialize field refreshAheadPolicy
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[134,62] [initialization.field.uninitialized] the default constructor does not initialize field writer
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[135,62] [initialization.field.uninitialized] the default constructor does not initialize field loader
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[136,70] [initialization.field.uninitialized] the default constructor does not initialize field advancedLoader
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[137,67] [initialization.field.uninitialized] the default constructor does not initialize field asyncLoader
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[139,80] [initialization.field.uninitialized] the default constructor does not initialize field exceptionPropagator
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[140,58] [initialization.field.uninitialized] the default constructor does not initialize field weigher
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[141,80] [initialization.field.uninitialized] the default constructor does not initialize field listeners
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[143,74] [initialization.field.uninitialized] the default constructor does not initialize field asyncListeners
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[144,79] [initialization.field.uninitialized] the default constructor does not initialize field lifecycleListeners
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[145,24] [initialization.field.uninitialized] the default constructor does not initialize field features
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[146,28] [initialization.field.uninitialized] the default constructor does not initialize field sections
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[147,24] [initialization.field.uninitialized] the default constructor does not initialize field traceCacheWrapper
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[148,24] [initialization.field.uninitialized] the default constructor does not initialize field cacheWrapper
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[238,19] [assignment] incompatible types in assignment.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[122,53] [initialization.field.uninitialized] the default constructor does not initialize field loaderExecutor
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[123,53] [initialization.field.uninitialized] the default constructor does not initialize field refreshExecutor
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[124,53] [initialization.field.uninitialized] the default constructor does not initialize field asyncListenerExecutor
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[125,53] [initialization.field.uninitialized] the default constructor does not initialize field executor
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[127,73] [initialization.field.uninitialized] the default constructor does not initialize field expiryPolicy
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[128,58] [initialization.field.uninitialized] the default constructor does not initialize field timeReference
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[129,54] [initialization.field.uninitialized] the default constructor does not initialize field scheduler
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[131,77] [initialization.field.uninitialized] the default constructor does not initialize field resiliencePolicy
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[133,82] [initialization.field.uninitialized] the default constructor does not initialize field refreshAheadPolicy
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[134,62] [initialization.field.uninitialized] the default constructor does not initialize field writer
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[135,62] [initialization.field.uninitialized] the default constructor does not initialize field loader
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[136,70] [initialization.field.uninitialized] the default constructor does not initialize field advancedLoader
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[137,67] [initialization.field.uninitialized] the default constructor does not initialize field asyncLoader
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[139,80] [initialization.field.uninitialized] the default constructor does not initialize field exceptionPropagator
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[140,58] [initialization.field.uninitialized] the default constructor does not initialize field weigher
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[141,80] [initialization.field.uninitialized] the default constructor does not initialize field listeners
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[143,74] [initialization.field.uninitialized] the default constructor does not initialize field asyncListeners
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[144,79] [initialization.field.uninitialized] the default constructor does not initialize field lifecycleListeners
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[145,24] [initialization.field.uninitialized] the default constructor does not initialize field features
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[146,28] [initialization.field.uninitialized] the default constructor does not initialize field sections
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[147,24] [initialization.field.uninitialized] the default constructor does not initialize field traceCacheWrapper
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[148,24] [initialization.field.uninitialized] the default constructor does not initialize field cacheWrapper
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[238,19] [assignment] incompatible types in assignment.
   found   : null (NullType)
   required: @Initialized @NonNull CacheType<V extends @Initialized @Nullable Object>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[257,19] [assignment] incompatible types in assignment.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[257,19] [assignment] incompatible types in assignment.
   found   : null (NullType)
   required: @Initialized @NonNull CacheType<V extends @Initialized @Nullable Object>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[764,14] [return] incompatible types in return.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[764,14] [return] incompatible types in return.
   type of expression: null (NullType)
   method return type: @Initialized @NonNull Duration
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/ResiliencePolicy.java:[65,36] [argument] incompatible argument for parameter v of setResiliencePolicy.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/ResiliencePolicy.java:[65,36] [argument] incompatible argument for parameter v of setResiliencePolicy.
   found   : null (NullType)
   required: @Initialized @NonNull CustomizationSupplier<? extends @Initialized @NonNull ResiliencePolicy<? extends @Initialized @Nullable Object super K extends @Initialized @Nullable Object, ? extends @Initialized @Nullable Object super V extends @Initialized @Nullable Object>>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/SectionContainer.java:[71,28] [return] incompatible types in return.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/SectionContainer.java:[71,28] [return] incompatible types in return.
   type of expression: T extends @Initialized @Nullable ConfigSection<T extends @Initialized @NonNull ConfigSection<T extends @Initialized @NonNull ConfigSection<T, ? extends @Initialized @NonNull Object>, ? extends @Initialized @NonNull Object>, ? extends @Initialized @NonNull Object>
   method return type: T extends @Initialized @NonNull ConfigSection<T extends @Initialized @NonNull ConfigSection<T, ? extends @Initialized @NonNull Object>, ? extends @Initialized @NonNull Object>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[44,28] [argument] incompatible argument for parameter arg0 of requireNonNull.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/SectionContainer.java:[85,36] [purity.not.sideeffectfree.call] call to side-effecting getClass().getSimpleName not allowed in side-effect-free method
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/Cache.java:[913,17] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
+  found   : K extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/Cache.java:[913,20] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
+  found   : V extends @Initialized @Nullable Object
+  required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/CacheEntry.java:[78,25] [return] incompatible types in return.
+  type of expression: @Initialized @Nullable Throwable
+  method return type: @Initialized @NonNull Throwable
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[44,28] [argument] incompatible argument for parameter arg0 of requireNonNull.
   found   : T extends @Initialized @Nullable Object
   required: T extends @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[54,32] [override.param] Incompatible parameter type for other.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[54,32] [override.param] Incompatible parameter type for other.
   found   : @Initialized @NonNull Object
   required: @Initialized @Nullable Object
   Consequence: method in @Initialized @NonNull CustomizationReferenceSupplier<T extends @Initialized @Nullable Object>
     @Initialized @NonNull boolean equals(@Initialized @NonNull CustomizationReferenceSupplier<T extends @Initialized @Nullable Object> this, @Initialized @NonNull Object p0)
   cannot override method in @Initialized @NonNull Object
     @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[62,12] [dereference.of.nullable] dereference of possibly-null reference object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[67,12] [dereference.of.nullable] dereference of possibly-null reference object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/AsyncBulkCacheLoader.java:[101,32] [argument] incompatible argument for parameter arg0 of requireNonNull.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[62,12] [dereference.of.nullable] dereference of possibly-null reference object
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[67,12] [dereference.of.nullable] dereference of possibly-null reference object
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/AsyncBulkCacheLoader.java:[101,32] [argument] incompatible argument for parameter arg0 of requireNonNull.
   found   : K extends @Initialized @Nullable Object
   required: K extends @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/AsyncBulkCacheLoader.java:[112,32] [argument] incompatible argument for parameter arg0 of requireNonNull.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/AsyncBulkCacheLoader.java:[112,32] [argument] incompatible argument for parameter arg0 of requireNonNull.
   found   : K extends @Initialized @Nullable Object
   required: K extends @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/BulkCacheLoader.java:[57,51] [return] incompatible types in return.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/BulkCacheLoader.java:[57,51] [return] incompatible types in return.
   type of expression: V[ extends @Initialized @Nullable Object super @Initialized @Nullable Void]
   method return type: V[ extends @Initialized @Nullable Object super @Initialized @NonNull Void]
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/BulkCacheLoader.java:[57,52] [argument] incompatible argument for parameter arg0 of get.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/BulkCacheLoader.java:[57,52] [argument] incompatible argument for parameter arg0 of get.
   found   : K extends @Initialized @Nullable Object
   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[80,12] [return] incompatible types in return.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[80,12] [return] incompatible types in return.
   type of expression: null (NullType)
   method return type: T extends @Initialized @NonNull ToggleFeature
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[132,38] [override.param] Incompatible parameter type for o.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[132,38] [override.param] Incompatible parameter type for o.
   found   : @Initialized @NonNull Object
   required: @Initialized @Nullable Object
   Consequence: method in @Initialized @NonNull ToggleFeature
     @Initialized @NonNull boolean equals(@Initialized @NonNull ToggleFeature this, @Initialized @NonNull Object p0)
   cannot override method in @Initialized @NonNull Object
     @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kManagerConfig.java:[34,28] [assignment] incompatible types in assignment.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[150,36] [purity.not.sideeffectfree.call] call to side-effecting getClass().getSimpleName not allowed in side-effect-free method
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kManagerConfig.java:[34,28] [assignment] incompatible types in assignment.
   found   : null (NullType)
   required: @Initialized @NonNull String
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kManagerConfig.java:[35,39] [assignment] incompatible types in assignment.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kManagerConfig.java:[35,39] [assignment] incompatible types in assignment.
   found   : null (NullType)
   required: @Initialized @NonNull String
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[39,10] [initialization.fields.uninitialized] the constructor does not initialize fields: className
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[49,14] [method.invocation] call to checkNull(java.lang.String) not allowed on the given receiver.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/processor/RestartException.java:[39,11] [argument] incompatible argument for parameter message of CacheException.
+  found   : null (NullType)
+  required: @Initialized @NonNull String
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/processor/RestartException.java:[39,17] [argument] incompatible argument for parameter cause of CacheException.
+  found   : null (NullType)
+  required: @Initialized @NonNull Throwable
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[39,10] [initialization.fields.uninitialized] the constructor does not initialize fields: className
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[49,14] [method.invocation] call to checkNull(java.lang.String) not allowed on the given receiver.
   found   : @UnderInitialization @NonNull CustomizationSupplierByClassName</*INFERENCE FAILED for:*/ ? extends Object>
   required: @Initialized @NonNull CustomizationSupplierByClassName</*INFERENCE FAILED for:*/ ? extends Object>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[91,32] [override.param] Incompatible parameter type for other.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[91,32] [override.param] Incompatible parameter type for other.
   found   : @Initialized @NonNull Object
   required: @Initialized @Nullable Object
   Consequence: method in @Initialized @NonNull CustomizationSupplierByClassName<T extends @Initialized @Nullable Object>
     @Initialized @NonNull boolean equals(@Initialized @NonNull CustomizationSupplierByClassName<T extends @Initialized @Nullable Object> this, @Initialized @NonNull Object p0)
   cannot override method in @Initialized @NonNull Object
     @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[232,24] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[232,24] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
   found   : K extends @Initialized @Nullable Object
   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[232,27] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[232,27] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
   found   : V extends @Initialized @Nullable Object
   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/processor/RestartException.java:[39,11] [argument] incompatible argument for parameter message of CacheException.
-  found   : null (NullType)
-  required: @Initialized @NonNull String
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/processor/RestartException.java:[39,17] [argument] incompatible argument for parameter cause of CacheException.
-  found   : null (NullType)
-  required: @Initialized @NonNull Throwable
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/AbstractCache.java:[219,24] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[241,41] [purity.not.sideeffectfree.call] call to side-effecting this.getClass().getSimpleName not allowed in side-effect-free method
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[241,60] [purity.not.sideeffectfree.call] call to side-effecting delegate not allowed in side-effect-free method
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/AbstractCache.java:[219,24] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
   found   : K extends @Initialized @Nullable Object
   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/AbstractCache.java:[219,27] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/AbstractCache.java:[219,27] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
   found   : V extends @Initialized @Nullable Object
   required: @Initialized @NonNull Object
-[INFO] 57 errors 
-
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (java-8-compile) on project cache2k-api: Compilation failure: Compilation failure: 
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/Cache.java:[913,17] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
-[ERROR]   found   : K extends @Initialized @Nullable Object
-[ERROR]   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/Cache.java:[913,20] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
-[ERROR]   found   : V extends @Initialized @Nullable Object
-[ERROR]   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/CacheEntry.java:[78,25] [return] incompatible types in return.
-[ERROR]   type of expression: @Initialized @Nullable Throwable
-[ERROR]   method return type: @Initialized @NonNull Throwable
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[97,18] [initialization.field.uninitialized] the default constructor does not initialize field name
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[99,24] [initialization.field.uninitialized] the default constructor does not initialize field keyType
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[100,24] [initialization.field.uninitialized] the default constructor does not initialize field valueType
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[102,39] [assignment] incompatible types in assignment.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull Duration
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[103,35] [assignment] incompatible types in assignment.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull Duration
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[104,31] [assignment] incompatible types in assignment.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull Duration
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[122,53] [initialization.field.uninitialized] the default constructor does not initialize field loaderExecutor
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[123,53] [initialization.field.uninitialized] the default constructor does not initialize field refreshExecutor
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[124,53] [initialization.field.uninitialized] the default constructor does not initialize field asyncListenerExecutor
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[125,53] [initialization.field.uninitialized] the default constructor does not initialize field executor
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[127,73] [initialization.field.uninitialized] the default constructor does not initialize field expiryPolicy
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[128,58] [initialization.field.uninitialized] the default constructor does not initialize field timeReference
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[129,54] [initialization.field.uninitialized] the default constructor does not initialize field scheduler
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[131,77] [initialization.field.uninitialized] the default constructor does not initialize field resiliencePolicy
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[133,82] [initialization.field.uninitialized] the default constructor does not initialize field refreshAheadPolicy
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[134,62] [initialization.field.uninitialized] the default constructor does not initialize field writer
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[135,62] [initialization.field.uninitialized] the default constructor does not initialize field loader
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[136,70] [initialization.field.uninitialized] the default constructor does not initialize field advancedLoader
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[137,67] [initialization.field.uninitialized] the default constructor does not initialize field asyncLoader
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[139,80] [initialization.field.uninitialized] the default constructor does not initialize field exceptionPropagator
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[140,58] [initialization.field.uninitialized] the default constructor does not initialize field weigher
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[141,80] [initialization.field.uninitialized] the default constructor does not initialize field listeners
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[143,74] [initialization.field.uninitialized] the default constructor does not initialize field asyncListeners
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[144,79] [initialization.field.uninitialized] the default constructor does not initialize field lifecycleListeners
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[145,24] [initialization.field.uninitialized] the default constructor does not initialize field features
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[146,28] [initialization.field.uninitialized] the default constructor does not initialize field sections
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[147,24] [initialization.field.uninitialized] the default constructor does not initialize field traceCacheWrapper
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[148,24] [initialization.field.uninitialized] the default constructor does not initialize field cacheWrapper
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[238,19] [assignment] incompatible types in assignment.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull CacheType<V extends @Initialized @Nullable Object>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[257,19] [assignment] incompatible types in assignment.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull CacheType<V extends @Initialized @Nullable Object>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kConfig.java:[764,14] [return] incompatible types in return.
-[ERROR]   type of expression: null (NullType)
-[ERROR]   method return type: @Initialized @NonNull Duration
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/ResiliencePolicy.java:[65,36] [argument] incompatible argument for parameter v of setResiliencePolicy.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull CustomizationSupplier<? extends @Initialized @NonNull ResiliencePolicy<? extends @Initialized @Nullable Object super K extends @Initialized @Nullable Object, ? extends @Initialized @Nullable Object super V extends @Initialized @Nullable Object>>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/SectionContainer.java:[71,28] [return] incompatible types in return.
-[ERROR]   type of expression: T extends @Initialized @Nullable ConfigSection<T extends @Initialized @NonNull ConfigSection<T extends @Initialized @NonNull ConfigSection<T, ? extends @Initialized @NonNull Object>, ? extends @Initialized @NonNull Object>, ? extends @Initialized @NonNull Object>
-[ERROR]   method return type: T extends @Initialized @NonNull ConfigSection<T extends @Initialized @NonNull ConfigSection<T, ? extends @Initialized @NonNull Object>, ? extends @Initialized @NonNull Object>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[44,28] [argument] incompatible argument for parameter arg0 of requireNonNull.
-[ERROR]   found   : T extends @Initialized @Nullable Object
-[ERROR]   required: T extends @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[54,32] [override.param] Incompatible parameter type for other.
-[ERROR]   found   : @Initialized @NonNull Object
-[ERROR]   required: @Initialized @Nullable Object
-[ERROR]   Consequence: method in @Initialized @NonNull CustomizationReferenceSupplier<T extends @Initialized @Nullable Object>
-[ERROR]     @Initialized @NonNull boolean equals(@Initialized @NonNull CustomizationReferenceSupplier<T extends @Initialized @Nullable Object> this, @Initialized @NonNull Object p0)
-[ERROR]   cannot override method in @Initialized @NonNull Object
-[ERROR]     @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[62,12] [dereference.of.nullable] dereference of possibly-null reference object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationReferenceSupplier.java:[67,12] [dereference.of.nullable] dereference of possibly-null reference object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/AsyncBulkCacheLoader.java:[101,32] [argument] incompatible argument for parameter arg0 of requireNonNull.
-[ERROR]   found   : K extends @Initialized @Nullable Object
-[ERROR]   required: K extends @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/AsyncBulkCacheLoader.java:[112,32] [argument] incompatible argument for parameter arg0 of requireNonNull.
-[ERROR]   found   : K extends @Initialized @Nullable Object
-[ERROR]   required: K extends @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/BulkCacheLoader.java:[57,51] [return] incompatible types in return.
-[ERROR]   type of expression: V[ extends @Initialized @Nullable Object super @Initialized @Nullable Void]
-[ERROR]   method return type: V[ extends @Initialized @Nullable Object super @Initialized @NonNull Void]
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/io/BulkCacheLoader.java:[57,52] [argument] incompatible argument for parameter arg0 of get.
-[ERROR]   found   : K extends @Initialized @Nullable Object
-[ERROR]   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[80,12] [return] incompatible types in return.
-[ERROR]   type of expression: null (NullType)
-[ERROR]   method return type: T extends @Initialized @NonNull ToggleFeature
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/ToggleFeature.java:[132,38] [override.param] Incompatible parameter type for o.
-[ERROR]   found   : @Initialized @NonNull Object
-[ERROR]   required: @Initialized @Nullable Object
-[ERROR]   Consequence: method in @Initialized @NonNull ToggleFeature
-[ERROR]     @Initialized @NonNull boolean equals(@Initialized @NonNull ToggleFeature this, @Initialized @NonNull Object p0)
-[ERROR]   cannot override method in @Initialized @NonNull Object
-[ERROR]     @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kManagerConfig.java:[34,28] [assignment] incompatible types in assignment.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull String
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/Cache2kManagerConfig.java:[35,39] [assignment] incompatible types in assignment.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull String
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[39,10] [initialization.fields.uninitialized] the constructor does not initialize fields: className
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[49,14] [method.invocation] call to checkNull(java.lang.String) not allowed on the given receiver.
-[ERROR]   found   : @UnderInitialization @NonNull CustomizationSupplierByClassName</*INFERENCE FAILED for:*/ ? extends Object>
-[ERROR]   required: @Initialized @NonNull CustomizationSupplierByClassName</*INFERENCE FAILED for:*/ ? extends Object>
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CustomizationSupplierByClassName.java:[91,32] [override.param] Incompatible parameter type for other.
-[ERROR]   found   : @Initialized @NonNull Object
-[ERROR]   required: @Initialized @Nullable Object
-[ERROR]   Consequence: method in @Initialized @NonNull CustomizationSupplierByClassName<T extends @Initialized @Nullable Object>
-[ERROR]     @Initialized @NonNull boolean equals(@Initialized @NonNull CustomizationSupplierByClassName<T extends @Initialized @Nullable Object> this, @Initialized @NonNull Object p0)
-[ERROR]   cannot override method in @Initialized @NonNull Object
-[ERROR]     @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[232,24] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
-[ERROR]   found   : K extends @Initialized @Nullable Object
-[ERROR]   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/ForwardingCache.java:[232,27] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
-[ERROR]   found   : V extends @Initialized @Nullable Object
-[ERROR]   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/processor/RestartException.java:[39,11] [argument] incompatible argument for parameter message of CacheException.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull String
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/processor/RestartException.java:[39,17] [argument] incompatible argument for parameter cause of CacheException.
-[ERROR]   found   : null (NullType)
-[ERROR]   required: @Initialized @NonNull Throwable
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/AbstractCache.java:[219,24] [type.argument] incompatible type argument for type parameter K of ConcurrentMap.
-[ERROR]   found   : K extends @Initialized @Nullable Object
-[ERROR]   required: @Initialized @NonNull Object
-[ERROR] /Users/daniel/Documents/njit/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/AbstractCache.java:[219,27] [type.argument] incompatible type argument for type parameter V of ConcurrentMap.
-[ERROR]   found   : V extends @Initialized @Nullable Object
-[ERROR]   required: @Initialized @NonNull Object
+[WARNING] /Users/daniel/Documents/NJIT/WPI-Research/experiments-live/cache2k-wpi/cache2k-api/src/main/java/org/cache2k/config/CacheTypeCapture.java:[130,55] [purity.not.sideeffectfree.call] call to side-effecting getTypeName not allowed in side-effect-free method
